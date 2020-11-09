@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_class_parent/backend/models/models.dart';
-import 'package:go_class_parent/widgets/widgets.dart';
+import 'package:go_class_parent/values/Colors.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class CanteenList extends StatelessWidget {
@@ -14,86 +14,17 @@ class CanteenList extends StatelessWidget {
     return DefaultTabController(
       length: 5,
       child: Scaffold(
-        appBar: MyAppBar(
-          title: "Cantine",
-          tabBar: TabBar(
-              unselectedLabelColor: Colors.lightBlueAccent,
-              unselectedLabelStyle: TextStyle(
-                fontSize: 14,
-                color: Colors.black,
-              ),
-              indicatorSize: TabBarIndicatorSize.label,
-              indicator: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [Colors.lightBlueAccent, Colors.greenAccent]),
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.redAccent),
-              tabs: [
-                Tab(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border:
-                          Border.all(color: Colors.lightBlueAccent, width: 1),
-                    ),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text("Dim"),
-                    ),
-                  ),
-                ),
-                Tab(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border:
-                          Border.all(color: Colors.lightBlueAccent, width: 1),
-                    ),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text("Lun"),
-                    ),
-                  ),
-                ),
-                Tab(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border:
-                          Border.all(color: Colors.lightBlueAccent, width: 1),
-                    ),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text("Mar"),
-                    ),
-                  ),
-                ),
-                Tab(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border:
-                          Border.all(color: Colors.lightBlueAccent, width: 1),
-                    ),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text("Mer"),
-                    ),
-                  ),
-                ),
-                Tab(
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                            color: Colors.lightBlueAccent, width: 1)),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text("Jeu"),
-                    ),
-                  ),
-                ),
-              ]),
+        appBar: AppBar(
+          elevation: 0.0,
+          backgroundColor: MAIN_COLOR_LIGHT,
+          title: Text("Cantine"),
+          bottom: TabBar(tabs: [
+            tab("Dim"),
+            tab("Lun"),
+            tab("Mar"),
+            tab("Mer"),
+            tab("Jeu"),
+          ]),
         ),
         body: TabBarView(
           children: <Widget>[
@@ -107,6 +38,15 @@ class CanteenList extends StatelessWidget {
       ),
     );
   }
+
+  Widget tab(String text) {
+    return Tab(
+      child: Text(
+        text,
+        style: TextStyle(color: WHITE, fontSize: 18),
+      ),
+    );
+  }
 }
 
 class _MenuDetails extends StatelessWidget {
@@ -116,25 +56,23 @@ class _MenuDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-        itemBuilder: (context, index) {
-          if (index == 0) {
-            return _cardDetailBuilder(
-                'Plat Principale: ', menu.plats.first, "646DE0", "6E81E4");
-          } else if (index == 1) {
-            return _cardDetailBuilder(
-                'Plat Secondaire: ', menu.plats.second, "646DE0", "6E81E4");
-          } else {
-            return _cardDetailBuilder(
-                'Dessert: ', menu.plats.dessert, "646DE0", "6E81E4");
-          }
-        },
-        separatorBuilder: (context, index) => const Divider(thickness: 1),
-        itemCount: 3);
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          _cardDetailBuilder(
+              'Plat Principale: ', menu.plats.first, "646DE0", "6E81E4", ""),
+          _cardDetailBuilder(
+              'Plat Secondaire: ', menu.plats.second, "646DE0", "6E81E4", ""),
+          _cardDetailBuilder(
+              'Dessert: ', menu.plats.dessert, "646DE0", "6E81E4", "")
+        ],
+      ),
+    );
   }
 
-  Widget _cardDetailBuilder(
-      String titleTxt, String meals, String startColor, String endColor) {
+  Widget _cardDetailBuilder(String titleTxt, String meals, String startColor,
+      String endColor, String imagePath) {
     return Padding(
       padding: EdgeInsets.all(10),
       child: Container(
@@ -168,12 +106,8 @@ class _MenuDetails extends StatelessWidget {
                   ),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.only(
-                    top: 54,
-                    left: 16,
-                    right: 16,
-                    bottom: 8,
-                  ),
+                  padding:
+                      EdgeInsets.only(top: 54, left: 16, right: 16, bottom: 8),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -185,13 +119,16 @@ class _MenuDetails extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                           letterSpacing: 0.2,
+                          color: WHITE,
                         ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          SizedBox(height: 20),
+                          SizedBox(
+                            height: 20,
+                          ),
                           Padding(
                             padding: EdgeInsets.only(top: 8, bottom: 8),
                             child: Row(
@@ -199,11 +136,12 @@ class _MenuDetails extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  meals,
+                                  meals ?? "empty",
                                   style: TextStyle(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 14,
                                     letterSpacing: 0.2,
+                                    color: WHITE,
                                   ),
                                 ),
                               ],
@@ -216,6 +154,29 @@ class _MenuDetails extends StatelessWidget {
                 ),
               ),
             ),
+            Positioned(
+              top: 0,
+              left: 0,
+              child: Container(
+                width: 84,
+                height: 84,
+                decoration: BoxDecoration(
+                  color: HexColor("FFF").withOpacity(0.2),
+                  shape: BoxShape.circle,
+                ),
+              ),
+            ),
+            Positioned(
+              top: 0,
+              left: 8,
+              child: SizedBox(
+                width: 80,
+                height: 80,
+                child: Image.asset(
+                  "assets/admin_avatar.png",
+                ),
+              ),
+            )
           ],
         ),
       ),

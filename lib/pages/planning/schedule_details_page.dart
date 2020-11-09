@@ -7,7 +7,8 @@ class ScheduleDetailsPage extends StatelessWidget {
 
   const ScheduleDetailsPage({Key key, this.hours}) : super(key: key);
 
-  Widget _buildPlanBox(String heure, String matiere, String prof) {
+  Widget _buildPlanBox(
+      String heure, String hoursEnd, String matiere, String prof) {
     return Card(
       elevation: 2,
       child: Row(
@@ -18,9 +19,17 @@ class ScheduleDetailsPage extends StatelessWidget {
             color: RandomColor().randomColor(),
           ),
           SizedBox(width: 10),
-          Text(
-            heure,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          Column(
+            children: [
+              Text(
+                heure,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                hoursEnd,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+            ],
           ),
           SizedBox(width: 10),
           Container(
@@ -52,8 +61,8 @@ class ScheduleDetailsPage extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return hours[index].matiere == ''
               ? SizedBox(height: 60)
-              : _buildPlanBox(hours[index].hour, hours[index].matiere,
-                  hours[index].teacher);
+              : _buildPlanBox(hours[index].hourStart, hours[index].hourEnd,
+                  hours[index].matiere, hours[index].teacher);
         },
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_class_parent/backend/blocs/blocs.dart';
@@ -72,17 +73,17 @@ class __CanteenPageBodyState extends State<_CanteenPageBody> {
           SizedBox(
             height: 20.0,
           ),
-          Center(
-            child: CustomDropdownButton(
-              items: dropDownMenuItems,
-              onChanged: (newValue) {
-                setState(() {
-                  widget.currentClass = newValue;
-                });
-              },
-              value: widget.currentClass,
-            ),
-          ),
+          // Center(
+          //   child: CustomDropdownButton(
+          //     items: dropDownMenuItems,
+          //     onChanged: (newValue) {
+          //       setState(() {
+          //         widget.currentClass = newValue;
+          //       });
+          //     },
+          //     value: widget.currentClass,
+          //   ),
+          // ),
           SizedBox(
             height: 20.0,
           ),
@@ -91,9 +92,18 @@ class __CanteenPageBodyState extends State<_CanteenPageBody> {
               crossAxisCount: 2,
               children: List.generate(
                 widget.canteens.length,
-                (index) => _buildTile(
-                  Container(
-                    width: (MediaQuery.of(context).size.width / 2) - 30,
+                (index) => GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      CanteenList.routeName,
+                      arguments: widget.canteens[index],
+                    );
+                  },
+                  child: Card(
+                    elevation: 8.0,
+                    shadowColor: Color(0x802196F3),
+                    margin: EdgeInsets.all(16.0),
                     child: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -110,13 +120,6 @@ class __CanteenPageBodyState extends State<_CanteenPageBody> {
                       ),
                     ),
                   ),
-                  onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      CanteenList.routeName,
-                      arguments: widget.canteens[index],
-                    );
-                  },
                 ),
               ),
             ),

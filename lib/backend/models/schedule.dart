@@ -36,27 +36,32 @@ class Schedule extends Equatable {
     while (i < teachers.length) {
       //0
       week['sunday'].add(Seance(
-          hour: startTimes[timings],
+          hourStart: startTimes[timings],
+          hourEnd: endTimes[timings],
           matiere: matieres[i],
           teacher: teachers[i]));
       i++; //1
       week['monday'].add(Seance(
-          hour: startTimes[timings],
+          hourStart: startTimes[timings],
+          hourEnd: endTimes[timings],
           matiere: matieres[i],
           teacher: teachers[i]));
       i++; //2
       week['tuesday'].add(Seance(
-          hour: startTimes[timings],
+          hourStart: startTimes[timings],
+          hourEnd: endTimes[timings],
           matiere: matieres[i],
           teacher: teachers[i]));
       i++; //3
       week['wednesday'].add(Seance(
-          hour: startTimes[timings],
+          hourStart: startTimes[timings],
+          hourEnd: endTimes[timings],
           matiere: matieres[i],
           teacher: teachers[i]));
       i++; //4
       week['thursday'].add(Seance(
-          hour: startTimes[timings],
+          hourStart: startTimes[timings],
+          hourEnd: endTimes[timings],
           matiere: matieres[i],
           teacher: teachers[i]));
       i++; //5
@@ -75,9 +80,9 @@ class Schedule extends Equatable {
 }
 
 class Seance extends Equatable {
-  final String hour, matiere, teacher;
+  final String hourStart, hourEnd, matiere, teacher;
 
-  Seance({this.hour, this.matiere, this.teacher});
+  Seance({this.hourEnd, this.hourStart, this.matiere, this.teacher});
 
   @override
   List<Object> get props => throw UnimplementedError();

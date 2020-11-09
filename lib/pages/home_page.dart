@@ -111,14 +111,14 @@ class HomePage extends StatelessWidget {
                                       shape: CircleBorder(),
                                       child: Padding(
                                         padding: const EdgeInsets.all(16.0),
-                                        child: Icon(Icons.library_books,
+                                        child: Icon(Icons.fastfood,
                                             color: Colors.white, size: 30.0),
                                       )),
                                   Padding(
                                     padding: EdgeInsets.only(bottom: 16.0),
                                   ),
                                   Text(
-                                    'Leçons',
+                                    'Cantine',
                                     style: TextStyle(
                                         color: Colors.teal,
                                         fontWeight: FontWeight.w700,

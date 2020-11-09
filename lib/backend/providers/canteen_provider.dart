@@ -20,7 +20,7 @@ class CanteenProvider extends BaseCanteenProvider with HttpHandlerMixin {
       if (!json['error']) {
         final List<Canteen> canteens = List();
         json['data']['canteen'].forEach(
-          (canteen) => canteen.add(
+          (canteen) => canteens.add(
             Canteen.fromJson(canteen),
           ),
         );
