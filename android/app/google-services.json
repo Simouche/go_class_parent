@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "610173777126",
+    "firebase_url": "https://go-class-parent.firebaseio.com",
+    "project_id": "go-class-parent",
+    "storage_bucket": "go-class-parent.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610173777126:android:15efa36a4f6637a2373727",
+        "android_client_info": {
+          "package_name": "com.lakkini.GoClassParent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "610173777126-b9thuh6qg75ckj7gi4rvv8jdgjnruf5s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5tuPc7vZB2bYWnSMy9nZKnFNnn1b1qpE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "610173777126-b9thuh6qg75ckj7gi4rvv8jdgjnruf5s.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "610173777126-vok6h7o0pm2mlqk3pau9ltmnv2thk27g.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.lakkini.GoClassParent"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

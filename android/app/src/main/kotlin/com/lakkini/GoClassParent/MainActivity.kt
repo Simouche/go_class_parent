@@ -1,4 +1,4 @@
-package com.lakkini.go_class_parent
+package com.lakkini.GoClassParent
 
 import io.flutter.embedding.android.FlutterActivity
 
