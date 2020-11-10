@@ -14,9 +14,6 @@ class UsernameTextField extends StatelessWidget {
     return Container(
       child: Padding(
         child: TextFormField(
-          inputFormatters: <TextInputFormatter>[
-            FilteringTextInputFormatter.allow(RegExp("[a-z]"))
-          ],
           cursorColor: colorScheme.onSurface,
           controller: controller,
           decoration: InputDecoration(

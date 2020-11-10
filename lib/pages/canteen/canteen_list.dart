@@ -60,12 +60,12 @@ class _MenuDetails extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          _cardDetailBuilder(
-              'Plat Principale: ', menu.plats.first, "646DE0", "6E81E4", ""),
-          _cardDetailBuilder(
-              'Plat Secondaire: ', menu.plats.second, "646DE0", "6E81E4", ""),
-          _cardDetailBuilder(
-              'Dessert: ', menu.plats.dessert, "646DE0", "6E81E4", "")
+          _cardDetailBuilder('Plat Principale: ', menu.plats.first, "646DE0",
+              "6E81E4", "assets/lunch.png"),
+          _cardDetailBuilder('Plat Secondaire: ', menu.plats.second, "646DE0",
+              "6E81E4", "assets/dinner.png"),
+          _cardDetailBuilder('Dessert: ', menu.plats.dessert, "646DE0",
+              "6E81E4", "assets/snack.png")
         ],
       ),
     );

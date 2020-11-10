@@ -7,16 +7,26 @@ import 'package:go_class_parent/values/Colors.dart';
 
 import 'schedule_details_page.dart';
 
-class SchedulePage extends StatelessWidget {
+class SchedulePage extends StatefulWidget {
   static const String routeName = 'home/schedule';
 
+  @override
+  _SchedulePageState createState() => _SchedulePageState();
+}
+
+class _SchedulePageState extends State<SchedulePage> {
   List<Seance> sundayHoursList;
+
   List<Seance> mondayHoursList;
+
   List<Seance> tuesdayHoursList;
+
   List<Seance> wednesdayHoursList;
+
   List<Seance> thursdayHoursList;
 
-  String dropdownValue;
+  int dropdownValue = 0;
+
   List<String> dropdownList;
 
   Widget _loader(BuildContext context) {
@@ -31,10 +41,9 @@ class SchedulePage extends StatelessWidget {
   _prepare(state) {
     final Map<String, dynamic> results = state.schedules;
     dropdownList = results['classes'];
-    dropdownValue = dropdownList.first;
     final List<Schedule> schedules = results['schedules'];
-    final theSchedule =
-        schedules.firstWhere((element) => element.classe == dropdownValue);
+    final theSchedule = schedules
+        .firstWhere((element) => element.classe == dropdownList[dropdownValue]);
     final Map<String, List<Seance>> seances = theSchedule.splitToDays();
     sundayHoursList = seances['sunday'];
     mondayHoursList = seances['monday'];
@@ -65,18 +74,14 @@ class SchedulePage extends StatelessWidget {
                   elevation: 0.0,
                   backgroundColor: MAIN_COLOR_LIGHT,
                   actions: <Widget>[
-                    DropdownButton<String>(
+                    DropdownButton(
                       value: dropdownValue,
-                      onChanged: (String newValue) {
-                        dropdownValue = newValue;
+                      onChanged: (int newValue) {
+                        setState(() {
+                          dropdownValue = newValue;
+                        });
                       },
-                      items:
-                          dropdownList.map<DropdownMenuItem<String>>((value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value, style: TextStyle(fontSize: 19)),
-                        );
-                      }).toList(),
+                      items: dropDownMenuItems,
                       dropdownColor: WHITE,
                     ),
                     SizedBox(
@@ -153,4 +158,12 @@ class SchedulePage extends StatelessWidget {
           }),
     );
   }
+
+  get dropDownMenuItems => List.generate(
+      dropdownList.length,
+      (index) => DropdownMenuItem(
+            value: index,
+            child: Text(dropdownList[index],
+                style: TextStyle(fontSize: 19, color: WHITE)),
+          ));
 }
