@@ -14,7 +14,6 @@ class DownloadsPage extends StatelessWidget {
     return Scaffold(
       appBar: MyAppBar(title: "Téléchargements", showActions: false),
       body: BlocBuilder<DownloadsBloc, DownloadsState>(
-        buildWhen: (oldState, newState) => newState is DownloadsPageOpenState,
         builder: (context, state) {
           var newState = (state as DownloadsPageOpenState);
           if (state is DownloadsPageOpenState)

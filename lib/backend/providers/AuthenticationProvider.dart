@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:ffi';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:go_class_parent/backend/db/local_db.dart';
 import 'package:go_class_parent/backend/http/client.dart';
 import 'package:go_class_parent/backend/http/http_handler.dart';
@@ -41,10 +42,10 @@ class AuthenticationProvider extends BaseAuthenticationProvider
 
   @override
   Future<User> signIn() async {
-//    final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
-//    final String token = await _firebaseMessaging.getToken();
+    final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+    final String token = await _firebaseMessaging.getToken();
     final response = await client.post("login",
-        {'username': _username, 'password': _password, 'token': "token"});
+        {'username': _username, 'password': _password, 'token': token});
     final status = handleHttpCode(response.statusCode);
     if (status) {
       final json = jsonDecode(response.body);

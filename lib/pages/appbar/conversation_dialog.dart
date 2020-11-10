@@ -52,19 +52,19 @@ class ConversationDialog extends StatelessWidget {
             ),
             body: MultiBlocListener(
               listeners: [
-//                BlocListener<DownloadsBloc, DownloadsState>(
-//                    listener: (context, state) {
-//                  if (state is DownloadsInProgressState) {
-//                    Scaffold.of(context).showSnackBar(SnackBar(
-//                      content: Text("Telechargement en cours..."),
-//                    ));
-//                  } else if (state is DownloadsSuccessfulState)
-//                    Scaffold.of(context).showSnackBar(SnackBar(
-//                      content: Text(
-//                          "Fichiers telechargés avec succés, veuillez voir la"
-//                          " pages des telechargement"),
-//                    ));
-//                }),
+                BlocListener<DownloadsBloc, DownloadsState>(
+                    listener: (context, state) {
+                  if (state is DownloadsInProgressState) {
+                    Scaffold.of(context).showSnackBar(SnackBar(
+                      content: Text("Telechargement en cours..."),
+                    ));
+                  } else if (state is DownloadsSuccessfulState)
+                    Scaffold.of(context).showSnackBar(SnackBar(
+                      content: Text(
+                          "Fichiers telechargés avec succés, veuillez voir la"
+                          " pages des telechargement"),
+                    ));
+                }),
                 BlocListener<MessagesBloc, MessagesState>(
                   listener: (context, state) {
                     if (state is OpenNewMessageState) {
@@ -156,8 +156,8 @@ class ContactMessage extends StatelessWidget {
                 SnackBar(content: Text("Aucun fichier a telecharger")));
           } else {
             if (await Permission.storage.request().isGranted) {
-//              BlocProvider.of<DownloadsBloc>(context)
-//                  .add(TriggerDownloadsEvent(files: message.fileUrl));
+              BlocProvider.of<DownloadsBloc>(context)
+                  .add(TriggerDownloadsEvent(files: message.fileUrl));
             } else {
               Scaffold.of(context).showSnackBar(SnackBar(
                 content: Text("Permission refusée"),

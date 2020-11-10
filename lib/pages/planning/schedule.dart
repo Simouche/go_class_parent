@@ -164,6 +164,6 @@ class _SchedulePageState extends State<SchedulePage> {
       (index) => DropdownMenuItem(
             value: index,
             child: Text(dropdownList[index],
-                style: TextStyle(fontSize: 19, color: WHITE)),
+                style: TextStyle(fontSize: 19, color: BLACK)),
           ));
 }

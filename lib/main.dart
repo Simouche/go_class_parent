@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_class_parent/pages/pages.dart';
@@ -5,6 +8,7 @@ import 'package:go_class_parent/values/Colors.dart';
 import 'package:go_class_parent/widgets/widgets.dart';
 
 import 'backend/blocs/blocs.dart';
+import 'backend/fcm/fcm.dart' as fcm;
 import 'backend/repositories/repositories.dart';
 
 void main() {
@@ -42,9 +46,29 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+
   @override
   Widget build(BuildContext context) {
+    fcm.context = context;
+    _firebaseMessaging.configure(
+      onMessage: (Map<String, dynamic> message) {
+        print('on message ${message}');
+        // _showItemDialog(message);
+        return fcm.displayNotification(message);
+      },
+      onBackgroundMessage:
+          Platform.isIOS ? null : fcm.myBackgroundMessageHandler,
+      onResume: (Map<String, dynamic> message) {
+        print('on resume $message');
+      },
+      onLaunch: (Map<String, dynamic> message) {
+        print('on launch $message');
+      },
+    );
+
+    // todo add multi bloc consumer or listener to check notification token and send it
+
     return MaterialApp(
       title: 'GoClassParentParent',
       theme: ThemeData(
