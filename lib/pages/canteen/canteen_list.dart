@@ -173,7 +173,7 @@ class _MenuDetails extends StatelessWidget {
                 width: 80,
                 height: 80,
                 child: Image.asset(
-                  "assets/admin_avatar.png",
+                  imagePath,
                 ),
               ),
             )
