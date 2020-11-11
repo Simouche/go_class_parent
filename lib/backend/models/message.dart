@@ -41,7 +41,8 @@ class Message extends Equatable {
       receiverId: json['receiverID'],
       fileUrl: json['fileUrl']?.map((e) {
         if (e is String)
-          return AttachmentFile(url: e, name: e.substring(e.lastIndexOf("/")));
+          return AttachmentFile(
+              url: extractUrl(e), name: e.substring(e.lastIndexOf("/")));
         else
           return AttachmentFile(
               type: "M",

@@ -187,18 +187,37 @@ class _MessagesBodyState extends State<MessagesBody> {
         ),
         Expanded(
           child: ListView.separated(
-            itemCount: widget._conversations.length,
+            itemCount: widget._conversations.length +
+                widget._directorConversation.length +
+                1,
             separatorBuilder: (context, index) => const Divider(thickness: 1),
-            itemBuilder: (context, index) => Center(
-              child: GestureDetector(
-                onTap: () => BlocProvider.of<MessagesBloc>(context).add(
-                    OpenConversationEvent(
-                        teacher: widget._conversations[index])),
-                child: _MessageTile(
+            itemBuilder: (context, index) {
+              _MessageTile tile;
+              if (widget._conversations.length > index) {
+                tile = _MessageTile(
                   conversation: widget._conversations[index],
+                );
+              } else if (widget._directorConversation.length > index) {
+                tile = _MessageTile(
+                  directorConversation: widget._directorConversation[
+                      index - widget._conversations.length],
+                );
+              } else {
+                tile = _MessageTile(
+                  ceoConversation: widget._ceoWithMessages,
+                );
+              }
+              return Center(
+                child: GestureDetector(
+                  onTap: () {
+                    BlocProvider.of<MessagesBloc>(context).add(
+                        OpenConversationEvent(
+                            teacher: widget._conversations[index]));
+                  },
+                  child: tile,
                 ),
-              ),
-            ),
+              );
+            },
           ),
         ),
       ],
@@ -298,9 +317,16 @@ class OnlineIndicator extends StatelessWidget {
 }
 
 class _MessageTile extends StatelessWidget {
-  _MessageTile({Key key, this.conversation}) : super(key: key);
+  _MessageTile(
+      {Key key,
+      this.conversation,
+      this.directorConversation,
+      this.ceoConversation})
+      : super(key: key);
 
   final TeacherWithMessages conversation;
+  final DirectorWithMessages directorConversation;
+  final CeoWithMessages ceoConversation;
 
   @override
   Widget build(BuildContext context) {
