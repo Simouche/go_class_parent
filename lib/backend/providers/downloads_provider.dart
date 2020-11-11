@@ -14,12 +14,12 @@ class DownloadsProvider extends BaseDownloadsProvider {
 
   @override
   Future<bool> downloadFiles(List<dynamic> urls) async {
-    urls.forEach((element) async {
+    for (var element in urls) {
       final thePath = Platform.isAndroid
           ? (await ExtStorage.getExternalStoragePublicDirectory(
                   ExtStorage.DIRECTORY_DOWNLOADS)) +
               "/" +
-              element.name
+              (element.name.replaceAll("/", ""))
           : (await getApplicationDocumentsDirectory()).path +
               "/downloads/" +
               element.name;
@@ -34,7 +34,28 @@ class DownloadsProvider extends BaseDownloadsProvider {
               extension: thePath.substring(thePath.lastIndexOf(".")),
               date: DateFormat('yyyy-MM-dd').format(DateTime.now()).toString())
           .saveToDB(database);
-    });
+    }
+    // urls.forEach((element) async {
+    //   final thePath = Platform.isAndroid
+    //       ? (await ExtStorage.getExternalStoragePublicDirectory(
+    //               ExtStorage.DIRECTORY_DOWNLOADS)) +
+    //           "/" +
+    //           (element.name.replaceAll("/", ""))
+    //       : (await getApplicationDocumentsDirectory()).path +
+    //           "/downloads/" +
+    //           element.name;
+    //   print(thePath);
+    //   print(element);
+    //   await client.downloadFile(element.url, thePath);
+    //   AttachmentFile(
+    //           url: element.url,
+    //           name: element.name,
+    //           type: element.type,
+    //           path: thePath,
+    //           extension: thePath.substring(thePath.lastIndexOf(".")),
+    //           date: DateFormat('yyyy-MM-dd').format(DateTime.now()).toString())
+    //       .saveToDB(database);
+    // });
     return true;
   }
 

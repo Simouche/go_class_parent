@@ -15,11 +15,10 @@ class DownloadsPage extends StatelessWidget {
       appBar: MyAppBar(title: "Téléchargements", showActions: false),
       body: BlocBuilder<DownloadsBloc, DownloadsState>(
         builder: (context, state) {
-          var newState = (state as DownloadsPageOpenState);
           if (state is DownloadsPageOpenState)
             return SafeArea(
-                child: newState.files?.isNotEmpty ?? false
-                    ? _DownloadsList(files: newState.files)
+                child: state.files?.isNotEmpty ?? false
+                    ? _DownloadsList(files: state.files)
                     : Center(child: Text("aucun fichier telechargé.")));
           else
             return Center(child: Text("aucun fichier telechargé."));

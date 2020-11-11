@@ -47,7 +47,7 @@ class HttpClient {
         .timeout(_timeOut, onTimeout: _onTimeOut);
   }
 
-  Future<dynamic> downloadFile(String url, String fileName,
+  Future<Response> downloadFile(String url, String fileName,
       {ProgressCallback onReceivedProgress}) {
     print("download url is: ${_buildDownloadUrl(url)}");
     return _dio.download(_buildDownloadUrl(url), fileName);

@@ -19,6 +19,7 @@ class ConversationDialog extends StatelessWidget {
   TeacherWithMessages teacher;
   DirectorWithMessages director;
   CeoWithMessages ceo;
+  int messagesLength;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +37,10 @@ class ConversationDialog extends StatelessWidget {
             ceo?.ceo?.toString();
         Parent currentUser =
             BlocProvider.of<AuthenticationBloc>(context).currentParent;
+        messagesLength = teacher?.messages?.length ??
+            director?.messages?.length ??
+            ceo?.messages?.length ??
+            0;
         return Scaffold(
             appBar: MyAppBar(
               showActions: false,
@@ -73,22 +78,29 @@ class ConversationDialog extends StatelessWidget {
                   },
                 ),
               ],
-              child: ListView(
-                children: List.generate(
-                  teacher?.messages?.length ??
-                      director?.messages?.length ??
-                      ceo?.messages?.length,
-                  (index) {
-                    Message message;
-                    if (teacher != null) message = teacher?.messages[index];
-                    if (director != null) message = director?.messages[index];
-                    if (ceo != null) message = ceo?.messages[index];
-                    return currentUser.serverId == message.senderId
-                        ? selfMessage(message)
-                        : ContactMessage(message: message);
-                  },
-                ),
-              ),
+              child: messagesLength != 0
+                  ? ListView(
+                      children: List.generate(
+                        teacher?.messages?.length ??
+                            director?.messages?.length ??
+                            ceo?.messages?.length ??
+                            0,
+                        (index) {
+                          Message message;
+                          if (teacher != null)
+                            message = teacher?.messages[index];
+                          if (director != null)
+                            message = director?.messages[index];
+                          if (ceo != null) message = ceo?.messages[index];
+                          return currentUser.serverId == message.senderId
+                              ? selfMessage(message)
+                              : ContactMessage(message: message);
+                        },
+                      ),
+                    )
+                  : Center(
+                      child: Text("Pas de Message dans la Conversation"),
+                    ),
             ));
       },
     );

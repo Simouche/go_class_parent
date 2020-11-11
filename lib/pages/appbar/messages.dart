@@ -66,6 +66,9 @@ class MessagesBody extends StatefulWidget {
     //Director with conversations filter
     _directorConversation = DirectorWithMessages.filterDirectorWithMessages(
         directors: directors, messages: data[0]);
+    _directorConversationOnGoing = _directorConversation
+        .where((element) => element.messages.isNotEmpty)
+        .toList();
 
     //CEO with conversations filter
     ceo = data[2];
@@ -78,6 +81,7 @@ class MessagesBody extends StatefulWidget {
   final List<dynamic> data;
   List<TeacherWithMessages> _conversations;
   List<DirectorWithMessages> _directorConversation;
+  List<DirectorWithMessages> _directorConversationOnGoing;
   CeoWithMessages _ceoWithMessages;
   CEO ceo;
 
@@ -157,18 +161,22 @@ class _MessagesBodyState extends State<MessagesBody> {
                             child: Column(
                               children: [
                                 GestureDetector(
-                                    onTap: () => BlocProvider.of<MessagesBloc>(
-                                            context)
-                                        .add(OpenConversationEvent(
-                                            teacher: widget
-                                                    ._conversations.isNotEmpty
-                                                ? widget._conversations[index]
-                                                : TeacherWithMessages(
-                                                    teacher: widget
-                                                        ._children[currentChild]
-                                                        .teacherAndMatiere[
-                                                            index]
-                                                        .teacher))),
+                                    onTap: () {
+                                      TeacherWithMessages teacher;
+                                      if (widget._conversations.isNotEmpty &&
+                                          widget._conversations.length > index)
+                                        teacher = widget._conversations[index];
+                                      else
+                                        teacher = TeacherWithMessages(
+                                          teacher: widget
+                                              ._children[currentChild]
+                                              .teacherAndMatiere[index]
+                                              .teacher,
+                                        );
+                                      BlocProvider.of<MessagesBloc>(context)
+                                          .add(OpenConversationEvent(
+                                              teacher: teacher));
+                                    },
                                     child: _ContactsAvatar()),
                                 SizedBox(height: 10.0),
                                 Text(
@@ -188,7 +196,7 @@ class _MessagesBodyState extends State<MessagesBody> {
         Expanded(
           child: ListView.separated(
             itemCount: widget._conversations.length +
-                widget._directorConversation.length +
+                widget._directorConversationOnGoing.length +
                 1,
             separatorBuilder: (context, index) => const Divider(thickness: 1),
             itemBuilder: (context, index) {
@@ -197,9 +205,12 @@ class _MessagesBodyState extends State<MessagesBody> {
                 tile = _MessageTile(
                   conversation: widget._conversations[index],
                 );
-              } else if (widget._directorConversation.length > index) {
+              } else if (index >= widget._conversations.length &&
+                  widget._directorConversationOnGoing.length +
+                          widget._conversations.length >
+                      index) {
                 tile = _MessageTile(
-                  directorConversation: widget._directorConversation[
+                  directorConversation: widget._directorConversationOnGoing[
                       index - widget._conversations.length],
                 );
               } else {
@@ -330,19 +341,27 @@ class _MessageTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String name = conversation?.teacher?.toString() ??
+        directorConversation?.director?.toString() ??
+        ceoConversation?.ceo?.toString();
+
+    final Message message = conversation?.messages?.last ??
+        directorConversation?.messages?.last ??
+        ceoConversation?.messages?.last;
+
     return ListTile(
       leading: _ContactsAvatar(),
       title: Text(
-        "${conversation.teacher.toString()}",
+        name,
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
         textAlign: TextAlign.start,
       ),
-      subtitle: Html(data: conversation.messages.last.message),
+      subtitle: Html(data: message.message),
       trailing: Column(
         children: [
-          Text(conversation.messages.last.date),
+          Text(message.date),
           SizedBox(height: 20.0),
-          !(conversation.messages.last.seen ?? false)
+          !(message.seen ?? false)
               ? CircleAvatar(
                   backgroundColor: Colors.red,
                   child: Text(
@@ -354,8 +373,11 @@ class _MessageTile extends StatelessWidget {
               : Text(""),
         ],
       ),
-      onTap: () => BlocProvider.of<MessagesBloc>(context)
-          .add(OpenConversationEvent(teacher: conversation)),
+      onTap: () => BlocProvider.of<MessagesBloc>(context).add(
+          OpenConversationEvent(
+              teacher: conversation,
+              ceo: ceoConversation,
+              director: directorConversation)),
     );
   }
 }

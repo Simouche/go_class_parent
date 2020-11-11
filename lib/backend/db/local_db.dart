@@ -5,7 +5,7 @@ import 'package:sqflite/sqflite.dart';
 class LocalDB {
   static final LocalDB _db = LocalDB._internal();
   final String dbName = "go_class_db.db";
-  final int version = 2;
+  final int version = 5;
   Database db;
 
   factory LocalDB() {
@@ -50,16 +50,27 @@ class LocalDB {
           "FROM_ TEXT );");
       await database.execute("CREATE TABLE IF NOT EXISTS downloads("
           "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
-          "DATE DATETIME ,"
-          "PATH TEXT NOT NULL ,"
-          "TYPE TEXT NOT NULL ," //notification or messages
-          "EXTENSION TEXT ,"
-          "NAME TEXT NOT NULL ,"
-          "URL TEXT NOT NULL);");
+          "DATE DATETIME,"
+          "PATH TEXT,"
+          "TYPE TEXT," //notification or messages
+          "EXTENSION TEXT,"
+          "NAME TEXT,"
+          "URL TEXT);");
       await database.execute("CREATE TABLE IF NOT EXISTS settings("
           "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
           "CONFIG TEXT NOT NULL,"
           "VALUE TEXT DEFAULT 0);");
+    }, onUpgrade: (Database db, int oldVersion, int newVersion) async {
+      print("upgrading db to $newVersion");
+      await db.execute("DROP TABLE IF EXISTS downloads;");
+      await db.execute("CREATE TABLE IF NOT EXISTS downloads("
+          "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
+          "DATE DATETIME,"
+          "PATH TEXT,"
+          "TYPE TEXT," //notification or messages
+          "EXTENSION TEXT,"
+          "NAME TEXT,"
+          "URL TEXT);");
     });
   }
 

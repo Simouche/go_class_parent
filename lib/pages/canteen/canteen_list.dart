@@ -11,29 +11,31 @@ class CanteenList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Canteen canteen = ModalRoute.of(context).settings.arguments;
+
+    print("Length is ${canteen.menus.length}");
+    final Menu dimanche = canteen.menus.length > 1 ? canteen.menus[0] : null;
+    final Menu lundi = canteen.menus.length > 2 ? canteen.menus[1] : null;
+    final Menu mardi = canteen.menus.length > 3 ? canteen.menus[2] : null;
+    final Menu mercredi = canteen.menus.length > 4 ? canteen.menus[3] : null;
+    final Menu jeudi = canteen.menus.length > 5 ? canteen.menus[3] : null;
+
     return DefaultTabController(
-      length: 5,
+      length: canteen.menus.length,
       child: Scaffold(
         appBar: AppBar(
           elevation: 0.0,
           backgroundColor: MAIN_COLOR_LIGHT,
           title: Text("Cantine"),
-          bottom: TabBar(tabs: [
-            tab("Dim"),
-            tab("Lun"),
-            tab("Mar"),
-            tab("Mer"),
-            tab("Jeu"),
-          ]),
+          bottom: TabBar(
+              tabs: List.generate(canteen.menus.length,
+                  (index) => Tab(text: canteen.menus[index].day))),
         ),
         body: TabBarView(
-          children: <Widget>[
-            _MenuDetails(menu: canteen.menus[0]),
-            _MenuDetails(menu: canteen.menus[1]),
-            _MenuDetails(menu: canteen.menus[2]),
-            _MenuDetails(menu: canteen.menus[3]),
-            _MenuDetails(menu: canteen.menus[4]),
-          ],
+          children: List.generate(
+              canteen.menus.length,
+              (index) => _MenuDetails(
+                    menu: canteen.menus[index],
+                  )),
         ),
       ),
     );
