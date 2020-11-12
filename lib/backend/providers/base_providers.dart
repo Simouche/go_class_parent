@@ -16,6 +16,12 @@ abstract class BaseAuthenticationProvider {
   Future<bool> register();
 
   Future<Parent> getCurrentParent();
+
+  Future<User> resetPassword(String code);
+
+  Future<bool> changePassword(String password, String userID);
+
+  logout();
 }
 
 abstract class BaseUserDataProvider {}

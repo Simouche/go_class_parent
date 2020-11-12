@@ -30,4 +30,14 @@ class AuthenticationRepository {
   Future<Parent> getCurrentParent() async {
     return await _authProvider.getCurrentParent();
   }
+
+  void logout() {
+    _authProvider.logout();
+  }
+
+  Future<User> resetPassword(String code) async =>
+      _authProvider.resetPassword(code);
+
+  Future<bool> changePassword(String password, String userID) async =>
+      changePassword(password, userID);
 }

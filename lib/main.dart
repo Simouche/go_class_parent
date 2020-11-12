@@ -95,6 +95,7 @@ class MyApp extends StatelessWidget {
         OtpPage.routeName: (context) => OtpPage(),
         HomePage.routeName: (context) => HomePage(),
         ForgotPassword.routeName: (context) => ForgotPassword(),
+        NewPassword.routeName: (context) => NewPassword(),
 //        Biology.routeName: (context) => Biology(),
 //        Chemistry.routeName: (context) => Chemistry(),
 //        Mathematics.routeName: (context) => Mathematics(),

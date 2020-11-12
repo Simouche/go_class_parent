@@ -16,6 +16,7 @@ class AuthenticationProvider extends BaseAuthenticationProvider
   final HttpClient client = HttpClient();
 
   String _username, _password, _registrationCode;
+  User resetPasswordUser;
 
   AuthenticationProvider();
 
@@ -90,17 +91,25 @@ class AuthenticationProvider extends BaseAuthenticationProvider
 
   @override
   Future<bool> checkCode() async {
-    print("registration code : $_registrationCode");
-    final List<String> splittedCode = _registrationCode.split('-');
-    if (splittedCode.length > 1) {
-      final String domain = await getDomain(splittedCode[1]);
-      if (domain != null) client.urls(domain);
-    }
     final response = await client
         .post('check-code', {'registration_code': _registrationCode});
     final status = handleHttpCode(response.statusCode);
     if (status) {
       final json = jsonDecode(response.body);
+      if (!json['error'] &&
+          json['data']['domain'] != null &&
+          json['data']['domain'].isNotEmpty) {
+        client.urls(json['domain']);
+        final response2 = await client
+            .post('check-code', {'registration_code': _registrationCode});
+        final status2 = handleHttpCode(response2.statusCode);
+        if (status2) {
+          final json2 = jsonDecode(response.body);
+          resetPasswordUser = User.fromJson(json);
+          return !json2['error'];
+        }
+      }
+      resetPasswordUser = User.fromJson(json);
       return !json['error'];
     }
     return false;
@@ -155,5 +164,33 @@ class AuthenticationProvider extends BaseAuthenticationProvider
   Future<Parent> getCurrentParent() async {
     final Parent parent = await Parent.getCurrentParent(database);
     return parent;
+  }
+
+  void logout() {
+    database.delete(tableName: "users");
+    database.delete(tableName: "parents");
+  }
+
+  @override
+  Future<User> resetPassword(String code) async {
+    _registrationCode = code;
+    final result = await checkCode();
+    if (result) {
+      return resetPasswordUser;
+    } else {
+      return null;
+    }
+  }
+
+  @override
+  Future<bool> changePassword(String password, String userID) async {
+    final response = await client.get("setNewPassword",
+        queries: {"password": password, "userID": userID});
+    final status = handleHttpCode(response.statusCode);
+    if (status) {
+      final json = jsonDecode(response.body);
+      return !json['error'];
+    }
+    return false;
   }
 }

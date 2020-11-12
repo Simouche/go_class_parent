@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_class_parent/pages/pages.dart';
 import 'package:go_class_parent/values/Colors.dart';
 import 'package:go_class_parent/values/dimensions.dart';
 import 'package:go_class_parent/widgets/widgets.dart';
@@ -23,10 +24,10 @@ class ForgotPassword extends StatelessWidget {
                     top: AUTH_PAGES_BIG_TITLE_MARGIN_TOP,
                     left: AUTH_PAGES_BIG_TITLE_MARGIN_LEFT),
                 child: Text(
-                  "Forgot Password",
+                  "Mot de passe Oublié",
                   style: TextStyle(
                       color: WHITE,
-                      fontSize: AUTH_PAGES_BIG_TITLE_SIZE,
+                      fontSize: 24.0,
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -55,7 +56,7 @@ class _UsernameTextField extends StatelessWidget {
           cursorColor: colorScheme.onSurface,
           controller: _usernameController,
           decoration: InputDecoration(
-            hintText: "Email Address",
+            hintText: "Code Personnel",
             labelStyle: TextStyle(letterSpacing: mediumLetterSpacing),
           ),
           style: TextStyle(),
@@ -79,15 +80,17 @@ class _RegisterAndLoginButtons extends StatelessWidget {
       child: FlatButton(
         color: Color(0xff42b1de),
         child: Text(
-          'Reset Password',
+          'Réinitialiser le Mot de Passe',
           style: TextStyle(
               color: Colors.white, fontWeight: FontWeight.w700, fontSize: 16),
         ),
-        onPressed: () => showDialog(
+        onPressed: () => Navigator.of(context).pushNamed(NewPassword
+            .routeName) /*showDialog(
           context: context,
           builder: (_) => MyAlertDialog(),
           barrierDismissible: true,
-        ),
+        )*/
+        ,
       ),
     );
   }

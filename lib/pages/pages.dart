@@ -9,6 +9,7 @@ export 'forgot_password.dart';
 export 'home_page.dart';
 export 'initial_page.dart';
 export 'login_page.dart';
+export 'new_password.dart';
 export 'otp_page.dart';
 export 'payments/payments_list.dart';
 export 'payments/payments_page.dart';

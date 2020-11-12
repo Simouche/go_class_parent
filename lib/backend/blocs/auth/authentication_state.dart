@@ -47,3 +47,42 @@ class RegistrationFail extends AuthenticationState {
   @override
   List<Object> get props => [];
 }
+
+class LogoutState extends AuthenticationState {
+  @override
+  List<Object> get props => [];
+}
+
+class CheckResetCodeSuccessState extends AuthenticationState {
+  final User user;
+
+  CheckResetCodeSuccessState({this.user});
+
+  @override
+  List<Object> get props => [user];
+}
+
+class CheckResetCodeLoadingState extends AuthenticationState {
+  @override
+  List<Object> get props => [];
+}
+
+class CheckResetCodeFailedState extends AuthenticationState {
+  @override
+  List<Object> get props => [];
+}
+
+class SetNewPasswordSuccessState extends AuthenticationState {
+  @override
+  List<Object> get props => [];
+}
+
+class SetNewPasswordFailedState extends AuthenticationState {
+  @override
+  List<Object> get props => [];
+}
+
+class SetNewPasswordLoadingState extends AuthenticationState {
+  @override
+  List<Object> get props => [];
+}

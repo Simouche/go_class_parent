@@ -34,3 +34,27 @@ class AppLaunched extends AuthenticationEvent {
   @override
   List<Object> get props => [];
 }
+
+class LogoutEvent extends AuthenticationEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class CheckResetPasswordCodeEvent extends AuthenticationEvent {
+  final String code;
+
+  CheckResetPasswordCodeEvent({this.code});
+
+  @override
+  List<Object> get props => [code];
+}
+
+class SetNewPasswordEvent extends AuthenticationEvent {
+  final String password;
+  final String userID;
+
+  SetNewPasswordEvent({this.password, this.userID});
+
+  @override
+  List<Object> get props => [password, userID];
+}

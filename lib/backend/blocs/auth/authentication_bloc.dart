@@ -24,6 +24,7 @@ class AuthenticationBloc
   void _initialize() async {
     if (_currentUser == null) {
       _currentUser = await repository.getCurrentUser();
+      _currentParent = await repository.getCurrentParent();
     }
   }
 
@@ -50,6 +51,20 @@ class AuthenticationBloc
         yield* mapRegistrationToState(
             Credentials(eventCasted.username, eventCasted.password),
             eventCasted.code);
+        break;
+      case LogoutEvent:
+        logout();
+        yield LogoutState();
+        break;
+      case CheckResetPasswordCodeEvent:
+        CheckResetPasswordCodeEvent eventCasted =
+            event as CheckResetPasswordCodeEvent;
+        yield* mapCheckResetPasswordEventToState(eventCasted.code);
+        break;
+      case SetNewPasswordEvent:
+        SetNewPasswordEvent eventCasted = event as SetNewPasswordEvent;
+        yield* mapChangePasswordEventToState(
+            eventCasted.password, eventCasted.userID);
         break;
     }
   }
@@ -106,6 +121,32 @@ class AuthenticationBloc
     }
   }
 
+  Stream<AuthenticationState> mapCheckResetPasswordEventToState(
+      final String code) async* {
+    yield CheckResetCodeLoadingState();
+    try {
+      final User user = await repository.resetPassword(code);
+      yield user != null
+          ? CheckResetCodeSuccessState(user: user)
+          : CheckResetCodeFailedState();
+    } catch (e) {
+      yield CheckResetCodeFailedState();
+      print(e);
+    }
+  }
+
+  Stream<AuthenticationState> mapChangePasswordEventToState(
+      final String password, final String userID) async* {
+    yield SetNewPasswordLoadingState();
+    try {
+      final bool result = await repository.changePassword(password, userID);
+      yield result ? SetNewPasswordSuccessState() : SetNewPasswordFailedState();
+    } catch (e) {
+      yield SetNewPasswordFailedState();
+      print(e);
+    }
+  }
+
   Future<Parent> get parent async {
     if (_currentParent == null) {
       _currentParent = await repository.getCurrentParent();
@@ -115,7 +156,9 @@ class AuthenticationBloc
 
   Parent get currentParent => _currentParent;
 
-  User get currentUser {
-    return _currentUser;
+  User get currentUser => _currentUser;
+
+  logout() {
+    repository.logout();
   }
 }

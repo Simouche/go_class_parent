@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:go_class_parent/backend/blocs/blocs.dart';
+import 'package:go_class_parent/pages/login_page.dart';
 import 'package:go_class_parent/widgets/widgets.dart';
 
 import 'appbar/downloads.dart';
@@ -19,6 +20,13 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: BlocListener<AuthenticationBloc, AuthenticationState>(
+          listenWhen: (oldState, newState) => newState is LogoutState,
+          listener: (context, state) {
+            Navigator.of(context)
+                .pushNamedAndRemoveUntil(LoginPage.routeName, (route) => false);
+          },
+          child: MyAppDrawer()),
       key: _scaffoldKey,
       appBar: MyAppBar(title: _title),
       // drawer: MyAppDrawer(),
