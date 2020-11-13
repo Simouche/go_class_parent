@@ -10,16 +10,35 @@ import 'pages.dart';
 class NewPassword extends StatelessWidget {
   static const String routeName = 'forget_password/new_password';
 
-  final registrationCodeInputController = TextEditingController();
+  final newPasswordController = TextEditingController();
+  final confirmNewPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final String userID = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       body: BlocListener<AuthenticationBloc, AuthenticationState>(
         listenWhen: (oldState, newState) {
           return oldState != newState;
         },
         listener: (context, state) {
+          switch (state.runtimeType) {
+            case SetNewPasswordLoadingState:
+              Scaffold.of(context).showSnackBar(SnackBar(
+                  content: Text("Change de mot de passe en cours...")));
+              break;
+            case SetNewPasswordFailedState:
+              Scaffold.of(context).showSnackBar(
+                  SnackBar(content: Text("Changement de mot de passe echoué")));
+              break;
+            case SetNewPasswordSuccessState:
+              Scaffold.of(context).showSnackBar(SnackBar(
+                  content:
+                      Text("Changement avec succés veuillez vous connecter.")));
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  LoginPage.routeName, (route) => false);
+              break;
+          }
           if (state is RegistrationCodeValid) {
             Navigator.of(context).popAndPushNamed(SignUpPage.routeName);
           } else if (state is RegistrationCodeInvalid) {
@@ -48,23 +67,17 @@ class NewPassword extends StatelessWidget {
                 ),
                 SizedBox(height: 90),
                 _UsernameTextField(
-                  registrationCodeInputController:
-                      registrationCodeInputController,
+                  passwordController: newPasswordController,
                   hintText: "Mot de passe",
                 ),
                 _UsernameTextField(
-                  registrationCodeInputController:
-                      registrationCodeInputController,
+                  passwordController: confirmNewPasswordController,
                   hintText: "Confirmer le mot de passe",
                 ),
-                BlocBuilder<AuthenticationBloc, AuthenticationState>(
-                    builder: (context, state) {
-                  return state is Authenticating
-                      ? Center(child: CircularProgressIndicator())
-                      : _RegisterAndLoginButtons(
-                          registrationCodeInputController:
-                              registrationCodeInputController);
-                })
+                _RegisterAndLoginButtons(
+                    newPasswordController: newPasswordController,
+                    confirmNewPasswordController: confirmNewPasswordController,
+                    userID: userID),
               ],
             ),
           ),
@@ -75,10 +88,9 @@ class NewPassword extends StatelessWidget {
 }
 
 class _UsernameTextField extends StatelessWidget {
-  const _UsernameTextField(
-      {this.registrationCodeInputController, this.hintText});
+  const _UsernameTextField({this.passwordController, this.hintText});
 
-  final registrationCodeInputController;
+  final passwordController;
   final String hintText;
 
   @override
@@ -89,7 +101,7 @@ class _UsernameTextField extends StatelessWidget {
       child: Padding(
         child: TextFormField(
           cursorColor: colorScheme.onSurface,
-          controller: registrationCodeInputController,
+          controller: passwordController,
           decoration: InputDecoration(
             hintText: hintText,
             labelStyle: TextStyle(letterSpacing: mediumLetterSpacing),
@@ -106,9 +118,14 @@ class _UsernameTextField extends StatelessWidget {
 }
 
 class _RegisterAndLoginButtons extends StatelessWidget {
-  const _RegisterAndLoginButtons({this.registrationCodeInputController});
+  const _RegisterAndLoginButtons(
+      {this.newPasswordController,
+      this.confirmNewPasswordController,
+      this.userID});
 
-  final registrationCodeInputController;
+  final newPasswordController;
+  final confirmNewPasswordController;
+  final String userID;
 
   @override
   Widget build(BuildContext context) {
@@ -121,8 +138,16 @@ class _RegisterAndLoginButtons extends StatelessWidget {
           style: TextStyle(
               color: Colors.white, fontWeight: FontWeight.w700, fontSize: 16),
         ),
-        onPressed: () => BlocProvider.of<AuthenticationBloc>(context).add(
-            CodeConfirmationSubmitted(registrationCodeInputController.text)),
+        onPressed: () {
+          if (newPasswordController.text == confirmNewPasswordController.text)
+            BlocProvider.of<AuthenticationBloc>(context).add(
+                SetNewPasswordEvent(
+                    password: newPasswordController.text, userID: userID));
+          else
+            Scaffold.of(context).showSnackBar(SnackBar(
+              content: Text("les mots de passe entrés ne sont pas similaires"),
+            ));
+        },
       ),
     );
   }
