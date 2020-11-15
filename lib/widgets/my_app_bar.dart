@@ -19,7 +19,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      automaticallyImplyLeading: !showActions,
+      automaticallyImplyLeading: true,
       backgroundColor: MAIN_COLOR_LIGHT,
       elevation: 0.0,
       title: Text(title),

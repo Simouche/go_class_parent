@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:go_class_parent/backend/http/http_handler.dart';
 import 'package:go_class_parent/backend/models/models.dart';
 import 'package:go_class_parent/backend/repositories/repositories.dart';
 import 'package:meta/meta.dart';
@@ -80,14 +81,18 @@ class AuthenticationBloc
   Stream<AuthenticationState> mapLoginSubmitToState(
       Credentials credentials) async* {
     yield Authenticating();
-    User user =
-        await repository.signIn(credentials.username, credentials.password);
-    if (user != null) {
-      yield Authenticated();
-      _currentUser = user;
-      repository.getCurrentParent().then((value) => _currentParent = value);
-    } else
+    try {
+      User user =
+          await repository.signIn(credentials.username, credentials.password);
+      if (user != null) {
+        yield Authenticated();
+        _currentUser = user;
+        repository.getCurrentParent().then((value) => _currentParent = value);
+      } else
+        yield AuthenticationFailed();
+    } on Exception401403 {
       yield AuthenticationFailed();
+    }
   }
 
   Stream<AuthenticationState> mapRegistrationCodeSubmitToState(

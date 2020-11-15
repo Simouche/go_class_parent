@@ -55,8 +55,8 @@ class AuthenticationProvider extends BaseAuthenticationProvider
         final User user = User.fromJson(json);
         final bool setUp = SettingsProvider.checkAndSetUpCustomDomain(json);
         if (setUp) {
-          final response2 = await client
-              .get('get-parent', queries: {"userID": user.serverId});
+          final response2 = await client.get('get-parent',
+              queries: {"userID": user.serverId, "token": token});
           final status2 = handleHttpCode(response2.statusCode);
           if (status2) {
             final json2 = jsonDecode(response2.body);
@@ -193,6 +193,8 @@ class AuthenticationProvider extends BaseAuthenticationProvider
   void logout() {
     database.delete(tableName: "users");
     database.delete(tableName: "parents");
+    database.delete(tableName: "settings");
+    database.delete(tableName: "downloads");
     client.reInitUrls();
   }
 
