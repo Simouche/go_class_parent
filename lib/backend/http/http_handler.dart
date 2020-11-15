@@ -2,6 +2,7 @@ mixin HttpHandlerMixin {
   bool handleHttpCode(int code) {
     switch (code) {
       case 200:
+      case 201:
         return true;
       case 404:
         throw new Exception404();

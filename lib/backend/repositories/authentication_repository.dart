@@ -39,5 +39,5 @@ class AuthenticationRepository {
       _authProvider.resetPassword(code);
 
   Future<bool> changePassword(String password, String userID) async =>
-      changePassword(password, userID);
+      _authProvider.changePassword(password, userID);
 }

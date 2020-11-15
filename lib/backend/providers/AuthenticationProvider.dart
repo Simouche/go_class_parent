@@ -99,7 +99,7 @@ class AuthenticationProvider extends BaseAuthenticationProvider
       if (!json['error'] &&
           json['data']['domain'] != null &&
           json['data']['domain'].isNotEmpty) {
-        client.urls(json['domain']);
+        client.urls(json['data']['domain']);
         final response2 = await client
             .post('check-code', {'registration_code': _registrationCode});
         final status2 = handleHttpCode(response2.statusCode);
@@ -208,8 +208,8 @@ class AuthenticationProvider extends BaseAuthenticationProvider
 
   @override
   Future<bool> changePassword(String password, String userID) async {
-    final response = await client.get("setNewPassword",
-        queries: {"password": password, "userID": userID});
+    final response = await client
+        .post("setNewPassword", {"password": password, "userID": userID});
     final status = handleHttpCode(response.statusCode);
     if (status) {
       final json = jsonDecode(response.body);

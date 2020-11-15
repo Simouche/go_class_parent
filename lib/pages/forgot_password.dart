@@ -31,8 +31,8 @@ class ForgotPassword extends StatelessWidget {
             case CheckResetCodeSuccessState:
               CheckResetCodeSuccessState state =
                   newState as CheckResetCodeSuccessState;
-              Navigator.of(context).pushNamed(NewPassword.routeName,
-                  arguments: state.user.serverId);
+              Navigator.of(context)
+                  .pushNamed(NewPassword.routeName, arguments: state.user);
               break;
           }
         },
