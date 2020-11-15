@@ -4,9 +4,10 @@ import '../db/local_db.dart';
 
 class Parent extends Equatable {
   final int id;
-  final String firstName, lastName, phone, personalID, email, serverId;
+  final String firstName, lastName, phone, personalID, email, serverId, code;
 
   Parent({
+    this.code,
     this.id,
     this.serverId,
     this.firstName,
@@ -25,6 +26,7 @@ class Parent extends Equatable {
       "SERVER_ID": json['data']['parent']['_id'],
       "PERSONAL_ID": json['data']['parent']['personalID'],
       "EMAIL": json['data']['parent']['email'],
+      "CODE": json['data']['parent']['authentication']['code'],
     });
     return rows;
   }
