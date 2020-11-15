@@ -123,12 +123,12 @@ class AuthenticationProvider extends BaseAuthenticationProvider
       if (!json['error'] &&
           json['data']['domain'] != null &&
           json['data']['domain'].isNotEmpty) {
-        client.urls(json['domain']);
+        client.urls(json['data']['domain']);
         final response2 = await client
             .post('check-reset-code', {'registration_code': _registrationCode});
         final status2 = handleHttpCode(response2.statusCode);
         if (status2) {
-          final json2 = jsonDecode(response.body);
+          final json2 = jsonDecode(response2.body);
           resetPasswordUser = json2["data"]["userID"];
           return !json2['error'];
         }
@@ -193,12 +193,14 @@ class AuthenticationProvider extends BaseAuthenticationProvider
   void logout() {
     database.delete(tableName: "users");
     database.delete(tableName: "parents");
+    client.reInitUrls();
   }
 
   @override
   Future<String> resetPassword(String code) async {
     _registrationCode = code;
     final result = await checkResetCode();
+    client.reInitUrls();
     if (result) {
       return resetPasswordUser;
     } else {

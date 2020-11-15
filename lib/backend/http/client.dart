@@ -75,4 +75,9 @@ class HttpClient {
     _baseDownloadUrl = "$baseUrl/";
     print("the url is $_baseUrl");
   }
+
+  void reInitUrls() {
+    _baseUrl = "https://lakkini.com/app/";
+    _baseDownloadUrl = "https://lakkini.com/";
+  }
 }
