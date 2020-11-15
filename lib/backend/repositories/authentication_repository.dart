@@ -35,7 +35,7 @@ class AuthenticationRepository {
     _authProvider.logout();
   }
 
-  Future<User> resetPassword(String code) async =>
+  Future<String> resetPassword(String code) async =>
       _authProvider.resetPassword(code);
 
   Future<bool> changePassword(String password, String userID) async =>

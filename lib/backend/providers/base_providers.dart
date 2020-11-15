@@ -13,11 +13,13 @@ abstract class BaseAuthenticationProvider {
 
   Future<bool> checkCode();
 
+  Future<bool> checkResetCode();
+
   Future<bool> register();
 
   Future<Parent> getCurrentParent();
 
-  Future<User> resetPassword(String code);
+  Future<String> resetPassword(String code);
 
   Future<bool> changePassword(String password, String userID);
 

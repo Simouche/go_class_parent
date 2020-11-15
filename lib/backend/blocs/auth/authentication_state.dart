@@ -54,7 +54,7 @@ class LogoutState extends AuthenticationState {
 }
 
 class CheckResetCodeSuccessState extends AuthenticationState {
-  final User user;
+  final String user;
 
   CheckResetCodeSuccessState({this.user});
 

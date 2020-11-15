@@ -16,7 +16,7 @@ class AuthenticationProvider extends BaseAuthenticationProvider
   final HttpClient client = HttpClient();
 
   String _username, _password, _registrationCode;
-  User resetPasswordUser;
+  String resetPasswordUser;
 
   AuthenticationProvider();
 
@@ -105,11 +105,35 @@ class AuthenticationProvider extends BaseAuthenticationProvider
         final status2 = handleHttpCode(response2.statusCode);
         if (status2) {
           final json2 = jsonDecode(response.body);
-          resetPasswordUser = User.fromJson(json);
           return !json2['error'];
         }
       }
-      resetPasswordUser = User.fromJson(json);
+      return !json['error'];
+    }
+    return false;
+  }
+
+  @override
+  Future<bool> checkResetCode() async {
+    final response = await client
+        .post('check-reset-code', {'registration_code': _registrationCode});
+    final status = handleHttpCode(response.statusCode);
+    if (status) {
+      final json = jsonDecode(response.body);
+      if (!json['error'] &&
+          json['data']['domain'] != null &&
+          json['data']['domain'].isNotEmpty) {
+        client.urls(json['domain']);
+        final response2 = await client
+            .post('check-reset-code', {'registration_code': _registrationCode});
+        final status2 = handleHttpCode(response2.statusCode);
+        if (status2) {
+          final json2 = jsonDecode(response.body);
+          resetPasswordUser = json2["data"]["userID"];
+          return !json2['error'];
+        }
+      }
+      resetPasswordUser = json["data"]["userID"];
       return !json['error'];
     }
     return false;
@@ -172,9 +196,9 @@ class AuthenticationProvider extends BaseAuthenticationProvider
   }
 
   @override
-  Future<User> resetPassword(String code) async {
+  Future<String> resetPassword(String code) async {
     _registrationCode = code;
-    final result = await checkCode();
+    final result = await checkResetCode();
     if (result) {
       return resetPasswordUser;
     } else {

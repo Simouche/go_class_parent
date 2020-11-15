@@ -125,7 +125,7 @@ class AuthenticationBloc
       final String code) async* {
     yield CheckResetCodeLoadingState();
     try {
-      final User user = await repository.resetPassword(code);
+      final String user = await repository.resetPassword(code);
       yield user != null
           ? CheckResetCodeSuccessState(user: user)
           : CheckResetCodeFailedState();
