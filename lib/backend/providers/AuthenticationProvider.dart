@@ -190,14 +190,14 @@ class AuthenticationProvider extends BaseAuthenticationProvider
     return parent;
   }
 
-  void logout() async {
+  void logout({Parent parent}) async {
     database.delete(tableName: "users");
     database.delete(tableName: "parents");
     database.delete(tableName: "settings");
     database.delete(tableName: "downloads");
-    await client.post("logout", {
+    client.post("logout", {
       "token": (await FirebaseMessaging().getToken()),
-      "registartion_code": (await getCurrentParent()).code
+      "registartion_code": parent.code ?? "0"
     });
     client.reInitUrls();
   }

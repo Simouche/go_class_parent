@@ -31,8 +31,8 @@ class AuthenticationRepository {
     return await _authProvider.getCurrentParent();
   }
 
-  void logout() {
-    _authProvider.logout();
+  void logout({Parent parent}) {
+    _authProvider.logout(parent:parent);
   }
 
   Future<String> resetPassword(String code) async =>

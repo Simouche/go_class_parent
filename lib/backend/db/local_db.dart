@@ -35,7 +35,8 @@ class LocalDB {
             "LAST_NAME TEXT ,"
             "PHONE TEXT ,"
             "PERSONAL_ID TEXT ,"
-            "EMAIL TEXT );");
+            "EMAIL TEXT ,"
+            "CODE TEXT );");
         await database.execute("CREATE TABLE IF NOT EXISTS messages("
             "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
             "CONTACT INTEGER ,"
@@ -77,7 +78,7 @@ class LocalDB {
               "URL TEXT);");
         }
         if (version <= 6)
-          await db.execute("ALTER TABLE parents ADD CODE VARCHAR;");
+          await db.execute("ALTER TABLE parents ADD CODE TEXT;");
       },
     );
   }

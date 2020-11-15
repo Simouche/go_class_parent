@@ -164,6 +164,6 @@ class AuthenticationBloc
   User get currentUser => _currentUser;
 
   logout() {
-    repository.logout();
+    repository.logout(parent:currentParent);
   }
 }

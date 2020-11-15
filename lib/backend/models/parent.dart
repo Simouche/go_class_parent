@@ -37,13 +37,15 @@ class Parent extends Equatable {
     if (result != null && result.isNotEmpty) {
       print('there is a result');
       return Parent(
-          id: result[0]['ID'],
-          firstName: result[0]['FIRST_NAME'],
-          lastName: result[0]['LAST_NAME'],
-          phone: result[0]['PHONE'],
-          serverId: result[0]['SERVER_ID'],
-          personalID: result[0]['PERSONAL_ID'],
-          email: result[0]['EMAIL']);
+        id: result[0]['ID'],
+        firstName: result[0]['FIRST_NAME'],
+        lastName: result[0]['LAST_NAME'],
+        phone: result[0]['PHONE'],
+        serverId: result[0]['SERVER_ID'],
+        personalID: result[0]['PERSONAL_ID'],
+        email: result[0]['EMAIL'],
+        code: result[0]['CODE'],
+      );
     }
     return null;
   }
