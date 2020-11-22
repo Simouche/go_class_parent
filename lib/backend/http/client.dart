@@ -50,6 +50,7 @@ class HttpClient {
   Future<Response> downloadFile(String url, String fileName,
       {ProgressCallback onReceivedProgress}) {
     print("download url is: ${_buildDownloadUrl(url)}");
+    if (!url.startsWith("/")) url = "/$url";
     return _dio.download(_buildDownloadUrl(url), fileName);
   }
 
