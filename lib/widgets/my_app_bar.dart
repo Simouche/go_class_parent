@@ -26,6 +26,17 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: showActions
           ? <Widget>[
               IconButton(
+                icon: Image.asset(
+                  "assets/qr_code.png",
+                  color: WHITE,
+                  width: 24.0,
+                ),
+                tooltip: "Scannez un code",
+                onPressed: () async {
+                  print("pressed");
+                },
+              ),
+              IconButton(
                 icon: Icon(
                   Icons.mail,
                   color: WHITE,
