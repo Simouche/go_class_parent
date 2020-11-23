@@ -11,6 +11,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
 
+
 public class Application extends FlutterApplication implements PluginRegistrantCallback {
     @Override
     public void onCreate() {
@@ -28,4 +29,6 @@ public class Application extends FlutterApplication implements PluginRegistrantC
     public void registerWith(PluginRegistry registry) {
         FirebaseMessagingPlugin.registerWith(registry.registrarFor("io.flutter.plugins.firebasemessaging.FirebaseMessagingPlugin"));
     }
+
+
 }
