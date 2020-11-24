@@ -1,6 +1,7 @@
 export 'auth/authentication_bloc.dart';
 export 'bloc_observers/application_bloc_observer.dart';
 export 'canteen/canteen_bloc.dart';
+export 'children/children_bloc.dart';
 export 'downloads/downloads_bloc.dart';
 export 'messages/messages_bloc.dart';
 export 'notifications/notifications_bloc.dart';

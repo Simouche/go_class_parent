@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_class_parent/backend/blocs/blocs.dart';
 import 'package:go_class_parent/pages/pages.dart';
 import 'package:go_class_parent/values/Colors.dart';
-import 'package:qrscan/qrscan.dart' as scanner;
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MyAppBar({
@@ -27,16 +26,22 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: showActions
           ? <Widget>[
               IconButton(
-                icon: Image.asset(
-                  "assets/qr_code.png",
+                icon: Icon(
+                  Icons.group,
                   color: WHITE,
-                  width: 24.0,
                 ),
                 tooltip: "Scannez un code",
                 onPressed: () async {
                   print("pressed");
-                  String cameraScanResult = await scanner.scan();
-                  print(cameraScanResult);
+                  BlocProvider.of<ChildrenBloc>(context).add(
+                    GetStudentsEventEvent(
+                      userID:
+                          (await BlocProvider.of<AuthenticationBloc>(context)
+                                  .parent)
+                              .serverId,
+                    ),
+                  );
+                  Navigator.of(context).pushNamed(StudentsListPage.routeName);
                 },
               ),
               IconButton(

@@ -6,3 +6,4 @@ export 'notifications_repository.dart';
 export 'payments_repository.dart';
 export 'schedule_repository.dart';
 export 'settings_repository.dart';
+export 'students_repository.dart';

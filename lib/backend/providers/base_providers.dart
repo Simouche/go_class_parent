@@ -63,3 +63,9 @@ abstract class BasePaymentProvider {
 abstract class BaseCanteenProvider {
   Future<List<Canteen>> loadCanteen(String currentUserID);
 }
+
+abstract class BaseStudentProvider {
+  Future<List<Student>> getStudents(String parentID);
+
+  Future<bool> requestStudentsPermission(String parent, List<String> students);
+}

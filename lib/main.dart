@@ -16,9 +16,10 @@ void main() {
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider<AuthenticationBloc>(
-          create: (context) =>
-              AuthenticationBloc(repository: AuthenticationRepository())
-                ..add(AppLaunched())),
+        create: (context) =>
+            AuthenticationBloc(repository: AuthenticationRepository())
+              ..add(AppLaunched()),
+      ),
       BlocProvider<NotificationsBloc>(
         create: (context) => NotificationsBloc(),
       ),
@@ -40,6 +41,9 @@ void main() {
       BlocProvider<CanteenBloc>(
         create: (context) => CanteenBloc(),
       ),
+      BlocProvider<ChildrenBloc>(
+        create: (context) => ChildrenBloc(),
+      ),
     ],
     child: MyApp(),
   ));
@@ -53,7 +57,7 @@ class MyApp extends StatelessWidget {
     fcm.context = context;
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) {
-        print('on message ${message}');
+        print('on message $message');
         // _showItemDialog(message);
         return fcm.displayNotification(message);
       },
@@ -61,9 +65,11 @@ class MyApp extends StatelessWidget {
           Platform.isIOS ? null : fcm.myBackgroundMessageHandler,
       onResume: (Map<String, dynamic> message) {
         print('on resume $message');
+        return;
       },
       onLaunch: (Map<String, dynamic> message) {
         print('on launch $message');
+        return;
       },
     );
 
@@ -112,6 +118,7 @@ class MyApp extends StatelessWidget {
         PaymentsList.routeName: (context) => PaymentsList(),
         CanteenPage.routeName: (context) => CanteenPage(),
         CanteenList.routeName: (context) => CanteenList(),
+        StudentsListPage.routeName: (context) => StudentsListPage(),
       },
     );
   }

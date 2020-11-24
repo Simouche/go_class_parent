@@ -66,7 +66,7 @@ class LocalDB {
       },
       onUpgrade: (Database db, int oldVersion, int newVersion) async {
         print("upgrading db to $newVersion");
-        if (version <= 5) {
+        if (newVersion <= 5) {
           await db.execute("DROP TABLE IF EXISTS downloads;");
           await db.execute("CREATE TABLE IF NOT EXISTS downloads("
               "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -77,7 +77,7 @@ class LocalDB {
               "NAME TEXT,"
               "URL TEXT);");
         }
-        if (version <= 6)
+        if (newVersion <= 6)
           await db.execute("ALTER TABLE parents ADD CODE TEXT;");
       },
     );
