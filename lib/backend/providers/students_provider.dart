@@ -31,7 +31,16 @@ class StudentProvider extends BaseStudentProvider with HttpHandlerMixin {
   @override
   Future<bool> requestStudentsPermission(
       String parent, List<String> students) async {
-    // TODO: implement requestStudentsPermission
-    throw UnimplementedError();
+    final response = await client.post("requestChildren",
+        {"userID": parent, "children": json.encode(students)});
+    final status = handleHttpCode(response.statusCode);
+    if (status) {
+      final json = jsonDecode(response.body);
+      print(json);
+      if (!json['error']) {
+        return true;
+      }
+    }
+    return false;
   }
 }

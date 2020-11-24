@@ -25,8 +25,9 @@ class RequestStudentPermissionEvent extends ChildrenEvent {
 
 class CheckQrCodeEvent extends ChildrenEvent {
   final String qrCode, parentCode;
+  final List<String> selectedStudents;
 
-  CheckQrCodeEvent({this.qrCode, this.parentCode});
+  CheckQrCodeEvent({this.selectedStudents, this.qrCode, this.parentCode});
 
   @override
   List<Object> get props => [qrCode];

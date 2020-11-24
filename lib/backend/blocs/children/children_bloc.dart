@@ -6,6 +6,7 @@ import 'package:go_class_parent/backend/models/models.dart';
 import 'package:go_class_parent/backend/repositories/repositories.dart';
 
 part 'children_event.dart';
+
 part 'children_state.dart';
 
 class ChildrenBloc extends Bloc<ChildrenEvent, ChildrenState> {
@@ -24,7 +25,8 @@ class ChildrenBloc extends Bloc<ChildrenEvent, ChildrenState> {
         break;
       case CheckQrCodeEvent:
         final nEvent = event as CheckQrCodeEvent;
-        yield* mapCheckQrCodeEventToState(nEvent.qrCode, nEvent.parentCode);
+        yield* mapCheckQrCodeEventToState(
+            nEvent.qrCode, nEvent.parentCode, nEvent.selectedStudents);
         break;
       case RequestStudentPermissionEvent:
         final nEvent = event as RequestStudentPermissionEvent;
@@ -48,9 +50,9 @@ class ChildrenBloc extends Bloc<ChildrenEvent, ChildrenState> {
   }
 
   Stream<ChildrenState> mapCheckQrCodeEventToState(
-      String code, String parentCode) async* {
+      String code, String parentCode, List<String> selectedStudents) async* {
     yield code == parentCode
-        ? CheckQrCodeSuccessState()
+        ? CheckQrCodeSuccessState(selectedStudents: selectedStudents)
         : CheckQrCodeFailedState();
   }
 

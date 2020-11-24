@@ -44,6 +44,10 @@ class RequestStudentPermissionSuccessState extends ChildrenState {
 }
 
 class CheckQrCodeSuccessState extends ChildrenState {
+  final List<String> selectedStudents;
+
+  CheckQrCodeSuccessState({this.selectedStudents});
+
   @override
   List<Object> get props => [];
 }

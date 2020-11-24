@@ -23,13 +23,20 @@ class StudentsListPage extends StatelessWidget {
           return newState is CheckQrCodeSuccessState ||
               newState is CheckQrCodeFailedState;
         },
-        listener: (context, state) {
+        listener: (context, state) async {
           String text = "";
           var color = WHITE;
 
-          if (state is CheckQrCodeSuccessState)
+          if (state is CheckQrCodeSuccessState) {
             text = "Votre demande a etait envoyée a l'administration...";
-          else if (state is CheckQrCodeFailedState) text = "Action refusée.";
+            BlocProvider.of<ChildrenBloc>(context).add(
+              RequestStudentPermissionEvent(
+                  parent: (await BlocProvider.of<AuthenticationBloc>(context)
+                          .parent)
+                      .serverId,
+                  students: state.selectedStudents),
+            );
+          } else if (state is CheckQrCodeFailedState) text = "Action refusée.";
 
           Scaffold.of(context).showSnackBar(SnackBar(content: Text(text)));
         },
@@ -54,7 +61,6 @@ class _StudentListBody extends StatefulWidget {
   final List<bool> values = List();
 
   _StudentListBody({Key key, this.students}) : super(key: key) {
-    this.students.add(this.students[0]);
     students.forEach((element) => values.add(false));
   }
 
@@ -83,10 +89,12 @@ class __StudentListBodyState extends State<_StudentListBody> {
                   setState(() {
                     widget.values[index] = value;
                   });
+                  print(selectedStudents);
                 },
                 value: widget.values[index],
                 activeColor: MAIN_COLOR_LIGHT,
-                subtitle: Text("En Classe", textAlign: TextAlign.end),
+                subtitle: Text(widget.students[index].state,
+                    textAlign: TextAlign.end),
               );
             },
             separatorBuilder: (context, index) => Divider(
@@ -104,12 +112,16 @@ class __StudentListBodyState extends State<_StudentListBody> {
             if (cameraScanResult.isNotEmpty)
               BlocProvider.of<ChildrenBloc>(context).add(
                 CheckQrCodeEvent(
+                    selectedStudents: selectedStudents,
                     qrCode: cameraScanResult,
                     parentCode:
                         (await BlocProvider.of<AuthenticationBloc>(context)
                                 .parent)
                             .serverId),
               );
+            else
+              Scaffold.of(context)
+                  .showSnackBar(SnackBar(content: Text("Aucun code detecté.")));
           },
           color: MAIN_COLOR_MEDIUM,
           textColor: WHITE,
