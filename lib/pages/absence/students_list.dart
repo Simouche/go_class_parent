@@ -81,16 +81,19 @@ class __StudentListBodyState extends State<_StudentListBody> {
             itemBuilder: (context, index) {
               return CheckboxListTile(
                 title: Text(widget.students[index].toString()),
-                onChanged: (bool value) {
-                  value
-                      ? selectedStudents.add(widget.students[index].serverID)
-                      : selectedStudents
-                          .remove(widget.students[index].serverID);
-                  setState(() {
-                    widget.values[index] = value;
-                  });
-                  print(selectedStudents);
-                },
+                onChanged: widget.students[index].state == "En Classe"
+                    ? (bool value) {
+                        value
+                            ? selectedStudents
+                                .add(widget.students[index].serverID)
+                            : selectedStudents
+                                .remove(widget.students[index].serverID);
+                        setState(() {
+                          widget.values[index] = value;
+                        });
+                        print(selectedStudents);
+                      }
+                    : null,
                 value: widget.values[index],
                 activeColor: MAIN_COLOR_LIGHT,
                 subtitle: Text(widget.students[index].state,
@@ -125,7 +128,8 @@ class __StudentListBodyState extends State<_StudentListBody> {
           },
           color: MAIN_COLOR_MEDIUM,
           textColor: WHITE,
-        )
+        ),
+        SizedBox(height: 150.0),
       ],
     );
   }
