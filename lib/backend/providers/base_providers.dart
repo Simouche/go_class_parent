@@ -69,3 +69,7 @@ abstract class BaseStudentProvider {
 
   Future<bool> requestStudentsPermission(String parent, List<String> students);
 }
+
+abstract class BaseAttendanceProvider {
+  Future<List<Attendance>> loadAttendance(String childID);
+}

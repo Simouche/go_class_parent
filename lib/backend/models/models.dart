@@ -18,3 +18,4 @@ export 'student_teacher_matiere.dart';
 export 'teacher.dart';
 export 'teacher_messages.dart';
 export 'user.dart';
+export 'attendance.dart';

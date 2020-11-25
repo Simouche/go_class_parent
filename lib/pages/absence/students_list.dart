@@ -96,8 +96,7 @@ class __StudentListBodyState extends State<_StudentListBody> {
                     : null,
                 value: widget.values[index],
                 activeColor: MAIN_COLOR_LIGHT,
-                subtitle: Text(widget.students[index].state,
-                    textAlign: TextAlign.end),
+                subtitle: Text(widget.students[index].state),
               );
             },
             separatorBuilder: (context, index) => Divider(
@@ -108,7 +107,23 @@ class __StudentListBodyState extends State<_StudentListBody> {
           ),
         ),
         RaisedButton(
-          child: Text("Demander"),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Image.asset(
+                "assets/qr_code.png",
+                width: 24.0,
+                color: WHITE,
+              ),
+              SizedBox(width: 5.0),
+              Text(
+                "Valider",
+                style: TextStyle(fontSize: 16.0),
+              )
+            ],
+          ),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
           onPressed: () async {
             print("demander!");
             String cameraScanResult = await scanner.scan();

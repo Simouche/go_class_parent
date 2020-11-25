@@ -83,7 +83,7 @@ class _RegisterAndLoginButtons extends StatelessWidget {
         child: Text(
           'Se connecter',
           style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.w700, fontSize: 16),
+              color: WHITE, fontWeight: FontWeight.w700, fontSize: 16),
         ),
         onPressed: () => BlocProvider.of<AuthenticationBloc>(context).add(
             LoginSubmitted(usernameController.text, passwordController.text)),
