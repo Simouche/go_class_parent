@@ -8,3 +8,5 @@ export 'notifications/notifications_bloc.dart';
 export 'payments/payments_bloc.dart';
 export 'schedule/schedule_bloc.dart';
 export 'settings/settings_bloc.dart';
+export 'attendance/attendance_bloc.dart';
+export 'children/children_bloc.dart';

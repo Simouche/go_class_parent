@@ -16,3 +16,5 @@ export 'payments/payments_list.dart';
 export 'payments/payments_page.dart';
 export 'planning/schedule.dart';
 export 'register_page.dart';
+export 'attendance/attendance_children.dart';
+export 'attendance/attendances_list.dart';

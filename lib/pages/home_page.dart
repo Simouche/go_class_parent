@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:go_class_parent/backend/blocs/blocs.dart';
+import 'package:go_class_parent/pages/attendance/attendance_children.dart';
 import 'package:go_class_parent/pages/login_page.dart';
 import 'package:go_class_parent/widgets/widgets.dart';
 
@@ -311,8 +312,15 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    onTap: () {
-                      _comingSoon(context);
+                    onTap: () async{
+                      BlocProvider.of<ChildrenBloc>(context).add(
+                          GetStudentsEventEvent(
+                              userID:
+                              (await BlocProvider.of<AuthenticationBloc>(
+                                  context)
+                                  .parent)
+                              .serverId));
+                      Navigator.of(context).pushNamed(AttendanceChildrenPage.routeName);
                     },
                   ),
                   SizedBox(

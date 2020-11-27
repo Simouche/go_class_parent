@@ -4,6 +4,15 @@ abstract class AttendanceEvent extends Equatable {
   const AttendanceEvent();
 }
 
+class OpenAttendanceChildrenPage extends AttendanceEvent {
+  final String parentID;
+
+  OpenAttendanceChildrenPage({this.parentID});
+
+  @override
+  List<Object> get props => [this.parentID];
+}
+
 class LoadAttendanceEvent extends AttendanceEvent {
   final String id;
 
@@ -11,5 +20,4 @@ class LoadAttendanceEvent extends AttendanceEvent {
 
   @override
   List<Object> get props => [id];
-
 }

@@ -27,3 +27,22 @@ class AttendanceLoadingFailedState extends AttendanceState {
   @override
   List<Object> get props => [];
 }
+
+class OpenAttendanceChildrenPageFailed extends AttendanceState {
+  @override
+  List<Object> get props => [];
+}
+
+class OpenAttendanceChildrenPageSuccess extends AttendanceState {
+  final List<Student> students;
+
+  OpenAttendanceChildrenPageSuccess({this.students});
+
+  @override
+  List<Object> get props => [students];
+}
+
+class OpenAttendanceChildrenPageLoading extends AttendanceState {
+  @override
+  List<Object> get props => [];
+}

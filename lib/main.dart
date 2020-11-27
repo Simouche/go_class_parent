@@ -44,6 +44,9 @@ void main() {
       BlocProvider<ChildrenBloc>(
         create: (context) => ChildrenBloc(),
       ),
+      BlocProvider<AttendanceBloc>(
+        create: (context) => AttendanceBloc(),
+      ),
     ],
     child: MyApp(),
   ));
@@ -119,6 +122,8 @@ class MyApp extends StatelessWidget {
         CanteenPage.routeName: (context) => CanteenPage(),
         CanteenList.routeName: (context) => CanteenList(),
         StudentsListPage.routeName: (context) => StudentsListPage(),
+        AttendanceChildrenPage.routeName: (context) => AttendanceChildrenPage(),
+        AttendanceList.routeName: (context) => AttendanceList(),
       },
     );
   }

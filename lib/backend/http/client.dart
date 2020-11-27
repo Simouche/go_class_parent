@@ -13,7 +13,7 @@ class HttpClient {
 
 //  String _baseUrl = "http://161.35.197.89/app/";
 //  String _baseDownloadUrl = "http://161.35.197.89/";
-  Duration _timeOut = Duration(seconds: 30);
+  Duration _timeOut = Duration(seconds: 60);
   Function _onTimeOut;
 
   factory HttpClient() {

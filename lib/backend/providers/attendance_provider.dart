@@ -13,6 +13,7 @@ class AttendanceProvider extends BaseAttendanceProvider with HttpHandlerMixin {
 
   @override
   Future<List<Attendance>> loadAttendance(String childID) async {
+
     final response =
         await client.get('get-attendance', queries: {'childID': childID});
     final status = handleHttpCode(response.statusCode);

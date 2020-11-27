@@ -7,3 +7,4 @@ export 'payments_repository.dart';
 export 'schedule_repository.dart';
 export 'settings_repository.dart';
 export 'students_repository.dart';
+export 'attendance_repository.dart';

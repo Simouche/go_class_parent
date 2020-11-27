@@ -1,3 +1,4 @@
+import 'package:go_class_parent/backend/models/models.dart';
 import 'package:go_class_parent/backend/providers/providers.dart';
 
 class AttendanceRepository {
