@@ -46,7 +46,6 @@ class _AttendanceListBody extends StatelessWidget {
     return ListView.separated(
       itemBuilder: (context, index) {
         return ListTile(
-          leading: Text("${attendances[index].state} le:"),
           title: Text(attendances[index].attendanceDate.day),
           trailing:
               Text("${attendances[index].attendanceDate.scanTime}"),

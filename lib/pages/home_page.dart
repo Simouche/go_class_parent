@@ -232,7 +232,7 @@ class HomePage extends StatelessWidget {
                                       fontSize: 22.0),
                                 ),
                                 Text(
-                                  'Consulter le détail de paiement',
+                                  'consulter les détails',
                                   style: TextStyle(
                                     color: Colors.black45,
                                   ),
@@ -282,7 +282,7 @@ class HomePage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  'Liste des absences',
+                                  'Liste de présence',
                                   style: TextStyle(
                                     color: Colors.redAccent,
                                     fontWeight: FontWeight.w700,
@@ -290,7 +290,7 @@ class HomePage extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  'Voir les détails',
+                                  'consulter les détails',
                                   style: TextStyle(
                                     color: Colors.black45,
                                   ),
