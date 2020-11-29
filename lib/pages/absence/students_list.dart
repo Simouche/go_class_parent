@@ -124,23 +124,25 @@ class __StudentListBodyState extends State<_StudentListBody> {
           ),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-          onPressed: () async {
-            print("demander!");
-            String cameraScanResult = await scanner.scan();
-            if (cameraScanResult.isNotEmpty)
-              BlocProvider.of<ChildrenBloc>(context).add(
-                CheckQrCodeEvent(
-                    selectedStudents: selectedStudents,
-                    qrCode: cameraScanResult,
-                    parentCode:
-                        (await BlocProvider.of<AuthenticationBloc>(context)
-                                .parent)
-                            .serverId),
-              );
-            else
-              Scaffold.of(context)
-                  .showSnackBar(SnackBar(content: Text("Aucun code detecté.")));
-          },
+          onPressed: selectedStudents.isEmpty
+              ? null
+              : () async {
+                  String cameraScanResult = await scanner.scan();
+                  if (cameraScanResult.isNotEmpty)
+                    BlocProvider.of<ChildrenBloc>(context).add(
+                      CheckQrCodeEvent(
+                          selectedStudents: selectedStudents,
+                          qrCode: cameraScanResult,
+                          parentCode:
+                              (await BlocProvider.of<AuthenticationBloc>(
+                                          context)
+                                      .parent)
+                                  .serverId),
+                    );
+                  else
+                    Scaffold.of(context).showSnackBar(
+                        SnackBar(content: Text("Aucun code detecté.")));
+                },
           color: MAIN_COLOR_MEDIUM,
           textColor: WHITE,
         ),

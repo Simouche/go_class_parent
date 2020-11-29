@@ -10,7 +10,7 @@ class AttendanceList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(title: "List des Enfants", showActions: false),
+      appBar: MyAppBar(title: "Historique", showActions: false),
       body: BlocBuilder<AttendanceBloc, AttendanceState>(
         buildWhen: (oldState, newState) {
           return newState is AttendanceLoadingState ||
@@ -49,7 +49,7 @@ class _AttendanceListBody extends StatelessWidget {
           leading: Text("${attendances[index].state} le:"),
           title: Text(attendances[index].attendanceDate.day),
           trailing:
-              Text("Scanné a ${attendances[index].attendanceDate.scanTime}"),
+              Text("${attendances[index].attendanceDate.scanTime}"),
           subtitle: Text(attendances[index].description),
         );
       },
