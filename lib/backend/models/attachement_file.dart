@@ -9,15 +9,22 @@ class AttachmentFile extends Equatable {
   final String extension;
   final String url;
   final String name;
+  final int notificationID;
+  final bool downloaded;
 
-  AttachmentFile(
-      {this.id,
-      this.date,
-      this.path,
-      this.type,
-      this.extension,
-      this.url,
-      this.name});
+  static const String TABLE_NAME = "files";
+
+  AttachmentFile({
+    this.downloaded,
+    this.notificationID,
+    this.id,
+    this.date,
+    this.path,
+    this.type,
+    this.extension,
+    this.url,
+    this.name,
+  });
 
   @override
   List<Object> get props => [
@@ -27,7 +34,9 @@ class AttachmentFile extends Equatable {
         this.type,
         this.extension,
         this.url,
-        this.name
+        this.name,
+        this.notificationID,
+        this.downloaded,
       ];
 
   @override
@@ -41,18 +50,23 @@ class AttachmentFile extends Equatable {
       "EXTENSION": extension,
       "NAME": name,
       "URL": url,
+      "NOTIFICATION_ID": notificationID,
+      "DOWNLOADED": downloaded,
     };
   }
 
   static AttachmentFile fromMap(Map<String, dynamic> map) {
     return AttachmentFile(
-        id: map["ID"],
-        date: map["DATE"],
-        path: map["PATH"],
-        type: map["TYPE"],
-        extension: map["EXTENSION"],
-        url: map["URL"],
-        name: map["NAME"]);
+      id: map["ID"],
+      date: map["DATE"],
+      path: map["PATH"],
+      type: map["TYPE"],
+      extension: map["EXTENSION"],
+      url: map["URL"],
+      name: map["NAME"],
+      notificationID: map["NOTIFICATION_ID"],
+      downloaded: map["DOWNLOADED"],
+    );
   }
 
   Future<bool> saveToDB(LocalDB db) async {
@@ -65,5 +79,15 @@ class AttachmentFile extends Equatable {
         await db.query(tableName: "downloads", columns: ["*"]);
     final List<AttachmentFile> files = result.map((e) => fromMap(e)).toList();
     return files;
+  }
+
+  static Future<List<AttachmentFile>> loadNotificationsFiles(
+      LocalDB db, int notificationID) async {
+    final List<Map<String, dynamic>> result = await db.query(
+        tableName: "downloads",
+        columns: ["*"],
+        where: "WHERE NOTIFICATION_ID = ?",
+        whereArgs: [notificationID]);
+    return result.map((e) => fromMap(e)).toList();
   }
 }

@@ -46,7 +46,13 @@ class LocalDB {
             "OWNER INTEGER DEFAULT 0);");
         await database.execute("CREATE TABLE IF NOT EXISTS notifications("
             "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
-            "DATE DATETIME ,"
+            "SERVER_ID TEXT ,"
+            "CLASS_ID TEXT ,"
+            "RECEIVER TEXT ,"
+            "APPROVED BLOB ,"
+            "DATE STRING ,"
+            "SEEN BLOB ,"
+            "USER_ID ,"
             "NEW INTEGER DEFAULT 1,"
             "MESSAGE TEXT ,"
             "TITLE TEXT ,"
@@ -58,27 +64,14 @@ class LocalDB {
             "TYPE TEXT," //notification or messages
             "EXTENSION TEXT,"
             "NAME TEXT,"
-            "URL TEXT);");
+            "URL TEXT, "
+            "NOTIFICATION_ID INTEGER ,"
+            "DOWNLOADED BLOB"
+            ");");
         await database.execute("CREATE TABLE IF NOT EXISTS settings("
             "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
             "CONFIG TEXT NOT NULL,"
             "VALUE TEXT DEFAULT 0);");
-      },
-      onUpgrade: (Database db, int oldVersion, int newVersion) async {
-        print("upgrading db to $newVersion");
-        if (newVersion <= 5) {
-          await db.execute("DROP TABLE IF EXISTS downloads;");
-          await db.execute("CREATE TABLE IF NOT EXISTS downloads("
-              "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
-              "DATE DATETIME,"
-              "PATH TEXT,"
-              "TYPE TEXT," //notification or messages
-              "EXTENSION TEXT,"
-              "NAME TEXT,"
-              "URL TEXT);");
-        }
-        if (newVersion <= 6)
-          await db.execute("ALTER TABLE parents ADD CODE TEXT;");
       },
     );
   }
@@ -99,19 +92,23 @@ class LocalDB {
       String groupBy,
       String having,
       int limit,
-      int offset}) async {
+      int offset,
+      String orderBy}) async {
     if (db == null) await prepareDB();
 
     if (db.isOpen) {
-      return await db.query(tableName,
-          columns: columns,
-          where: where,
-          whereArgs: whereArgs,
-          distinct: distinct,
-          groupBy: groupBy,
-          having: having,
-          limit: limit,
-          offset: offset);
+      return await db.query(
+        tableName,
+        columns: columns,
+        where: where,
+        whereArgs: whereArgs,
+        distinct: distinct,
+        groupBy: groupBy,
+        having: having,
+        limit: limit,
+        offset: offset,
+        orderBy: orderBy,
+      );
     }
     return null;
   }

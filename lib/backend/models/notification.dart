@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:go_class_parent/backend/db/local_db.dart';
 
 import 'attachement_file.dart';
 import 'utils.dart';
@@ -17,6 +18,8 @@ class Notification extends Equatable {
   final String serverId;
   final String userId;
   final List<dynamic> fileUrl;
+
+  static const String TABLE_NAME = "notifications";
 
   Notification({
     this.serverId,
@@ -51,6 +54,34 @@ class Notification extends Equatable {
               name: e['originalname']))
           .toList(),
     );
+  }
+
+  static Notification fromDB(Map<String, dynamic> row) {
+    return Notification(
+      id: row["id"],
+      serverId: row["SERVER_ID"],
+      classId: row["CLASS_ID"],
+      receiver: row["RECEIVER"],
+      approved: row["APPROVED"],
+      date: row["DATE"],
+      seen: row["SEEN"],
+      userId: row["USER_ID"],
+      isNew: row["NEW"],
+      message: row["MESSAGE"],
+      title: row["TITLE"],
+      from: row["FROM_"],
+
+    );
+  }
+
+  static Future<List<Notification>> getAllFromDB(LocalDB database) async {
+    final List<Map<String, dynamic>> results = await database.query(
+        tableName: TABLE_NAME, columns: ["*"], orderBy: "id");
+    final List<Notification> notifications = List();
+    results
+        .forEach((element) {
+      notifications.add(Notification.fromDB(element));
+        });
   }
 
   @override
