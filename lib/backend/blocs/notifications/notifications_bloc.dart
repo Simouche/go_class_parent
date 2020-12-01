@@ -7,6 +7,7 @@ import 'package:go_class_parent/backend/repositories/repositories.dart';
 import 'package:meta/meta.dart';
 
 part 'notifications_event.dart';
+
 part 'notifications_state.dart';
 
 class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
@@ -33,7 +34,12 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     try {
       print("loading notifications for $userServerID");
       List<Notification> notifications =
-          await _notificationsRepository.loadNotifications(userServerID);
+          await _notificationsRepository.loadNotificationsFromDB();
+      yield NotificationsLoaded(notifications: notifications);
+      print("Loaded ${notifications.length} notifications from DB");
+      notifications.addAll(await _notificationsRepository.loadNotificationsFromServer(
+          userServerID, notifications.last.serverId));
+      print("Loaded ${notifications.length} notifications from DB and Server");
       yield NotificationsLoaded(notifications: notifications);
     } catch (e, stacktrace) {
       print(stacktrace);

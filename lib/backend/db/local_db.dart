@@ -78,7 +78,7 @@ class LocalDB {
 
   Future<int> insert({String tableName, Map<String, dynamic> values}) async {
     if (db.isOpen) {
-      return db.insert(tableName, values);
+      return await db.insert(tableName, values);
     }
     return null;
   }

@@ -11,6 +11,7 @@ class RemoteNotificationsProvider extends BaseNotificationsProvider
     with HttpHandlerMixin {
   final LocalDB database = LocalDB();
   final HttpClient client = HttpClient();
+  String lastNotificationID;
 
   int _offset;
 
@@ -37,7 +38,7 @@ class RemoteNotificationsProvider extends BaseNotificationsProvider
   }
 
   @override
-  Future<bool> storeNotifications() {
+  Future<bool> storeNotifications(List<Notification> notifications) {
     // TODO: implement storeNotifications
     throw UnimplementedError();
   }

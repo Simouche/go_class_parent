@@ -31,7 +31,7 @@ abstract class BaseUserDataProvider {}
 abstract class BaseNotificationsProvider {
   Future<List<Notification>> loadNotifications(String userServerID);
 
-  Future<bool> storeNotifications();
+  Future<bool> storeNotifications(List<Notification> notifications);
 }
 
 abstract class BaseMessagingProvider {

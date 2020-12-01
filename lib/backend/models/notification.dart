@@ -58,7 +58,7 @@ class Notification extends Equatable {
 
   static Notification fromDB(Map<String, dynamic> row) {
     return Notification(
-      id: row["id"],
+      id: row["ID"],
       serverId: row["SERVER_ID"],
       classId: row["CLASS_ID"],
       receiver: row["RECEIVER"],
@@ -70,18 +70,39 @@ class Notification extends Equatable {
       message: row["MESSAGE"],
       title: row["TITLE"],
       from: row["FROM_"],
-
     );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      "ID": id,
+      "SERVER_ID": serverId,
+      "CLASS_ID": classId,
+      "RECEIVER": receiver,
+      "APPROVED": approved,
+      "DATE": date,
+      "SEEN": seen,
+      "USER_ID": userId,
+      "NEW": isNew,
+      "MESSAGE": message,
+      "TITLE": title,
+      "FROM_": from,
+    };
   }
 
   static Future<List<Notification>> getAllFromDB(LocalDB database) async {
     final List<Map<String, dynamic>> results = await database.query(
         tableName: TABLE_NAME, columns: ["*"], orderBy: "id");
     final List<Notification> notifications = List();
-    results
-        .forEach((element) {
+    results.forEach((element) {
       notifications.add(Notification.fromDB(element));
-        });
+    });
+    return notifications;
+  }
+
+  Future<bool> saveToDB(LocalDB db) async {
+    final int result = await db.insert(tableName: TABLE_NAME, values: toMap());
+    return result > 0;
   }
 
   @override
