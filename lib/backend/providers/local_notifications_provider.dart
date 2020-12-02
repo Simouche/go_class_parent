@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:go_class_parent/backend/db/local_db.dart';
 import 'package:go_class_parent/backend/models/notification.dart';
 import 'package:go_class_parent/backend/providers/base_providers.dart';
@@ -11,11 +13,13 @@ class LocalNotificationsProvider extends BaseNotificationsProvider {
   }
 
   @override
-  Future<bool> storeNotifications(List<Notification> notifications) {
-    notifications.map((e) => e
-        .saveToDB(database)
-        .catchError((onError) => print("error"))
-        .whenComplete(() => true));
-    return null;
+  Future<bool> storeNotifications(List<Notification> notifications) async {
+    var results = notifications.map((e) async {
+      log("saving ${e.serverId} to db");
+      return await e.saveToDB(database);
+    });
+    for (var result in results) if (!(await result)) return Future.value(false);
+
+    return Future.value(true);
   }
 }

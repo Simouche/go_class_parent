@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:animated_widgets/widgets/rotation_animated.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:flutter/material.dart';
@@ -17,24 +19,28 @@ class Notifications extends StatelessWidget {
     return Scaffold(
       appBar: MyAppBar(title: "Notifications", showActions: false),
       body: BlocBuilder<NotificationsBloc, NotificationsState>(
-          buildWhen: (oldState, newState) {
-        return !(newState is NotificationsLoading) && oldState != newState;
-      }, builder: (context, state) {
-        if (state is NotificationsLoadingFailed) {
-          Scaffold.of(context)
-              .showSnackBar(SnackBar(content: Text('Pas de notification')));
-          return Center(
-            child: Text('Pas de notification.'),
-          );
-        } else if (state is NotificationsLoaded) {
-          final NotificationsLoaded newState = state;
-          return NotificationTimeLine(notifications: newState.notifications);
-        } else {
-          return Center(
-            child: Text('No notification.'),
-          );
-        }
-      }),
+        buildWhen: (oldState, newState) {
+          return newState is NotificationsLoadingFailed ||
+              newState is NotificationsLoaded;
+        },
+        builder: (context, state) {
+          if (state is NotificationsLoadingFailed) {
+            Scaffold.of(context)
+                .showSnackBar(SnackBar(content: Text('Pas de notification')));
+            return Center(
+              child: Text('Pas de notification.'),
+            );
+          } else if (state is NotificationsLoaded) {
+            log("notification layout will Load");
+            final NotificationsLoaded newState = state;
+            return NotificationTimeLine(notifications: newState.notifications);
+          } else {
+            return Center(
+              child: Text('No notification.'),
+            );
+          }
+        },
+      ),
     );
   }
 }

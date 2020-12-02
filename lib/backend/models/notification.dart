@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:equatable/equatable.dart';
 import 'package:go_class_parent/backend/db/local_db.dart';
 
@@ -31,8 +33,8 @@ class Notification extends Equatable {
     this.from,
     this.classId,
     this.receiver,
-    this.approved,
-    this.seen,
+    this.approved = true,
+    this.seen = false,
     this.userId,
     this.fileUrl,
   });
@@ -62,9 +64,9 @@ class Notification extends Equatable {
       serverId: row["SERVER_ID"],
       classId: row["CLASS_ID"],
       receiver: row["RECEIVER"],
-      approved: row["APPROVED"],
+      approved: row["APPROVED"] == 1,
       date: row["DATE"],
-      seen: row["SEEN"],
+      seen: row["SEEN"] == 1,
       userId: row["USER_ID"],
       isNew: row["NEW"],
       message: row["MESSAGE"],
@@ -79,9 +81,9 @@ class Notification extends Equatable {
       "SERVER_ID": serverId,
       "CLASS_ID": classId,
       "RECEIVER": receiver,
-      "APPROVED": approved,
+      "APPROVED": approved ? 1 : 0,
       "DATE": date,
-      "SEEN": seen,
+      "SEEN": seen ? 1 : 0,
       "USER_ID": userId,
       "NEW": isNew,
       "MESSAGE": message,
@@ -101,7 +103,9 @@ class Notification extends Equatable {
   }
 
   Future<bool> saveToDB(LocalDB db) async {
+    log("starting to save to the db");
     final int result = await db.insert(tableName: TABLE_NAME, values: toMap());
+    log("finished inserting into the DB");
     return result > 0;
   }
 

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -7,7 +8,6 @@ import 'package:go_class_parent/backend/repositories/repositories.dart';
 import 'package:meta/meta.dart';
 
 part 'notifications_event.dart';
-
 part 'notifications_state.dart';
 
 class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
@@ -37,11 +37,18 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
           await _notificationsRepository.loadNotificationsFromDB();
       yield NotificationsLoaded(notifications: notifications);
       print("Loaded ${notifications.length} notifications from DB");
-      notifications.addAll(await _notificationsRepository.loadNotificationsFromServer(
-          userServerID, notifications.last.serverId));
+      notifications =
+          (await _notificationsRepository.loadNotificationsFromServer(
+                  userServerID,
+                  notifications.isNotEmpty
+                      ? notifications.first.serverId
+                      : "")) +
+              notifications;
       print("Loaded ${notifications.length} notifications from DB and Server");
+      yield NotificationsLoading();
       yield NotificationsLoaded(notifications: notifications);
     } catch (e, stacktrace) {
+      log(e.toString());
       print(stacktrace);
       yield NotificationsLoadingFailed();
     }

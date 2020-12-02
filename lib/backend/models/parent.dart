@@ -35,7 +35,6 @@ class Parent extends Equatable {
     List<Map<String, dynamic>> result =
         await database.query(tableName: "parents", columns: ["*"]);
     if (result != null && result.isNotEmpty) {
-      print('there is a result');
       return Parent(
         id: result[0]['ID'],
         firstName: result[0]['FIRST_NAME'],

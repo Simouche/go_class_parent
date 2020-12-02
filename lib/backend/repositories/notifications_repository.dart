@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:go_class_parent/backend/models/models.dart';
 import 'package:go_class_parent/backend/providers/providers.dart';
 
@@ -10,8 +12,14 @@ class NotificationsRepository {
   Future<List<Notification>> loadNotificationsFromServer(
       String userServerID, String lastNotificationID) async {
     final List<Notification> serverNotifications =
-        await _remoteNotificationsProvider.loadNotifications(userServerID);
-    _localNotificationsProvider.storeNotifications(serverNotifications);
+        await _remoteNotificationsProvider.loadNotifications(userServerID,
+            lastNoticeID: lastNotificationID);
+    log("loaded from server");
+    _localNotificationsProvider
+        .storeNotifications(serverNotifications)
+        .catchError((onError) => log(onError.toString()))
+        .whenComplete(() => log("completed storing at the DB"));
+    log("after storing notifications");
     return serverNotifications;
   }
 

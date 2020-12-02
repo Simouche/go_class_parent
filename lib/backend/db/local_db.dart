@@ -5,7 +5,7 @@ import 'package:sqflite/sqflite.dart';
 class LocalDB {
   static final LocalDB _db = LocalDB._internal();
   final String dbName = "go_class_db.db";
-  final int version = 6;
+  final int version = 1;
   Database db;
 
   factory LocalDB() {
@@ -49,9 +49,9 @@ class LocalDB {
             "SERVER_ID TEXT ,"
             "CLASS_ID TEXT ,"
             "RECEIVER TEXT ,"
-            "APPROVED BLOB ,"
+            "APPROVED INT ,"
             "DATE STRING ,"
-            "SEEN BLOB ,"
+            "SEEN INT ,"
             "USER_ID ,"
             "NEW INTEGER DEFAULT 1,"
             "MESSAGE TEXT ,"
@@ -66,7 +66,7 @@ class LocalDB {
             "NAME TEXT,"
             "URL TEXT, "
             "NOTIFICATION_ID INTEGER ,"
-            "DOWNLOADED BLOB"
+            "DOWNLOADED INT"
             ");");
         await database.execute("CREATE TABLE IF NOT EXISTS settings("
             "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
