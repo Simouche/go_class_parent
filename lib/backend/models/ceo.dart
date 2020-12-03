@@ -9,7 +9,7 @@ class CEO extends Equatable {
   List<Object> get props => [name, email, phone, serverID];
 
   @override
-  String toString() => 'Mr $name';
+  String toString() => '$name';
 
   static CEO fromJson(Map json) {
     return CEO(

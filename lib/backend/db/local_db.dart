@@ -4,7 +4,7 @@ import 'package:sqflite/sqflite.dart';
 
 class LocalDB {
   static final LocalDB _db = LocalDB._internal();
-  final String dbName = "go_class_db.db";
+  final String dbName = "go_class_db2.db";
   final int version = 1;
   Database db;
 
@@ -37,13 +37,41 @@ class LocalDB {
             "PERSONAL_ID TEXT ,"
             "EMAIL TEXT ,"
             "CODE TEXT );");
+        await database.execute("CREATE TABLE IF NOT EXISTS ceo("
+            "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
+            "NAME TEXT,"
+            "EMAIL TEXT,"
+            "PHONE TEXT,"
+            "SERVER_ID TEXT"
+            ");");
+        await database.execute("CREATE TABLE IF NOT EXISTS directors("
+            "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
+            "NAME TEXT,"
+            "EMAIL TEXT,"
+            "PHONE TEXT,"
+            "SERVER_ID TEXT"
+            ");");
+        await database.execute("CREATE TABLE IF NOT EXISTS students("
+            "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
+            "SERVER_ID TEXT,"
+            "FIRST_NAME TEXT,"
+            "LAST_NAME TEXT,"
+            "STATE TEXT"
+            ");");
+        await database.execute("CREATE TABLE IF NOT EXISTS teachers("
+            "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
+            "SERVER_ID TEXT,"
+            "FIRST_NAME TEXT,"
+            "LAST_NAME TEXT,"
+            "MATIERE TEXT"
+            ");");
         await database.execute("CREATE TABLE IF NOT EXISTS messages("
             "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
-            "CONTACT INTEGER ,"
+            "SENDER TEXT ,"
             "MESSAGE TEXT ,"
             "DATE DATETIME ,"
             "SEEN INTEGER DEFAULT 0,"
-            "OWNER INTEGER DEFAULT 0);");
+            "RECEIVER TEXT);");
         await database.execute("CREATE TABLE IF NOT EXISTS notifications("
             "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
             "SERVER_ID TEXT ,"
