@@ -86,7 +86,7 @@ class AttachmentFile extends Equatable {
     final List<Map<String, dynamic>> result = await db.query(
         tableName: "downloads",
         columns: ["*"],
-        where: "WHERE NOTIFICATION_ID = ?",
+        where: "OWNER = ?",
         whereArgs: [notificationID]);
     return result.map((e) => fromMap(e)).toList();
   }

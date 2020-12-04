@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:equatable/equatable.dart';
 import 'package:go_class_parent/backend/db/local_db.dart';
 
 class Teacher extends Equatable {
   final String firstName, lastName, serverID, matiere;
+  static const String TABLE_NAME = "teachers";
 
   Teacher({this.firstName, this.lastName, this.serverID, this.matiere});
 
@@ -14,8 +17,47 @@ class Teacher extends Equatable {
         matiere: json['matiere']);
   }
 
-  static Future<int> insert(LocalDB database, json) async {
-    //TODO Insert teacher into DB
+  static Teacher fromDB(Map<String, dynamic> row) {
+    return Teacher(
+      firstName: row["FIRST_NAME"],
+      lastName: row["LAST_NAME"],
+      matiere: row["MATIERE"],
+      serverID: row["SERVER_ID"],
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      "FIRST_NAME": firstName,
+      "LAST_NAME": lastName,
+      "MATIERE": matiere,
+      "SERVER_ID": serverID,
+    };
+  }
+
+  static Future<List<Teacher>> getAllFromDB(LocalDB database) async {
+    final List<Map<String, dynamic>> results = await database.query(
+        tableName: TABLE_NAME, columns: ["*"], orderBy: 'ID');
+    final List<Teacher> directors = List();
+    results.forEach((element) => directors.add(fromDB(element)));
+    return directors;
+  }
+
+  static Future<Teacher> getDirector(
+      LocalDB database, String teacherID) async {
+    final List<Map<String, dynamic>> result = await database.query(
+        tableName: TABLE_NAME,
+        columns: ["*"],
+        where: "SERVER_ID = ?",
+        whereArgs: [teacherID]);
+    return fromDB(result.first);
+  }
+
+  Future<bool> saveToDB(LocalDB database) async {
+    if (await database.countTableRows(tableName: TABLE_NAME) > 0) return true;
+    final int result = await database.insert(tableName: TABLE_NAME, values: toMap());
+    log("finished inserting into the DB");
+    return result > 0;
   }
 
   @override

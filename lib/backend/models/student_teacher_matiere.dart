@@ -12,7 +12,6 @@ class TeacherAndMatiere extends Equatable {
   TeacherAndMatiere({this.teacher, this.matiere});
 
   @override
-  // TODO: implement props
   List<Object> get props => [teacher, matiere];
 }
 

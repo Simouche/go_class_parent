@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:go_class_parent/backend/db/local_db.dart';
 
 import 'attachement_file.dart';
 import 'utils.dart';
@@ -15,6 +16,8 @@ class Message extends Equatable {
   final String receiverId;
   final String serverId;
   final List<dynamic> fileUrl;
+
+  static const String TABLE_NAME = "messages";
 
   Message(
       {this.serverId,
@@ -50,6 +53,53 @@ class Message extends Equatable {
               name: e['originalname']);
       })?.toList(),
     );
+  }
+
+  static Message fromDB(Map<String, dynamic> row) {
+    return Message(
+      id: row["ID"],
+      subject: row["SUBJECT"],
+      message: row["MESSAGE"],
+      date: row["DATE"],
+      time: row["TIME"],
+      approved: row["APPROVED"] == 1,
+      seen: row["SEEN"] == 1,
+      senderId: row["SENDER_ID"],
+      receiverId: row["RECEIVER_ID"],
+      serverId: row["SERVER_ID"],
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      "ID": id,
+      "SUBJECT": subject,
+      "MESSAGE": message,
+      "DATE": date,
+      "TIME": time,
+      "APPROVED": approved,
+      "SEEN": seen,
+      "SENDER_ID": senderId,
+      "RECEIVER_ID": receiverId,
+      "SERVER_ID": serverId,
+    };
+  }
+
+  static Future<List<Message>> getAllFromDB(LocalDB database) async {
+    final List<Map<String, dynamic>> results = await database.query(
+        tableName: TABLE_NAME, columns: ["*"], orderBy: "ID");
+    final List<Message> messages = List();
+    results.forEach((element) => messages.add(Message.fromDB(element)));
+    return messages;
+  }
+
+  static Future<List<Message>> getConversation(LocalDB database) async{
+    final List<Map<String,dynamic>> results = await database.query(tableName: TABLE_NAME,columns: ["*"],where: "");
+  }
+
+  Future<bool> saveToDB(LocalDB db) async {
+    final int result = await db.insert(tableName: TABLE_NAME, values: toMap());
+    return result > 0;
   }
 
   Map<String, dynamic> toJson() {

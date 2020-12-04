@@ -56,7 +56,8 @@ class LocalDB {
             "SERVER_ID TEXT,"
             "FIRST_NAME TEXT,"
             "LAST_NAME TEXT,"
-            "STATE TEXT"
+            "STATE TEXT,"
+            "DIRECTOR TEXT,"
             ");");
         await database.execute("CREATE TABLE IF NOT EXISTS teachers("
             "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -65,11 +66,20 @@ class LocalDB {
             "LAST_NAME TEXT,"
             "MATIERE TEXT"
             ");");
+        await database.execute("CREATE TABLE IF NOT EXISTS students_teachers("
+            "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
+            "STUDENT_ID TEXT NOT NULL,"
+            "TEACHER_ID TEXT NOT NULL,"
+            ");");
         await database.execute("CREATE TABLE IF NOT EXISTS messages("
             "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
             "SENDER TEXT ,"
             "MESSAGE TEXT ,"
-            "DATE DATETIME ,"
+            "SUBJECT TEXT,"
+            "DATE STRING ,"
+            "TIME STRING ,"
+            "APPROVED INT,"
+            "SERVER_ID STRING,"
             "SEEN INTEGER DEFAULT 0,"
             "RECEIVER TEXT);");
         await database.execute("CREATE TABLE IF NOT EXISTS notifications("
@@ -93,7 +103,7 @@ class LocalDB {
             "EXTENSION TEXT,"
             "NAME TEXT,"
             "URL TEXT, "
-            "NOTIFICATION_ID INTEGER ,"
+            "OWNER STRING ,"
             "DOWNLOADED INT"
             ");");
         await database.execute("CREATE TABLE IF NOT EXISTS settings("
@@ -159,5 +169,14 @@ class LocalDB {
       return db.update(tableName, values, where: where, whereArgs: whereArgs);
 
     return null;
+  }
+
+  Future<int> countTableRows({@required String tableName}) async {
+    if (db.isOpen) {
+      final List<Map<String, dynamic>> result =
+          await db.query(tableName, columns: ["COUNT(*) as number"]);
+      return result.isNotEmpty ? result.first["number"] : 0;
+    }
+    return 0;
   }
 }
