@@ -18,10 +18,11 @@ class Student extends Equatable {
 
   static Student fromJson(Map json) {
     return Student(
-      serverID: json['student']['_id'],
-      firstName: json['student']['firstNameFr'],
-      lastName: json['student']['lastNameFr'],
+      serverID: json['_id'],
+      firstName: json['firstNameFr'],
+      lastName: json['lastNameFr'],
       state: json['state'],
+      director: json['director']
     );
   }
 

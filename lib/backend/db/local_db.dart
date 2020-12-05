@@ -57,7 +57,7 @@ class LocalDB {
             "FIRST_NAME TEXT,"
             "LAST_NAME TEXT,"
             "STATE TEXT,"
-            "DIRECTOR TEXT,"
+            "DIRECTOR TEXT"
             ");");
         await database.execute("CREATE TABLE IF NOT EXISTS teachers("
             "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -69,7 +69,7 @@ class LocalDB {
         await database.execute("CREATE TABLE IF NOT EXISTS students_teachers("
             "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
             "STUDENT_ID TEXT NOT NULL,"
-            "TEACHER_ID TEXT NOT NULL,"
+            "TEACHER_ID TEXT NOT NULL"
             ");");
         await database.execute("CREATE TABLE IF NOT EXISTS messages("
             "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -109,7 +109,8 @@ class LocalDB {
         await database.execute("CREATE TABLE IF NOT EXISTS settings("
             "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
             "CONFIG TEXT NOT NULL,"
-            "VALUE TEXT DEFAULT 0);");
+            "VALUE TEXT DEFAULT 0"
+            ");");
       },
     );
   }

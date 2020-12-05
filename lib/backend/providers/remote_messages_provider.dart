@@ -15,9 +15,10 @@ class RemoteMessagesProvider extends BaseMessagingProvider
   int _offset;
 
   @override
-  Future<List<Message>> loadConversation() {
-    // TODO: implement loadConversation
-    throw UnimplementedError();
+  Future<List<Message>> loadConversation(String contact) async {
+    final List<Message> messages =
+        await Message.getConversation(database, contact);
+    return messages;
   }
 
   @override

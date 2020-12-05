@@ -47,6 +47,9 @@ void main() {
       BlocProvider<AttendanceBloc>(
         create: (context) => AttendanceBloc(),
       ),
+      BlocProvider<SynchronizationBloc>(
+        create: (context) => SynchronizationBloc(),
+      ),
     ],
     child: MyApp(),
   ));

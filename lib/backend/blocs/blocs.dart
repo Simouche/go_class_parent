@@ -10,3 +10,4 @@ export 'schedule/schedule_bloc.dart';
 export 'settings/settings_bloc.dart';
 export 'attendance/attendance_bloc.dart';
 export 'children/children_bloc.dart';
+export 'sync/synchronization_bloc.dart';

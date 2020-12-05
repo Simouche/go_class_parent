@@ -9,3 +9,4 @@ export 'schedule_provider.dart';
 export 'settings_provider.dart';
 export 'students_provider.dart';
 export 'attendance_provider.dart';
+export 'synchronization_provider.dart';

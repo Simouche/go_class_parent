@@ -41,13 +41,17 @@ abstract class BaseMessagingProvider {
 
   Future<bool> sendMessage(Message message);
 
-  Future<List<Message>> loadConversation();
+  Future<List<Message>> loadConversation(String contact);
 }
 
 abstract class BaseDownloadsProvider {
   Future<bool> downloadFiles(List<dynamic> urls);
 
   Future<List<AttachmentFile>> loadFilesFromDB();
+}
+
+abstract class BaseSynchronizationProvider {
+  Future<bool> loadInitialData(String userID);
 }
 
 abstract class BaseSettingsProvider {}

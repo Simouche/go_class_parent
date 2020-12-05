@@ -18,8 +18,16 @@ class HomePage extends StatelessWidget {
   String _title = "Accueil";
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  void loadInitialData(context) async {
+    BlocProvider.of<SynchronizationBloc>(context).add(
+        TriggerSynchronizationEvent(
+            userID: (await BlocProvider.of<AuthenticationBloc>(context).parent)
+                .serverId));
+  }
+
   @override
   Widget build(BuildContext context) {
+    loadInitialData(context);
     return Scaffold(
       drawer: BlocListener<AuthenticationBloc, AuthenticationState>(
           listenWhen: (oldState, newState) => newState is LogoutState,
@@ -312,15 +320,16 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    onTap: () async{
+                    onTap: () async {
                       BlocProvider.of<ChildrenBloc>(context).add(
                           GetStudentsEventEvent(
                               userID:
-                              (await BlocProvider.of<AuthenticationBloc>(
-                                  context)
-                                  .parent)
-                              .serverId));
-                      Navigator.of(context).pushNamed(AttendanceChildrenPage.routeName);
+                                  (await BlocProvider.of<AuthenticationBloc>(
+                                              context)
+                                          .parent)
+                                      .serverId));
+                      Navigator.of(context)
+                          .pushNamed(AttendanceChildrenPage.routeName);
                     },
                   ),
                   SizedBox(

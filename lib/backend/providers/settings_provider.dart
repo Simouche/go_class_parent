@@ -26,4 +26,12 @@ class SettingsProvider extends BaseSettingsProvider {
     }
     return false;
   }
+
+  Future<bool> getSynced() async {
+    return await Settings.hasSynced(database);
+  }
+
+  Future<void> setSynced() async {
+    return await Settings.setSynced(database);
+  }
 }

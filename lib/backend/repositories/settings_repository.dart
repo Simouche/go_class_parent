@@ -11,4 +11,8 @@ class SettingsRepository {
 
   Future<bool> setCustomDomain(String customDomain) async =>
       _provider.setCustomDomain(customDomain);
+
+  Future<bool> hasSynced() async => _provider.getSynced();
+
+  Future<void> setSynced() async => _provider.setSynced();
 }

@@ -48,4 +48,11 @@ class StudentWithTeachers extends Equatable {
         await Teacher.getTeachersByIDs(database, teachersIDs);
     return StudentWithTeachers(student: student, teachers: teachers);
   }
+
+  static Future<bool> saveToDB(LocalDB database,
+      {String studentID, String teacherID}) async {
+    await database.insert(
+        tableName: TABLE_NAME,
+        values: {"STUDENT_ID": studentID, "TEACHER_ID": teacherID});
+  }
 }
