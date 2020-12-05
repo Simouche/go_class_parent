@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:go_class_parent/backend/db/local_db.dart';
 
 import 'ceo.dart';
 import 'message.dart';
@@ -19,6 +20,13 @@ class CeoWithMessages extends Equatable {
                 message.receiverId == ceo.serverID)
             .toList());
     return ceoWithMessage;
+  }
+
+  static Future<CeoWithMessages> getCEOWithMessages(LocalDB database) async {
+    final CEO ceo = await CEO.getCEOFromDB(database);
+    final List<Message> messages =
+        await Message.getConversation(database, ceo.serverID);
+    return CeoWithMessages(ceo: ceo, messages: messages);
   }
 
   @override

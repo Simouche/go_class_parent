@@ -81,7 +81,7 @@ class LocalDB {
             "APPROVED INT,"
             "SERVER_ID STRING,"
             "SEEN INTEGER DEFAULT 0,"
-            "RECEIVER TEXT);");
+            "RECEIVER_ID TEXT);");
         await database.execute("CREATE TABLE IF NOT EXISTS notifications("
             "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
             "SERVER_ID TEXT ,"

@@ -93,8 +93,16 @@ class Message extends Equatable {
     return messages;
   }
 
-  static Future<List<Message>> getConversation(LocalDB database) async{
-    final List<Map<String,dynamic>> results = await database.query(tableName: TABLE_NAME,columns: ["*"],where: "");
+  static Future<List<Message>> getConversation(
+      LocalDB database, String contactID) async {
+    final List<Map<String, dynamic>> results = await database.query(
+        tableName: TABLE_NAME,
+        columns: ["*"],
+        where: "SENDER_ID = ? OR RECEIVER_ID = ?",
+        whereArgs: [contactID, contactID]);
+    final List<Message> messages = List();
+    results.forEach((element) => messages.add(Message.fromDB(element)));
+    return messages;
   }
 
   Future<bool> saveToDB(LocalDB db) async {

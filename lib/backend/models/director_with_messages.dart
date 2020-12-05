@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:go_class_parent/backend/db/local_db.dart';
 
 import 'director.dart';
 import 'message.dart';
@@ -22,6 +23,14 @@ class DirectorWithMessages extends Equatable {
               .toList()));
     });
     return directorWithMessage;
+  }
+
+  static Future<DirectorWithMessages> getTeacherWithMessages(
+      LocalDB database, String directorID) async {
+    final Director director = await Director.getDirector(database, directorID);
+    final List<Message> messages =
+        await Message.getConversation(database, directorID);
+    return DirectorWithMessages(director: director, messages: messages);
   }
 
   @override

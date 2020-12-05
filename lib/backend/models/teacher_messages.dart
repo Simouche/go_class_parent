@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:go_class_parent/backend/db/local_db.dart';
 
 import 'message.dart';
 import 'teacher.dart';
@@ -31,6 +32,14 @@ class TeacherWithMessages extends Equatable {
       },
     );
     return teachersWithMessages;
+  }
+
+  static Future<TeacherWithMessages> getTeacherWithMessages(
+      LocalDB database, String teacherID) async {
+    final Teacher teacher = await Teacher.getTeacher(database, teacherID);
+    final List<Message> messages =
+        await Message.getConversation(database, teacherID);
+    return TeacherWithMessages(teacher: teacher, messages: messages);
   }
 
   @override

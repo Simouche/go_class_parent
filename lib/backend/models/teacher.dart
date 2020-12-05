@@ -43,8 +43,7 @@ class Teacher extends Equatable {
     return directors;
   }
 
-  static Future<Teacher> getDirector(
-      LocalDB database, String teacherID) async {
+  static Future<Teacher> getTeacher(LocalDB database, String teacherID) async {
     final List<Map<String, dynamic>> result = await database.query(
         tableName: TABLE_NAME,
         columns: ["*"],
@@ -53,9 +52,22 @@ class Teacher extends Equatable {
     return fromDB(result.first);
   }
 
+  static Future<List<Teacher>> getTeachersByIDs(
+      LocalDB database, List<String> ids) async {
+    final List<Map<String, dynamic>> results = await database.query(
+        tableName: TABLE_NAME,
+        columns: ["*"],
+        where: "SERVER_ID IN ?",
+        whereArgs: [ids]);
+    final List<Teacher> teachers =
+        results.map<Teacher>((element) => fromDB(element));
+    return teachers;
+  }
+
   Future<bool> saveToDB(LocalDB database) async {
     if (await database.countTableRows(tableName: TABLE_NAME) > 0) return true;
-    final int result = await database.insert(tableName: TABLE_NAME, values: toMap());
+    final int result =
+        await database.insert(tableName: TABLE_NAME, values: toMap());
     log("finished inserting into the DB");
     return result > 0;
   }
