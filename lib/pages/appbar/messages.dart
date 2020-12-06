@@ -25,7 +25,10 @@ class Messages extends StatelessWidget {
         builder: (context, state) {
           if (state is MessagesLoaded) {
             MessagesLoaded newState = state;
-            return MessagesBody(data: newState.messages);
+            return MessagesBody(
+                data: newState.data,
+                ceo: state.ceo,
+                conversations: state.conversations);
           } else if (state is MessagesLoading) {
             return Center(child: Text("Chargement des messages."));
           } else if (state is MessagesLoadingFailed) {
@@ -46,44 +49,13 @@ class MessagesBody extends StatefulWidget {
   MessagesBody({
     Key key,
     this.data,
-  }) : super(key: key) {
-    _children = data[1];
-    List<Teacher> teachers = List();
-    _children.forEach((element) {
-      element.teacherAndMatiere.forEach((element) {
-        teachers.add(element.teacher);
-      });
-    });
-    List<Director> directors = List();
-    _children.forEach((element) {
-      directors.add(element.director);
-    });
-    //Teachers with conversations filter
-    _conversations = TeacherWithMessages.filterTeachersWithMessages(
-        teachers: teachers, messages: data[0]);
-    _conversations =
-        _conversations.where((item) => item.messages.isNotEmpty).toList();
-    //Director with conversations filter
-    _directorConversation = DirectorWithMessages.filterDirectorWithMessages(
-        directors: directors, messages: data[0]);
-    _directorConversationOnGoing = _directorConversation
-        .where((element) => element.messages.isNotEmpty)
-        .toList();
+    this.conversations,
+    this.ceo,
+  }) : super(key: key);
 
-    //CEO with conversations filter
-    ceo = data[2];
-    _ceoWithMessages =
-        CeoWithMessages.filterCeoWithMessages(ceo: ceo, messages: data[0]);
-  }
-
-  List<StudentWithTeachersAndMatieres> _children;
-
-  final List<dynamic> data;
-  List<TeacherWithMessages> _conversations;
-  List<DirectorWithMessages> _directorConversation;
-  List<DirectorWithMessages> _directorConversationOnGoing;
-  CeoWithMessages _ceoWithMessages;
-  CEO ceo;
+  final List<StudentWithDirectorAndTeachers> data;
+  final List<dynamic> conversations;
+  final CEO ceo;
 
   @override
   _MessagesBodyState createState() => _MessagesBodyState();
@@ -91,10 +63,9 @@ class MessagesBody extends StatefulWidget {
 
 class _MessagesBodyState extends State<MessagesBody> {
   get dropDownMenuItems => List.generate(
-      widget._children.length,
+      widget.data.length,
       (index) => DropdownMenuItem(
-          value: index,
-          child: Text(widget._children[index].student.toString())));
+          value: index, child: Text(widget.data[index].student.toString())));
 
   int currentChild = 0;
 
@@ -129,7 +100,11 @@ class _MessagesBodyState extends State<MessagesBody> {
                 children: [
                   GestureDetector(
                     onTap: () => BlocProvider.of<MessagesBloc>(context).add(
-                        OpenConversationEvent(ceo: widget._ceoWithMessages)),
+                      OpenConversationEvent(
+                        contactID: widget.ceo.serverID,
+                        type: 1,
+                      ),
+                    ),
                     child: _AdminAvatar(
                       adminName: "CEO",
                       avatarPath: "assets/ceo_avatar.png",
@@ -138,15 +113,17 @@ class _MessagesBodyState extends State<MessagesBody> {
                   GestureDetector(
                     onTap: () {
                       BlocProvider.of<MessagesBloc>(context).add(
-                          OpenConversationEvent(
-                              director: widget._directorConversation?.first ??
-                                  DirectorWithMessages(
-                                      director: widget
-                                          ._children[currentChild].director)));
+                        OpenConversationEvent(
+                          contactID:
+                              widget.data[currentChild].director.serverID,
+                          type: 2,
+                        ),
+                      );
                     },
                     child: _AdminAvatar(
-                        adminName: "Directeur",
-                        avatarPath: "assets/admin_avatar.png"),
+                      adminName: "Directeur",
+                      avatarPath: "assets/admin_avatar.png",
+                    ),
                   ),
                   Expanded(
                     child: SingleChildScrollView(
@@ -154,33 +131,26 @@ class _MessagesBodyState extends State<MessagesBody> {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: List.generate(
-                          widget
-                              ._children[currentChild].teacherAndMatiere.length,
+                          widget.data[currentChild].teachers.length,
                           (index) => Container(
                             margin: EdgeInsets.all(8.0),
                             child: Column(
                               children: [
                                 GestureDetector(
                                     onTap: () {
-                                      TeacherWithMessages teacher;
-                                      if (widget._conversations.isNotEmpty &&
-                                          widget._conversations.length > index)
-                                        teacher = widget._conversations[index];
-                                      else
-                                        teacher = TeacherWithMessages(
-                                          teacher: widget
-                                              ._children[currentChild]
-                                              .teacherAndMatiere[index]
-                                              .teacher,
-                                        );
                                       BlocProvider.of<MessagesBloc>(context)
-                                          .add(OpenConversationEvent(
-                                              teacher: teacher));
+                                          .add(
+                                        OpenConversationEvent(
+                                          contactID: widget.data[currentChild]
+                                              .teachers[index].serverID,
+                                          type: 3,
+                                        ),
+                                      );
                                     },
                                     child: _ContactsAvatar()),
                                 SizedBox(height: 10.0),
-                                Text(
-                                    'Enseignant de ${widget._children[currentChild].teacherAndMatiere[index].matiere?.label}')
+                                Text(widget.data[currentChild].teachers[index]
+                                    .toString())
                               ],
                             ),
                           ),
@@ -195,37 +165,12 @@ class _MessagesBodyState extends State<MessagesBody> {
         ),
         Expanded(
           child: ListView.separated(
-            itemCount: widget._conversations.length +
-                widget._directorConversationOnGoing.length +
-                1,
+            itemCount: widget.conversations.length,
             separatorBuilder: (context, index) => const Divider(thickness: 1),
             itemBuilder: (context, index) {
-              _MessageTile tile;
-              if (widget._conversations.length > index) {
-                tile = _MessageTile(
-                  conversation: widget._conversations[index],
-                );
-              } else if (index >= widget._conversations.length &&
-                  widget._directorConversationOnGoing.length +
-                          widget._conversations.length >
-                      index) {
-                tile = _MessageTile(
-                  directorConversation: widget._directorConversationOnGoing[
-                      index - widget._conversations.length],
-                );
-              } else {
-                tile = _MessageTile(
-                  ceoConversation: widget._ceoWithMessages,
-                );
-              }
               return Center(
-                child: GestureDetector(
-                  onTap: () {
-                    BlocProvider.of<MessagesBloc>(context).add(
-                        OpenConversationEvent(
-                            teacher: widget._conversations[index]));
-                  },
-                  child: tile,
+                child: _MessageTile(
+                  conversation: widget.conversations[index],
                 ),
               );
             },
@@ -328,26 +273,18 @@ class OnlineIndicator extends StatelessWidget {
 }
 
 class _MessageTile extends StatelessWidget {
-  _MessageTile(
-      {Key key,
-      this.conversation,
-      this.directorConversation,
-      this.ceoConversation})
-      : super(key: key);
+  _MessageTile({
+    Key key,
+    this.conversation,
+  }) : super(key: key);
 
-  final TeacherWithMessages conversation;
-  final DirectorWithMessages directorConversation;
-  final CeoWithMessages ceoConversation;
+  final dynamic conversation;
 
   @override
   Widget build(BuildContext context) {
-    final String name = conversation?.teacher?.toString() ??
-        directorConversation?.director?.toString() ??
-        ceoConversation?.ceo?.toString();
+    final String name = conversation.getName();
 
-    final Message message = conversation?.messages?.last ??
-        directorConversation?.messages?.last ??
-        ceoConversation?.messages?.last;
+    final Message message = conversation.messages.last;
 
     return ListTile(
       leading: _ContactsAvatar(),
@@ -374,10 +311,11 @@ class _MessageTile extends StatelessWidget {
         ],
       ),
       onTap: () => BlocProvider.of<MessagesBloc>(context).add(
-          OpenConversationEvent(
-              teacher: conversation,
-              ceo: ceoConversation,
-              director: directorConversation)),
+        OpenConversationEvent(
+          contactID: conversation.toString(),
+          type: conversation.getType(),
+        ),
+      ),
     );
   }
 }

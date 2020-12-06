@@ -15,10 +15,7 @@ class ConversationDialog extends StatelessWidget {
   static const String routeName = 'home/messages/conversation_dialog';
 
   var colorScheme;
-  String conversationWith;
-  TeacherWithMessages teacher;
-  DirectorWithMessages director;
-  CeoWithMessages ceo;
+  WithMessagesMixin conversation;
   int messagesLength;
 
   @override
@@ -29,29 +26,19 @@ class ConversationDialog extends StatelessWidget {
       },
       builder: (context, state) {
         OpenConversationState newState = state;
-        teacher = newState.teacher;
-        director = newState.director;
-        ceo = newState.ceo;
-        conversationWith = teacher?.teacher?.toString() ??
-            director?.director?.toString() ??
-            ceo?.ceo?.toString();
+        conversation = newState.conversation;
+
         Parent currentUser =
             BlocProvider.of<AuthenticationBloc>(context).currentParent;
-        messagesLength = teacher?.messages?.length ??
-            director?.messages?.length ??
-            ceo?.messages?.length ??
-            0;
         return Scaffold(
             appBar: MyAppBar(
               showActions: false,
-              title: conversationWith,
+              title: conversation.getName(),
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {
-                BlocProvider.of<MessagesBloc>(context).add(OpenNewMessageEvent(
-                    teacher: teacher?.teacher,
-                    director: director?.director,
-                    ceo: ceo?.ceo));
+                BlocProvider.of<MessagesBloc>(context).add(
+                    OpenNewMessageEvent(contactID: conversation.toString()));
               },
               child: Icon(Icons.edit),
             ),
@@ -78,23 +65,16 @@ class ConversationDialog extends StatelessWidget {
                   },
                 ),
               ],
-              child: messagesLength != 0
+              child: conversation.length() != 0
                   ? ListView(
                       children: List.generate(
-                        teacher?.messages?.length ??
-                            director?.messages?.length ??
-                            ceo?.messages?.length ??
-                            0,
+                        conversation.length(),
                         (index) {
-                          Message message;
-                          if (teacher != null)
-                            message = teacher?.messages[index];
-                          if (director != null)
-                            message = director?.messages[index];
-                          if (ceo != null) message = ceo?.messages[index];
-                          return currentUser.serverId == message.senderId
-                              ? selfMessage(message)
-                              : ContactMessage(message: message);
+                          return currentUser.serverId ==
+                                  conversation.getMessages()[index].senderId
+                              ? selfMessage(conversation.getMessages()[index])
+                              : ContactMessage(
+                                  message: conversation.getMessages()[index]);
                         },
                       ),
                     )

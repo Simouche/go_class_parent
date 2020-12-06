@@ -31,23 +31,20 @@ class SendMessageEvent extends MessagesEvent {
 }
 
 class OpenConversationEvent extends MessagesEvent {
-  final TeacherWithMessages teacher;
-  final DirectorWithMessages director;
-  final CeoWithMessages ceo;
+  final String contactID;
+  final int type;
 
-  OpenConversationEvent({this.ceo, this.teacher, this.director});
+  OpenConversationEvent({this.contactID,this.type});
 
   @override
-  List<Object> get props => [teacher, director];
+  List<Object> get props => [contactID,this.type];
 }
 
 class OpenNewMessageEvent extends MessagesEvent {
-  final Teacher teacher;
-  final Director director;
-  final CEO ceo;
+  final String contactID;
 
-  OpenNewMessageEvent({this.ceo, this.teacher, this.director});
+  OpenNewMessageEvent({this.contactID});
 
   @override
-  List<Object> get props => [teacher];
+  List<Object> get props => [contactID];
 }

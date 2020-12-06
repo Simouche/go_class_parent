@@ -1,10 +1,11 @@
 import 'package:equatable/equatable.dart';
 import 'package:go_class_parent/backend/db/local_db.dart';
+import 'package:go_class_parent/backend/models/with_messages_mixin.dart';
 
 import 'director.dart';
 import 'message.dart';
 
-class DirectorWithMessages extends Equatable {
+class DirectorWithMessages extends Equatable implements WithMessagesMixin {
   final Director director;
   final List<Message> messages;
 
@@ -25,7 +26,7 @@ class DirectorWithMessages extends Equatable {
     return directorWithMessage;
   }
 
-  static Future<DirectorWithMessages> getTeacherWithMessages(
+  static Future<DirectorWithMessages> getDirectorWithMessages(
       LocalDB database, String directorID) async {
     final Director director = await Director.getDirector(database, directorID);
     final List<Message> messages =
@@ -33,9 +34,34 @@ class DirectorWithMessages extends Equatable {
     return DirectorWithMessages(director: director, messages: messages);
   }
 
+  static Future<List<DirectorWithMessages>> getAllDirectorsWithMessages(
+      LocalDB database) async {
+    final List<DirectorWithMessages> directorWithMessages = List();
+    Director.getAllFromDB(database).then(
+      (value) => value.forEach(
+        (element) => getDirectorWithMessages(database, element.serverID).then(
+          (value) => value.messages.isNotEmpty ? directorWithMessages.add(value):null,
+        ),
+      ),
+    );
+    return directorWithMessages;
+  }
+
   @override
   List<Object> get props => [director, messages];
 
   @override
-  String toString() => "$director";
+  String toString() => director.serverID;
+
+  @override
+  String getName() => director.toString();
+
+  @override
+  int getType() => 2;
+
+  @override
+  int length() => messages.length;
+
+  @override
+  List<Message> getMessages() => messages;
 }

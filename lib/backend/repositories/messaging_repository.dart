@@ -8,8 +8,7 @@ class MessagingRepository {
   final SynchronizationProvider _synchronizationProvider =
       SynchronizationProvider();
 
-  Future<List<Message>> loadMessages(String currentUserID,
-          {String lastMessageID}) async =>
+  Future<List<Message>> loadMessagesRemotely(String currentUserID) async =>
       _remoteMessagesProvider.loadMessages(currentUserID);
 
   Future<List<Message>> loadMessagesFromDB() async {
@@ -21,6 +20,30 @@ class MessagingRepository {
   }
 
   Future<CEO> getCEO() async {
-    // return
+    return await _synchronizationProvider.getCEO();
   }
+
+  Future<CeoWithMessages> getCEOWithMessages() async {
+    return await _localMessagesProvider.getCeoWithMessages();
+  }
+
+  Future<TeacherWithMessages> getTeacherWithMessages(String teacherID) async {
+    return await _localMessagesProvider.getTeacherWithMessages(teacherID);
+  }
+
+  Future<DirectorWithMessages> getDirectorWithMessages(String directorID) async {
+    return await _localMessagesProvider.getDirectorWithMessages(directorID);
+  }
+
+  Future<StudentWithDirectorAndTeachers> getStudentWithDirectorAndTeachers(
+      String studentID) async {
+    return await _synchronizationProvider.getAllAboutStudent(studentID);
+  }
+
+  Future<List<StudentWithDirectorAndTeachers>> getAllAboutAllStudents() async {
+    return await _synchronizationProvider.getAllAboutAllStudents();
+  }
+
+  Future<List<dynamic>> getAllConversation() async =>
+      await _localMessagesProvider.loadConversations();
 }

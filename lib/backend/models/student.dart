@@ -21,7 +21,7 @@ class Student extends Equatable {
       serverID: json['_id'],
       firstName: json['firstNameFr'],
       lastName: json['lastNameFr'],
-      state: json['state'],
+      // state: json['state'],
       director: json['director']
     );
   }
@@ -32,7 +32,7 @@ class Student extends Equatable {
       serverID: row["SERVER_ID"],
       firstName: row["FIRST_NAME"],
       lastName: row["LAST_NAME"],
-      state: row["STATE"],
+      // state: row["STATE"],
       director: row["DIRECTOR"],
     );
   }
@@ -50,15 +50,15 @@ class Student extends Equatable {
   static Future<List<Student>> getAllFromDB(LocalDB database) async {
     final List<Map<String, dynamic>> results = await database.query(
         tableName: TABLE_NAME, columns: ["*"], orderBy: 'ID');
-    final List<Student> directors = List();
-    results.forEach((element) => directors.add(fromDB(element)));
-    return directors;
+    final List<Student> students = List();
+    results.forEach((element) => students.add(fromDB(element)));
+    return students;
   }
 
   Future<bool> saveToDB(LocalDB db) async {
     log("starting to save to the db");
     final int result = await db.insert(tableName: TABLE_NAME, values: toMap());
-    log("finished inserting into the DB");
+    log("finished inserting a STUDENT into the DB");
     return result > 0;
   }
 

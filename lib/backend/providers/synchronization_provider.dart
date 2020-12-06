@@ -25,33 +25,32 @@ class SynchronizationProvider extends BaseSynchronizationProvider
       Map<String, dynamic> json = jsonDecode(response.body);
       json = json["data"];
 
-      json["teachers"].map<Teacher>((element) {
-        Teacher.fromJson(element).saveToDB(database);
-      });
+      for (var element in json["teachers"]){
+        await Teacher.fromJson(element).saveToDB(database);
+      }
 
       final List directorStudent = json["directorStudent"];
 
-      json["children"].map<Student>((element) {
+      for (var element in  json["children"]){
         element["director"] = directorStudent
-            .where((element) => element["studentID"] == element["_id"])
+            .where((tuple) => tuple["studentID"] == element["_id"])
             .first["directorID"];
         final Student student = Student.fromJson(element);
-        student.saveToDB(database);
-        return student;
-      });
+       await  student.saveToDB(database);
+      }
 
-      json["directors"].map<Director>((element) {
-        final Director director = Director.fromJson(element);
-        director.saveToDB(database);
-        return director;
-      });
+      for (var element in json["directors"]){
+       await Director.fromJson(element).saveToDB(database);
+      }
 
-      CEO.fromJson(json["ceo"]).saveToDB(database);
+      await CEO.fromJson(json["ceo"]).saveToDB(database);
 
-      json["teacherStudent"].map((element) => StudentWithTeachers.saveToDB(
-          database,
-          studentID: element["studentID"],
-          teacherID: element["teacherID"]));
+      for (var element in json["teacherStudent"]){
+       await StudentWithTeachers.saveToDB(
+            database,
+            studentID: element["studentID"],
+            teacherID: element["teacherID"]);
+      }
 
       _settingsProvider.setSynced();
 
@@ -75,5 +74,10 @@ class SynchronizationProvider extends BaseSynchronizationProvider
       String studentID) async {
     return await StudentWithDirectorAndTeachers.getByStudent(
         database, studentID);
+  }
+
+  @override
+  Future<List<StudentWithDirectorAndTeachers>> getAllAboutAllStudents() async {
+    return await StudentWithDirectorAndTeachers.getAllFromDB(database);
   }
 }

@@ -20,3 +20,4 @@ export 'student_with_director_and_teachers.dart';
 export 'teacher.dart';
 export 'teacher_messages.dart';
 export 'user.dart';
+export 'with_messages_mixin.dart';

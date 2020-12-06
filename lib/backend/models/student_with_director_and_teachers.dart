@@ -21,14 +21,14 @@ class StudentWithDirectorAndTeachers extends Equatable {
         await StudentWithTeachers.getAllFromDB(database);
     final List<StudentWithDirectorAndTeachers> studentWithDirectorAndTeachers =
         List();
-    studentWithTeachers.forEach((StudentWithTeachers element) async {
+    for (StudentWithTeachers element in studentWithTeachers) {
       final Director director =
-          await Director.getDirector(database, element.student.director);
+      await Director.getDirector(database, element.student.director);
       studentWithDirectorAndTeachers.add(StudentWithDirectorAndTeachers(
           student: element.student,
           director: director,
           teachers: element.teachers));
-    });
+    }
     return studentWithDirectorAndTeachers;
   }
 

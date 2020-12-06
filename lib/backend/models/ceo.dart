@@ -52,7 +52,7 @@ class CEO extends Equatable {
   Future<bool> saveToDB(LocalDB database) async {
     if (await database.countTableRows(tableName: TABLE_NAME) > 0) return true;
     final int result = await database.insert(tableName: TABLE_NAME, values: toMap());
-    log("finished inserting into the DB");
+    log("finished inserting a CEO into the DB");
     return result > 0;
   }
 }

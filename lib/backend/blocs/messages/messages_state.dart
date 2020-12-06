@@ -3,18 +3,25 @@ part of 'messages_bloc.dart';
 @immutable
 abstract class MessagesState extends Equatable {}
 
+class MessagesTransitionState extends MessagesState {
+  @override
+  List<Object> get props => [];
+}
+
 class MessagesLoading extends MessagesState {
   @override
   List<Object> get props => [];
 }
 
 class MessagesLoaded extends MessagesState {
-  final List<dynamic> messages;
+  final List<dynamic> conversations;
+  final CEO ceo;
+  final List<StudentWithDirectorAndTeachers> data;
 
-  MessagesLoaded(this.messages);
+  MessagesLoaded({this.conversations, this.ceo, this.data});
 
   @override
-  List<Object> get props => [messages];
+  List<Object> get props => [this.conversations, this.ceo, this.data];
 }
 
 class ConversationLoaded extends MessagesState {
@@ -52,14 +59,12 @@ class MessageSent extends MessagesState {
 }
 
 class OpenConversationState extends MessagesState {
-  final TeacherWithMessages teacher;
-  final DirectorWithMessages director;
-  final CeoWithMessages ceo;
+  final WithMessagesMixin conversation;
 
-  OpenConversationState({this.ceo, this.teacher, this.director});
+  OpenConversationState({this.conversation});
 
   @override
-  List<Object> get props => [teacher];
+  List<Object> get props => [this.conversation];
 }
 
 class OpenNewMessageState extends MessagesState {

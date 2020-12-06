@@ -46,7 +46,7 @@ class Director extends Equatable {
   Future<bool> saveToDB(LocalDB db) async {
     log("starting to save to the db");
     final int result = await db.insert(tableName: TABLE_NAME, values: toMap());
-    log("finished inserting into the DB");
+    log("finished inserting a DIRECTOR into the DB");
     return result > 0;
   }
 
@@ -64,5 +64,5 @@ class Director extends Equatable {
   List<Object> get props => [name, phone, email, serverID];
 
   @override
-  String toString() => "Mr $name";
+  String toString() => "$name";
 }

@@ -12,6 +12,46 @@ class LocalMessagesProvider extends BaseMessagingProvider
     return await Message.getConversation(database, contact);
   }
 
+  Future<List<dynamic>> loadConversations() async {
+    final List<dynamic> conversations = List();
+    conversations.addAll(
+        (await TeacherWithMessages.getAllTeachersWithMessages(database)));
+    conversations.addAll(
+        (await DirectorWithMessages.getAllDirectorsWithMessages(database)));
+
+    final CeoWithMessages ceoWithMessages =
+        (await CeoWithMessages.getCEOWithMessages(database));
+    if (ceoWithMessages.messages.isNotEmpty) conversations.add(ceoWithMessages);
+
+    conversations.sort((a, b) {
+      if (a is WithMessagesMixin && b is WithMessagesMixin) if (a
+              .getMessages()
+              .last
+              .id >
+          b.getMessages().last.id)
+        return 1;
+      else
+        return -1;
+      else
+        return 1;
+    });
+    return conversations;
+  }
+
+  Future<CeoWithMessages> getCeoWithMessages() async {
+    return await CeoWithMessages.getCEOWithMessages(database);
+  }
+
+  Future<TeacherWithMessages> getTeacherWithMessages(String teacherID) async {
+    return await TeacherWithMessages.getTeacherWithMessages(
+        database, teacherID);
+  }
+
+  Future<DirectorWithMessages> getDirectorWithMessages(
+      String directorID) async {
+    return DirectorWithMessages.getDirectorWithMessages(database, directorID);
+  }
+
   @override
   Future<List<Message>> loadMessages(String currentUserID) {
     // TODO: implement loadMessages

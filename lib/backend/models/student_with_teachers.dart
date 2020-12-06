@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:equatable/equatable.dart';
 import 'package:go_class_parent/backend/db/local_db.dart';
 import 'package:go_class_parent/backend/models/student.dart';
@@ -18,19 +20,19 @@ class StudentWithTeachers extends Equatable {
       LocalDB database) async {
     final List<Student> students = await Student.getAllFromDB(database);
     final List<StudentWithTeachers> studentsWithTeachers = List();
-    students.forEach((element) async {
+    for (Student element in students) {
       final List<Map<String, dynamic>> teachersOfStudent = await database.query(
           tableName: TABLE_NAME,
           columns: ["*"],
           where: "STUDENT_ID = ?",
           whereArgs: [element.serverID]);
       final List<String> teachersIDs = teachersOfStudent.map<String>(
-          (Map<String, dynamic> element) => element["TEACHER_ID"] as String);
+              (Map<String, dynamic> element) => element["TEACHER_ID"] as String).toList();
       final List<Teacher> teachers =
-          await Teacher.getTeachersByIDs(database, teachersIDs);
+      await Teacher.getTeachersByIDs(database, teachersIDs);
       studentsWithTeachers
           .add(StudentWithTeachers(student: element, teachers: teachers));
-    });
+    }
     return studentsWithTeachers;
   }
 
@@ -54,5 +56,7 @@ class StudentWithTeachers extends Equatable {
     await database.insert(
         tableName: TABLE_NAME,
         values: {"STUDENT_ID": studentID, "TEACHER_ID": teacherID});
+    log("finished inserting a student and teacher tuple");
+    return true;
   }
 }

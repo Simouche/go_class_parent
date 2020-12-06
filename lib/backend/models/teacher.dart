@@ -55,12 +55,12 @@ class Teacher extends Equatable {
   static Future<List<Teacher>> getTeachersByIDs(
       LocalDB database, List<String> ids) async {
     final List<Map<String, dynamic>> results = await database.query(
-        tableName: TABLE_NAME,
-        columns: ["*"],
-        where: "SERVER_ID IN ?",
-        whereArgs: [ids]);
+      tableName: TABLE_NAME,
+      columns: ["*"],
+      where: "SERVER_ID IN ('" + ids.join("','") + "')",
+    );
     final List<Teacher> teachers =
-        results.map<Teacher>((element) => fromDB(element));
+        results.map<Teacher>((element) => fromDB(element)).toList();
     return teachers;
   }
 
@@ -76,5 +76,5 @@ class Teacher extends Equatable {
   List<Object> get props => [firstName, lastName, serverID, matiere];
 
   @override
-  String toString() => "Mr $lastName $firstName";
+  String toString() => "$lastName $firstName";
 }

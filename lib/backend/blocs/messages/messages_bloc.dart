@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:go_class_parent/backend/models/models.dart';
+import 'package:go_class_parent/backend/models/with_messages_mixin.dart';
 import 'package:go_class_parent/backend/repositories/repositories.dart';
 import 'package:meta/meta.dart';
 
 part 'messages_event.dart';
+
 part 'messages_state.dart';
 
 class MessagesBloc extends Bloc<MessagesEvent, MessagesState> {
@@ -29,15 +31,12 @@ class MessagesBloc extends Bloc<MessagesEvent, MessagesState> {
         break;
       case OpenConversationEvent:
         final OpenConversationEvent openConversationEvent = event;
-        yield* mapOpenConversationEventToState(openConversationEvent.teacher,
-            openConversationEvent.director, openConversationEvent.ceo);
+        yield* mapOpenConversationEventToState(
+            openConversationEvent.contactID, openConversationEvent.type);
         break;
       case OpenNewMessageEvent:
         final OpenNewMessageEvent openNewMessageEvent = event;
-        yield OpenNewMessageState(
-            teacher: openNewMessageEvent.teacher,
-            director: openNewMessageEvent.director,
-            ceo: openNewMessageEvent.ceo);
+        yield OpenNewMessageState();
         break;
     }
   }
@@ -45,9 +44,13 @@ class MessagesBloc extends Bloc<MessagesEvent, MessagesState> {
   Stream<MessagesState> mapMessagesLoadingToState(String currentUserID) async* {
     yield MessagesLoading();
     try {
-      List<dynamic> messages =
-          await _messagingRepository.loadMessages(currentUserID);
-      yield MessagesLoaded(messages);
+      final List<StudentWithDirectorAndTeachers> data =
+          await _messagingRepository.getAllAboutAllStudents();
+      final List<dynamic> conversations =
+          await _messagingRepository.getAllConversation();
+      final CEO ceo = await _messagingRepository.getCEO();
+
+      yield MessagesLoaded(conversations: conversations, ceo: ceo, data: data);
     } on Exception catch (e, stacktrace) {
       print(e);
       print(stacktrace);
@@ -67,9 +70,24 @@ class MessagesBloc extends Bloc<MessagesEvent, MessagesState> {
   }
 
   Stream<MessagesState> mapOpenConversationEventToState(
-      TeacherWithMessages teacher,
-      DirectorWithMessages director,
-      CeoWithMessages ceo) async* {
-    yield OpenConversationState(teacher: teacher, director: director, ceo: ceo);
+    String contactID,
+    int type,
+  ) async* {
+    WithMessagesMixin conversation;
+    switch (type) {
+      case 1:
+        conversation = await _messagingRepository.getCEOWithMessages();
+        break;
+      case 2:
+        conversation =
+            await _messagingRepository.getDirectorWithMessages(contactID);
+        break;
+      case 3:
+        conversation =
+            await _messagingRepository.getTeacherWithMessages(contactID);
+        break;
+    }
+
+    yield OpenConversationState(conversation: conversation);
   }
 }

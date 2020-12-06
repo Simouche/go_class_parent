@@ -43,6 +43,9 @@ abstract class BaseMessagingProvider {
   Future<bool> sendMessage(Message message);
 
   Future<List<Message>> loadConversation(String contact);
+
+  Future<List<dynamic>> loadConversations();
+  Future<CeoWithMessages> getCeoWithMessages();
 }
 
 abstract class BaseDownloadsProvider {
@@ -57,6 +60,8 @@ abstract class BaseSynchronizationProvider {
   Future<CEO> getCEO();
 
   Future<StudentWithDirectorAndTeachers> getAllAboutStudent(String studentID);
+
+  Future<List<StudentWithDirectorAndTeachers>> getAllAboutAllStudents();
 
   Future<Director> getDirector(String studentID);
 }

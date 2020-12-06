@@ -73,7 +73,7 @@ class LocalDB {
             ");");
         await database.execute("CREATE TABLE IF NOT EXISTS messages("
             "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
-            "SENDER TEXT ,"
+            "SENDER_ID TEXT ,"
             "MESSAGE TEXT ,"
             "SUBJECT TEXT,"
             "DATE STRING ,"

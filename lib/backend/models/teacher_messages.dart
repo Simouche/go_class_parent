@@ -1,10 +1,11 @@
 import 'package:equatable/equatable.dart';
 import 'package:go_class_parent/backend/db/local_db.dart';
+import 'package:go_class_parent/backend/models/with_messages_mixin.dart';
 
 import 'message.dart';
 import 'teacher.dart';
 
-class TeacherWithMessages extends Equatable {
+class TeacherWithMessages extends Equatable implements WithMessagesMixin {
   final Teacher teacher;
   final List<Message> messages;
 
@@ -42,6 +43,36 @@ class TeacherWithMessages extends Equatable {
     return TeacherWithMessages(teacher: teacher, messages: messages);
   }
 
+  static Future<List<TeacherWithMessages>> getAllTeachersWithMessages(
+      LocalDB database) async {
+    final List<TeacherWithMessages> teachersWithMessages = List();
+    Teacher.getAllFromDB(database).then(
+      (value) => value.forEach(
+        (element) => getTeacherWithMessages(database, element.serverID).then(
+          (value) => value.messages.isNotEmpty
+              ? teachersWithMessages.add(value)
+              : null,
+        ),
+      ),
+    );
+    return teachersWithMessages;
+  }
+
   @override
   List<Object> get props => [teacher, messages];
+
+  @override
+  String toString() => teacher.serverID;
+
+  @override
+  String getName() => teacher.toString();
+
+  @override
+  int getType() => 3;
+
+  @override
+  int length() => messages.length;
+
+  @override
+  List<Message> getMessages() => messages;
 }

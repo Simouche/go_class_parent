@@ -61,4 +61,16 @@ class RemoteMessagesProvider extends BaseMessagingProvider
   }
 
   set offset(int offset) => _offset = offset;
+
+  @override
+  Future<CeoWithMessages> getCeoWithMessages() {
+    // TODO: implement getCeoWithMessages
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List> loadConversations() {
+    // TODO: implement loadConversations
+    throw UnimplementedError();
+  }
 }
