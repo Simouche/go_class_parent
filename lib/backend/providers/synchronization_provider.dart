@@ -25,13 +25,13 @@ class SynchronizationProvider extends BaseSynchronizationProvider
       Map<String, dynamic> json = jsonDecode(response.body);
       json = json["data"];
 
-      final List<Teacher> teachers = json["teachers"].map<Teacher>(
-          (Map<String, dynamic> element) => Teacher.fromJson(element));
-      teachers.forEach((Teacher element) => element.saveToDB(database));
+      json["teachers"].map<Teacher>((element) {
+        Teacher.fromJson(element).saveToDB(database);
+      });
 
-      final List<Map<String, String>> directorStudent = json["directorStudent"];
+      final List directorStudent = json["directorStudent"];
 
-      json["children"].map<Student>((Map<String, dynamic> element) {
+      json["children"].map<Student>((element) {
         element["director"] = directorStudent
             .where((element) => element["studentID"] == element["_id"])
             .first["directorID"];
@@ -40,7 +40,7 @@ class SynchronizationProvider extends BaseSynchronizationProvider
         return student;
       });
 
-      json["directors"].map<Director>((Map<String, dynamic> element) {
+      json["directors"].map<Director>((element) {
         final Director director = Director.fromJson(element);
         director.saveToDB(database);
         return director;

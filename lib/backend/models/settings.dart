@@ -61,5 +61,19 @@ class Settings {
     });
   }
 
-  static Future<String> getLastMessagesSync(LocalDB database) async {}
+  static Future<String> getLastMessagesSync(LocalDB database) async {
+    List<Map<String, dynamic>> result = await database.query(
+      tableName: tableName,
+      columns: ["*"],
+      where: whereStatement,
+      whereArgs: [LAST_MESSAGES_SYNC],
+    );
+    return result.isNotEmpty ? result.first["VALUE"] : "none";
+  }
+
+  static Future<void> setMessageSyncedTime(LocalDB database) async {
+    await database.insert(
+        tableName: tableName,
+        values: {CONFIG_COL: SYNCED, VALUE_COL: DateTime.now().toString()});
+  }
 }

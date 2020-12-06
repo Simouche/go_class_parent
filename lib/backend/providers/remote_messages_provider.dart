@@ -4,6 +4,7 @@ import 'package:go_class_parent/backend/db/local_db.dart';
 import 'package:go_class_parent/backend/http/client.dart';
 import 'package:go_class_parent/backend/http/http_handler.dart';
 import 'package:go_class_parent/backend/models/models.dart';
+import 'package:go_class_parent/backend/providers/providers.dart';
 
 import 'base_providers.dart';
 
@@ -11,6 +12,7 @@ class RemoteMessagesProvider extends BaseMessagingProvider
     with HttpHandlerMixin {
   final LocalDB database = LocalDB();
   final HttpClient client = HttpClient();
+  final SettingsProvider _settingsProvider = SettingsProvider();
 
   int _offset;
 
@@ -22,45 +24,23 @@ class RemoteMessagesProvider extends BaseMessagingProvider
   }
 
   @override
-  Future<List<dynamic>> loadMessages(String currentUserID) async {
-    final response = await client
-        .get('get-all-messages', queries: {'user_id': currentUserID});
+  Future<List<Message>> loadMessages(String currentUserID,
+      {String lastMessageID = "none"}) async {
+    final response = await client.get('get-all-messages',
+        queries: {'user_id': currentUserID, "lastMessageID": lastMessageID});
     final status = handleHttpCode(response.statusCode);
     if (status) {
       final json = jsonDecode(response.body);
       if (!json['error']) {
         final List<Message> messages = List();
-        final List<StudentWithTeachersAndMatieres>
-            studentWithTeachersAndMatieres = List();
         json['data']['messages']
             .forEach((element) => messages.add(Message.fromJson(element)));
-        json['data']['children'].forEach((element) {
-          final Student student = Student.fromJson(element["child"]);
-          final List<TeacherAndMatiere> teacherAndMatiere = List();
-          element['teachers']?.forEach(
-            (element) => teacherAndMatiere.add(
-              TeacherAndMatiere(
-                teacher: Teacher.fromJson(element[0]),
-                matiere: Matiere.fromJson(element[1]),
-              ),
-            ),
-          );
-          studentWithTeachersAndMatieres.add(
-            StudentWithTeachersAndMatieres(
-              student: student,
-              teacherAndMatiere: teacherAndMatiere,
-              director: Director.fromJson(element['director']),
-            ),
-          );
-        });
-        final CEO ceo = CEO.fromJson(json['data']['ceo']);
-        return <dynamic>[messages, studentWithTeachersAndMatieres, ceo];
+        return messages;
       } else {
-        return null;
+        return List<Message>();
       }
-    } else {
-      return null;
     }
+    return List<Message>();
   }
 
   @override
@@ -75,7 +55,7 @@ class RemoteMessagesProvider extends BaseMessagingProvider
   }
 
   @override
-  Future<bool> storeMessages() {
+  Future<bool> storeMessages(List<Message> messages) {
     // TODO: implement storeMessages
     throw UnimplementedError();
   }

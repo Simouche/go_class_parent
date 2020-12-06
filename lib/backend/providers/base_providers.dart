@@ -35,9 +35,9 @@ abstract class BaseNotificationsProvider {
 }
 
 abstract class BaseMessagingProvider {
-  Future<List<dynamic>> loadMessages(String currentUserID);
+  Future<List<Message>> loadMessages(String currentUserID);
 
-  Future<bool> storeMessages();
+  Future<bool> storeMessages(List<Message> messages);
 
   Future<bool> sendMessage(Message message);
 
