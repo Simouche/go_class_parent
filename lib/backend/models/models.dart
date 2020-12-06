@@ -1,4 +1,5 @@
 export 'attachement_file.dart';
+export 'attendance.dart';
 export 'canteen.dart';
 export 'ceo.dart';
 export 'ceo_with_messages.dart';
@@ -15,7 +16,7 @@ export 'schedule.dart';
 export 'settings.dart';
 export 'student.dart';
 export 'student_teacher_matiere.dart';
+export 'student_with_director_and_teachers.dart';
 export 'teacher.dart';
 export 'teacher_messages.dart';
 export 'user.dart';
-export 'attendance.dart';

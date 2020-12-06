@@ -24,8 +24,8 @@ class RemoteMessagesProvider extends BaseMessagingProvider
   }
 
   @override
-  Future<List<Message>> loadMessages(String currentUserID,
-      {String lastMessageID = "none"}) async {
+  Future<List<Message>> loadMessages(String currentUserID) async {
+    final String lastMessageID = await Message.getLastMessageID(database);
     final response = await client.get('get-all-messages',
         queries: {'user_id': currentUserID, "lastMessageID": lastMessageID});
     final status = handleHttpCode(response.statusCode);

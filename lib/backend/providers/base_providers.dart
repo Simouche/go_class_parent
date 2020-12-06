@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:go_class_parent/backend/models/models.dart';
+import 'package:go_class_parent/backend/models/student_with_director_and_teachers.dart';
 
 abstract class BaseAuthenticationProvider {
   Future<User> signIn();
@@ -52,6 +53,12 @@ abstract class BaseDownloadsProvider {
 
 abstract class BaseSynchronizationProvider {
   Future<bool> loadInitialData(String userID);
+
+  Future<CEO> getCEO();
+
+  Future<StudentWithDirectorAndTeachers> getAllAboutStudent(String studentID);
+
+  Future<Director> getDirector(String studentID);
 }
 
 abstract class BaseSettingsProvider {}

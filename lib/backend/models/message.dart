@@ -105,6 +105,16 @@ class Message extends Equatable {
     return messages;
   }
 
+  static Future<String> getLastMessageID(LocalDB database) async {
+    final List<Map<String, dynamic>> results = await database.query(
+      tableName: TABLE_NAME,
+      columns: ["*"],
+      orderBy: "ID DESC",
+      limit: 1,
+    );
+    return results.isNotEmpty ? fromDB(results.first).serverId : "none";
+  }
+
   Future<bool> saveToDB(LocalDB db) async {
     final int result = await db.insert(tableName: TABLE_NAME, values: toMap());
     return result > 0;

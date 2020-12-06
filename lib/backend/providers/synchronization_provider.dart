@@ -59,4 +59,21 @@ class SynchronizationProvider extends BaseSynchronizationProvider
     }
     return false;
   }
+
+  @override
+  Future<CEO> getCEO() async {
+    return await CEO.getCEOFromDB(database);
+  }
+
+  @override
+  Future<Director> getDirector(String directorID) async {
+    return await Director.getDirector(database, directorID);
+  }
+
+  @override
+  Future<StudentWithDirectorAndTeachers> getAllAboutStudent(
+      String studentID) async {
+    return await StudentWithDirectorAndTeachers.getByStudent(
+        database, studentID);
+  }
 }

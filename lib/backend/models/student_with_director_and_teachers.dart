@@ -31,4 +31,15 @@ class StudentWithDirectorAndTeachers extends Equatable {
     });
     return studentWithDirectorAndTeachers;
   }
+
+  static Future<StudentWithDirectorAndTeachers> getByStudent(
+      LocalDB database, String student) async {
+    final StudentWithTeachers studentWithTeachers =
+        await StudentWithTeachers.getStudentWithTeachers(database, student);
+    return StudentWithDirectorAndTeachers(
+        student: studentWithTeachers.student,
+        teachers: studentWithTeachers.teachers,
+        director: (await Director.getDirector(
+            database, studentWithTeachers.student.director)));
+  }
 }
