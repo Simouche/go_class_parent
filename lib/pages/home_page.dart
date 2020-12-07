@@ -17,6 +17,7 @@ class HomePage extends StatelessWidget {
 
   String _title = "Accueil";
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  bool triggered = false;
 
   void loadInitialData(context) async {
     BlocProvider.of<SynchronizationBloc>(context).add(
@@ -27,7 +28,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    loadInitialData(context);
+    if (!triggered) {
+      loadInitialData(context);
+      triggered = true;
+    }
     return Scaffold(
       drawer: BlocListener<AuthenticationBloc, AuthenticationState>(
           listenWhen: (oldState, newState) => newState is LogoutState,

@@ -8,7 +8,6 @@ import 'package:go_class_parent/backend/repositories/repositories.dart';
 import 'package:meta/meta.dart';
 
 part 'messages_event.dart';
-
 part 'messages_state.dart';
 
 class MessagesBloc extends Bloc<MessagesEvent, MessagesState> {
@@ -36,7 +35,10 @@ class MessagesBloc extends Bloc<MessagesEvent, MessagesState> {
         break;
       case OpenNewMessageEvent:
         final OpenNewMessageEvent openNewMessageEvent = event;
-        yield OpenNewMessageState();
+        yield OpenNewMessageState(contactID: openNewMessageEvent.contactID);
+        break;
+      case GetNewMessagesCountEvent:
+        yield* mapGetNewMessagesCountEventToState();
         break;
     }
   }
@@ -89,5 +91,10 @@ class MessagesBloc extends Bloc<MessagesEvent, MessagesState> {
     }
 
     yield OpenConversationState(conversation: conversation);
+  }
+
+  Stream<MessagesState> mapGetNewMessagesCountEventToState() async* {
+    final int count = await _messagingRepository.newMessagesCount();
+    yield MessagesCountState(newMessageCount: count);
   }
 }

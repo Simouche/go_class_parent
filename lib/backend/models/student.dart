@@ -18,12 +18,11 @@ class Student extends Equatable {
 
   static Student fromJson(Map json) {
     return Student(
-      serverID: json['_id'],
-      firstName: json['firstNameFr'],
-      lastName: json['lastNameFr'],
-      // state: json['state'],
-      director: json['director']
-    );
+        serverID: json['_id'],
+        firstName: json['firstNameFr'],
+        lastName: json['lastNameFr'],
+        // state: json['state'],
+        director: json['director']);
   }
 
   static Student fromDB(Map<String, dynamic> row) {
@@ -56,14 +55,19 @@ class Student extends Equatable {
   }
 
   Future<bool> saveToDB(LocalDB db) async {
-    log("starting to save to the db");
-    final int result = await db.insert(tableName: TABLE_NAME, values: toMap());
-    log("finished inserting a STUDENT into the DB");
-    return result > 0;
+    try {
+      log("starting to save to the db");
+      final int result =
+          await db.insert(tableName: TABLE_NAME, values: toMap());
+      log("finished inserting a The STUDENT $serverID into the DB");
+      return result > 0;
+    } catch (e) {
+      log("duplicate of $serverID");
+      return false;
+    }
   }
 
-  static Future<Student> getStudent(
-      LocalDB database, String studentID) async {
+  static Future<Student> getStudent(LocalDB database, String studentID) async {
     final List<Map<String, dynamic>> result = await database.query(
         tableName: TABLE_NAME,
         columns: ["*"],

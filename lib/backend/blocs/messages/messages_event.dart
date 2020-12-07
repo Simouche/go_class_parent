@@ -3,6 +3,11 @@ part of 'messages_bloc.dart';
 @immutable
 abstract class MessagesEvent extends Equatable {}
 
+class GetNewMessagesCountEvent extends MessagesEvent {
+  @override
+  List<Object> get props => [];
+}
+
 class LoadMessagesEvent extends MessagesEvent {
   final String currentUserID;
 
@@ -34,10 +39,10 @@ class OpenConversationEvent extends MessagesEvent {
   final String contactID;
   final int type;
 
-  OpenConversationEvent({this.contactID,this.type});
+  OpenConversationEvent({this.contactID, this.type});
 
   @override
-  List<Object> get props => [contactID,this.type];
+  List<Object> get props => [contactID, this.type];
 }
 
 class OpenNewMessageEvent extends MessagesEvent {

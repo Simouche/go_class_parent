@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:equatable/equatable.dart';
 import 'package:go_class_parent/backend/db/local_db.dart';
 
@@ -24,7 +26,7 @@ class Message extends Equatable {
       this.id,
       this.message,
       this.date,
-      this.seen,
+      this.seen = false,
       this.senderId,
       this.subject,
       this.time,
@@ -77,8 +79,8 @@ class Message extends Equatable {
       "MESSAGE": message,
       "DATE": date,
       "TIME": time,
-      "APPROVED": approved,
-      "SEEN": seen,
+      "APPROVED": approved ? 1 : 0,
+      "SEEN": seen ? 1 : 0,
       "SENDER_ID": senderId,
       "RECEIVER_ID": receiverId,
       "SERVER_ID": serverId,
@@ -117,9 +119,35 @@ class Message extends Equatable {
     return results.isNotEmpty ? fromDB(results.first).serverId : "none";
   }
 
+  static Future<int> getNewMessagesCount(LocalDB database) async {
+    final List<Map<String, dynamic>> results = await database.query(
+      tableName: TABLE_NAME,
+      columns: ["COUNT(*) as number"],
+      where: "SEEN = ?",
+      whereArgs: [0],
+    );
+    return results.isNotEmpty ? results.first["number"] : 0;
+  }
+
+  static Future<bool> markConversationAsRead(
+      LocalDB database, String contactID) async {
+    final int results = await database.update(
+        tableName: TABLE_NAME,
+        values: {"SEEN": 1},
+        where: "SENDER_ID = ? OR RECEIVER_ID = ?",
+        whereArgs: [contactID, contactID]);
+    return results > 0;
+  }
+
   Future<bool> saveToDB(LocalDB db) async {
-    final int result = await db.insert(tableName: TABLE_NAME, values: toMap());
-    return result > 0;
+    try {
+      final int result =
+          await db.insert(tableName: TABLE_NAME, values: toMap());
+      return result > 0;
+    } catch (e) {
+      log("duplicate of $serverId");
+      return false;
+    }
   }
 
   Map<String, dynamic> toJson() {

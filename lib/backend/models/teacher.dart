@@ -65,11 +65,15 @@ class Teacher extends Equatable {
   }
 
   Future<bool> saveToDB(LocalDB database) async {
-    if (await database.countTableRows(tableName: TABLE_NAME) > 0) return true;
-    final int result =
-        await database.insert(tableName: TABLE_NAME, values: toMap());
-    log("finished inserting into the DB");
-    return result > 0;
+    try {
+      final int result =
+          await database.insert(tableName: TABLE_NAME, values: toMap());
+      log("finished inserting TEACHER $serverID into the DB");
+      return result > 0;
+    } catch (e) {
+      log("duplicate of $serverID");
+      return false;
+    }
   }
 
   @override

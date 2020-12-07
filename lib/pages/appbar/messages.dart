@@ -13,33 +13,42 @@ class Messages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: MyAppBar(title: "Messages", showActions: false),
-      // drawer: MyAppDrawer(),
-      body: BlocConsumer<MessagesBloc, MessagesState>(
-        listener: (context, state) {
-          if (state is OpenConversationState)
-            Navigator.of(context)
-                .pushReplacementNamed(ConversationDialog.routeName);
-        },
-        builder: (context, state) {
-          if (state is MessagesLoaded) {
-            MessagesLoaded newState = state;
-            return MessagesBody(
-                data: newState.data,
-                ceo: state.ceo,
-                conversations: state.conversations);
-          } else if (state is MessagesLoading) {
-            return Center(child: Text("Chargement des messages."));
-          } else if (state is MessagesLoadingFailed) {
-            return Center(
-                child: Text(
-                    "Échec du chargement de vos messages, réessayez plus tard"));
-          } else {
-            // Navigator.of(context).pop();
-            return Center(child: Text("Veuillez recharger"));
-          }
-        },
+    return WillPopScope(
+      onWillPop: () async {
+        BlocProvider.of<MessagesBloc>(context).add(GetNewMessagesCountEvent());
+        return true;
+      },
+      child: Scaffold(
+        appBar: MyAppBar(title: "Messages", showActions: false),
+        // drawer: MyAppDrawer(),
+        body: BlocConsumer<MessagesBloc, MessagesState>(
+          buildWhen: (oldState, newState) {
+            return newState is MessagesLoaded ||
+                newState is MessagesLoading ||
+                newState is MessagesLoadingFailed;
+          },
+          listener: (context, state) {
+            if (state is OpenConversationState)
+              Navigator.of(context).pushNamed(ConversationDialog.routeName);
+          },
+          builder: (context, state) {
+            if (state is MessagesLoaded) {
+              MessagesLoaded newState = state;
+              return MessagesBody(
+                  data: newState.data,
+                  ceo: state.ceo,
+                  conversations: state.conversations);
+            } else if (state is MessagesLoading) {
+              return Center(child: Text("Chargement des messages."));
+            } else if (state is MessagesLoadingFailed) {
+              return Center(
+                  child: Text(
+                      "Échec du chargement de vos messages, réessayez plus tard"));
+            } else {
+              return Center(child: Text("Veuillez recharger"));
+            }
+          },
+        ),
       ),
     );
   }
@@ -298,7 +307,7 @@ class _MessageTile extends StatelessWidget {
         children: [
           Text(message.date),
           SizedBox(height: 20.0),
-          !(message.seen ?? false)
+          !message.seen
               ? CircleAvatar(
                   backgroundColor: Colors.red,
                   child: Text(

@@ -12,11 +12,9 @@ class NewMessagePage extends StatelessWidget {
   static const String routeName =
       'home/messages/conversation_dialog/new_message';
 
-  NewMessagePage({Key key, this.teacher, this.director}) : super(key: key);
+  NewMessagePage({Key key}) : super(key: key);
 
-  Teacher teacher;
-  Director director;
-  CEO ceo;
+  String contactID;
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +27,7 @@ class NewMessagePage extends StatelessWidget {
         buildWhen: (oldState, newState) {
       return newState is OpenNewMessageState;
     }, builder: (context, state) {
-      teacher = (state as OpenNewMessageState).teacher;
-      director = (state as OpenNewMessageState).director;
-      ceo = (state as OpenNewMessageState).ceo;
+      contactID = (state as OpenNewMessageState).contactID;
       return Scaffold(
         body: BlocListener<MessagesBloc, MessagesState>(
           listener: (context, state) {
@@ -135,11 +131,6 @@ class NewMessagePage extends StatelessWidget {
                           backgroundColor: MAIN_COLOR_LIGHT,
                           child: Icon(Icons.send, color: WHITE),
                           onPressed: () async {
-                            String receiverID;
-                            if (teacher != null) receiverID = teacher.serverID;
-                            if (director != null)
-                              receiverID = director.serverID;
-                            if (ceo != null) receiverID = ceo.serverID;
                             BlocProvider.of<MessagesBloc>(context).add(
                               SendMessageEvent(
                                 Message(
@@ -149,7 +140,7 @@ class NewMessagePage extends StatelessWidget {
                                                 AuthenticationBloc>(context)
                                             .parent)
                                         .serverId,
-                                    receiverId: receiverID,
+                                    receiverId: contactID,
                                     date: DateFormat('yyyy-MM-dd')
                                         .format(DateTime.now())
                                         .toString(),

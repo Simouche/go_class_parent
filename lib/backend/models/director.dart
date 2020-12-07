@@ -44,10 +44,16 @@ class Director extends Equatable {
   }
 
   Future<bool> saveToDB(LocalDB db) async {
-    log("starting to save to the db");
-    final int result = await db.insert(tableName: TABLE_NAME, values: toMap());
-    log("finished inserting a DIRECTOR into the DB");
-    return result > 0;
+    try {
+      log("starting to save to the db");
+      final int result =
+          await db.insert(tableName: TABLE_NAME, values: toMap());
+      log("finished inserting the DIRECTOR $serverID into the DB");
+      return result > 0;
+    } catch (e) {
+      log("duplicate of $serverID");
+      return false;
+    }
   }
 
   static Future<Director> getDirector(

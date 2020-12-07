@@ -29,10 +29,10 @@ class RemoteMessagesProvider extends BaseMessagingProvider
     final response = await client.get('get-all-messages',
         queries: {'user_id': currentUserID, "lastMessageID": lastMessageID});
     final status = handleHttpCode(response.statusCode);
+    final List<Message> messages = List();
     if (status) {
       final json = jsonDecode(response.body);
       if (!json['error']) {
-        final List<Message> messages = List();
         json['data']['messages']
             .forEach((element) => messages.add(Message.fromJson(element)));
         return messages;

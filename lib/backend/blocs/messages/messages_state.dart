@@ -8,6 +8,15 @@ class MessagesTransitionState extends MessagesState {
   List<Object> get props => [];
 }
 
+class MessagesCountState extends MessagesState {
+  final int newMessageCount;
+
+  MessagesCountState({this.newMessageCount});
+
+  @override
+  List<Object> get props => [newMessageCount];
+}
+
 class MessagesLoading extends MessagesState {
   @override
   List<Object> get props => [];
@@ -68,12 +77,10 @@ class OpenConversationState extends MessagesState {
 }
 
 class OpenNewMessageState extends MessagesState {
-  final Teacher teacher;
-  final Director director;
-  final CEO ceo;
+  final String contactID;
 
-  OpenNewMessageState({this.ceo, this.teacher, this.director});
+  OpenNewMessageState({this.contactID});
 
   @override
-  List<Object> get props => [teacher];
+  List<Object> get props => [this.contactID];
 }

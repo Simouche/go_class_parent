@@ -39,24 +39,30 @@ class LocalMessagesProvider extends BaseMessagingProvider
   }
 
   Future<CeoWithMessages> getCeoWithMessages() async {
-    return await CeoWithMessages.getCEOWithMessages(database);
+    CeoWithMessages ceoWithMessages =
+        await CeoWithMessages.getCEOWithMessages(database);
+    await markConversationAsRead(ceoWithMessages.ceo.serverID);
+    return ceoWithMessages;
   }
 
   Future<TeacherWithMessages> getTeacherWithMessages(String teacherID) async {
+    await markConversationAsRead(teacherID);
     return await TeacherWithMessages.getTeacherWithMessages(
         database, teacherID);
   }
 
   Future<DirectorWithMessages> getDirectorWithMessages(
       String directorID) async {
+    await markConversationAsRead(directorID);
     return DirectorWithMessages.getDirectorWithMessages(database, directorID);
   }
 
-  @override
-  Future<List<Message>> loadMessages(String currentUserID) {
-    // TODO: implement loadMessages
-    throw UnimplementedError();
+  Future<bool> markConversationAsRead(String contactID) async {
+    return await Message.markConversationAsRead(database, contactID);
   }
+
+  @override
+  Future<List<Message>> loadMessages(String currentUserID) async {}
 
   @override
   Future<bool> sendMessage(Message message) {
@@ -66,7 +72,11 @@ class LocalMessagesProvider extends BaseMessagingProvider
 
   @override
   Future<bool> storeMessages(List<Message> messages) async {
-    messages.forEach((element) => element.saveToDB(database));
+    for (Message element in messages) await element.saveToDB(database);
     return true;
+  }
+
+  Future<int> getNewMessagesCount() async {
+    return await Message.getNewMessagesCount(database);
   }
 }

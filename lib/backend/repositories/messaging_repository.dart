@@ -8,8 +8,12 @@ class MessagingRepository {
   final SynchronizationProvider _synchronizationProvider =
       SynchronizationProvider();
 
-  Future<List<Message>> loadMessagesRemotely(String currentUserID) async =>
-      _remoteMessagesProvider.loadMessages(currentUserID);
+  Future<List<Message>> loadMessagesRemotely(String currentUserID) async {
+    final List<Message> messages =
+        await _remoteMessagesProvider.loadMessages(currentUserID);
+    _localMessagesProvider.storeMessages(messages);
+    return messages;
+  }
 
   Future<List<Message>> loadMessagesFromDB() async {
     return await _localMessagesProvider.loadMessages("");
@@ -31,7 +35,8 @@ class MessagingRepository {
     return await _localMessagesProvider.getTeacherWithMessages(teacherID);
   }
 
-  Future<DirectorWithMessages> getDirectorWithMessages(String directorID) async {
+  Future<DirectorWithMessages> getDirectorWithMessages(
+      String directorID) async {
     return await _localMessagesProvider.getDirectorWithMessages(directorID);
   }
 
@@ -46,4 +51,8 @@ class MessagingRepository {
 
   Future<List<dynamic>> getAllConversation() async =>
       await _localMessagesProvider.loadConversations();
+
+  Future<int> newMessagesCount() async {
+    return await _localMessagesProvider.getNewMessagesCount();
+  }
 }

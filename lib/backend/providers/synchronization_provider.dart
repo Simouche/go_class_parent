@@ -25,31 +25,29 @@ class SynchronizationProvider extends BaseSynchronizationProvider
       Map<String, dynamic> json = jsonDecode(response.body);
       json = json["data"];
 
-      for (var element in json["teachers"]){
+      for (var element in json["teachers"]) {
         await Teacher.fromJson(element).saveToDB(database);
       }
 
       final List directorStudent = json["directorStudent"];
 
-      for (var element in  json["children"]){
+      for (var element in json["children"]) {
         element["director"] = directorStudent
             .where((tuple) => tuple["studentID"] == element["_id"])
             .first["directorID"];
         final Student student = Student.fromJson(element);
-       await  student.saveToDB(database);
+        await student.saveToDB(database);
       }
 
-      for (var element in json["directors"]){
-       await Director.fromJson(element).saveToDB(database);
+      for (var element in json["directors"]) {
+        await Director.fromJson(element).saveToDB(database);
       }
 
       await CEO.fromJson(json["ceo"]).saveToDB(database);
 
-      for (var element in json["teacherStudent"]){
-       await StudentWithTeachers.saveToDB(
-            database,
-            studentID: element["studentID"],
-            teacherID: element["teacherID"]);
+      for (var element in json["teacherStudent"]) {
+        await StudentWithTeachers.saveToDB(database,
+            studentID: element["studentID"], teacherID: element["teacherID"]);
       }
 
       _settingsProvider.setSynced();
