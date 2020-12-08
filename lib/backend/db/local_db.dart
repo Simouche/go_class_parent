@@ -81,7 +81,10 @@ class LocalDB {
             "APPROVED INT,"
             "SERVER_ID TEXT UNIQUE,"
             "SEEN INTEGER DEFAULT 0,"
-            "RECEIVER_ID TEXT);");
+            "RECEIVER_ID TEXT,"
+            "DOWNLOADED INT,"
+            "FILES TEXT"
+            ");");
         await database.execute("CREATE TABLE IF NOT EXISTS notifications("
             "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
             "SERVER_ID TEXT UNIQUE ,"
@@ -94,7 +97,10 @@ class LocalDB {
             "NEW INTEGER DEFAULT 1,"
             "MESSAGE TEXT ,"
             "TITLE TEXT ,"
-            "FROM_ TEXT );");
+            "FROM_ TEXT ,"
+            "DOWNLOADED INT,"
+            "FILES TEXT"
+            " );");
         await database.execute("CREATE TABLE IF NOT EXISTS downloads("
             "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
             "DATE DATETIME,"

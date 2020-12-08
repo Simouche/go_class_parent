@@ -46,15 +46,13 @@ class TeacherWithMessages extends Equatable implements WithMessagesMixin {
   static Future<List<TeacherWithMessages>> getAllTeachersWithMessages(
       LocalDB database) async {
     final List<TeacherWithMessages> teachersWithMessages = List();
-    Teacher.getAllFromDB(database).then(
-      (value) => value.forEach(
-        (element) => getTeacherWithMessages(database, element.serverID).then(
-          (value) => value.messages.isNotEmpty
-              ? teachersWithMessages.add(value)
-              : null,
-        ),
-      ),
-    );
+
+    for (Teacher teacher in (await Teacher.getAllFromDB(database))) {
+      final TeacherWithMessages teacherWithMessages =
+          await getTeacherWithMessages(database, teacher.serverID);
+      if (teacherWithMessages.messages.isNotEmpty)
+        teachersWithMessages.add(teacherWithMessages);
+    }
     return teachersWithMessages;
   }
 

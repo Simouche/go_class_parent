@@ -10,7 +10,7 @@ part 'children_event.dart';
 part 'children_state.dart';
 
 class ChildrenBloc extends Bloc<ChildrenEvent, ChildrenState> {
-  ChildrenBloc() : super(ChildrenInitial());
+  ChildrenBloc() : super(StudentLoadingState());
 
   final StudentRepository _studentRepository = StudentRepository();
 

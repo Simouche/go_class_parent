@@ -27,7 +27,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: AppBar(
         automaticallyImplyLeading: true,
         backgroundColor: MAIN_COLOR_LIGHT,
-        elevation: 0.0,
+        elevation: 8.0,
         title: Text(title),
         actions: showActions
             ? <Widget>[
@@ -36,7 +36,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                     Icons.group,
                     color: WHITE,
                   ),
-                  tooltip: "Scannez un code",
+                  tooltip: "Liste des enfants",
                   onPressed: () async {
                     print("pressed");
                     BlocProvider.of<ChildrenBloc>(context).add(
@@ -50,65 +50,97 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                     Navigator.of(context).pushNamed(StudentsListPage.routeName);
                   },
                 ),
-                Stack(children: <Widget>[
-                  IconButton(
-                    icon: Icon(
-                      Icons.mail,
-                      color: WHITE,
+                Stack(
+                  children: <Widget>[
+                    IconButton(
+                      icon: Icon(
+                        Icons.mail,
+                        color: WHITE,
+                      ),
+                      tooltip: "Messages",
+                      onPressed: () async {
+                        BlocProvider.of<MessagesBloc>(context).add(
+                            LoadMessagesEvent(
+                                (await BlocProvider.of<AuthenticationBloc>(
+                                                context)
+                                            .parent)
+                                        .serverId ??
+                                    ""));
+                        Navigator.of(context).pushNamed(Messages.routeName);
+                      },
                     ),
-                    tooltip: "Messages",
-                    onPressed: () async {
-                      BlocProvider.of<MessagesBloc>(context).add(
-                          LoadMessagesEvent(
+                    BlocBuilder<MessagesBloc, MessagesState>(
+                      buildWhen: (oldState, newState) {
+                        return newState is MessagesCountState;
+                      },
+                      builder: (context, state) {
+                        if (state is MessagesCountState)
+                          return state.newMessageCount > 0
+                              ? Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 20.0, left: 2.0),
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.red,
+                                    child: Text(
+                                      "${state.newMessageCount}",
+                                      style: TextStyle(
+                                          color: WHITE, fontSize: 10.0),
+                                    ),
+                                    radius: 8.0,
+                                  ),
+                                )
+                              : Container();
+                        return Container();
+                      },
+                    ),
+                  ],
+                ),
+                Stack(
+                  children: <Widget>[
+                    IconButton(
+                      icon: Icon(
+                        Icons.notifications,
+                        color: Colors.white,
+                      ),
+                      tooltip: "Notifications",
+                      onPressed: () async {
+                        BlocProvider.of<NotificationsBloc>(context).add(
+                          LoadNotificationEvent(
                               (await BlocProvider.of<AuthenticationBloc>(
                                               context)
                                           .parent)
                                       .serverId ??
-                                  ""));
-                      Navigator.of(context).pushNamed(Messages.routeName);
-                    },
-                  ),
-                  BlocBuilder<MessagesBloc, MessagesState>(
-                    buildWhen: (oldState, newState) {
-                      return newState is MessagesCountState;
-                    },
-                    builder: (context, state) {
-                      if (state is MessagesCountState)
-                        return state.newMessageCount > 0
-                            ? Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 20.0, left: 2.0),
-                                child: CircleAvatar(
-                                  backgroundColor: Colors.red,
-                                  child: Text(
-                                    "${state.newMessageCount}",
-                                    style:
-                                        TextStyle(color: WHITE, fontSize: 10.0),
+                                  ""),
+                        );
+                        Navigator.of(context)
+                            .pushNamed(Notifications.routeName);
+                      },
+                    ),
+                    BlocBuilder<NotificationsBloc, NotificationsState>(
+                      buildWhen: (oldState, newState) {
+                        return newState is NewNotificationsCountState;
+                      },
+                      builder: (context, state) {
+                        if (state is NewNotificationsCountState)
+                          return state.count > 0
+                              ? Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 20.0, left: 2.0),
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.red,
+                                    child: Text(
+                                      "${state.count}",
+                                      style: TextStyle(
+                                          color: WHITE, fontSize: 10.0),
+                                    ),
+                                    radius: 8.0,
                                   ),
-                                  radius: 8.0,
-                                ),
-                              )
-                            : Container();
-                      return Container();
-                    },
-                  )
-                ]),
-                IconButton(
-                  icon: Icon(
-                    Icons.notifications,
-                    color: Colors.white,
-                  ),
-                  tooltip: "Notifications",
-                  onPressed: () async {
-                    BlocProvider.of<NotificationsBloc>(context).add(
-                      LoadNotificationEvent(
-                          (await BlocProvider.of<AuthenticationBloc>(context)
-                                      .parent)
-                                  .serverId ??
-                              ""),
-                    );
-                    Navigator.of(context).pushNamed(Notifications.routeName);
-                  },
+                                )
+                              : Container();
+                        return Container();
+                      },
+                    ),
+                  ],
                 ),
               ]
             : null,

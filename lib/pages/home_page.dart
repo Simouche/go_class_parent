@@ -24,6 +24,12 @@ class HomePage extends StatelessWidget {
         TriggerSynchronizationEvent(
             userID: (await BlocProvider.of<AuthenticationBloc>(context).parent)
                 .serverId));
+    BlocProvider.of<NotificationsBloc>(context).add(
+      LoadNotificationEvent(
+          (await BlocProvider.of<AuthenticationBloc>(context).parent)
+                  .serverId ??
+              ""),
+    );
   }
 
   @override

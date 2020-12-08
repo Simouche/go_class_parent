@@ -311,7 +311,7 @@ class _MessageTile extends StatelessWidget {
               ? CircleAvatar(
                   backgroundColor: Colors.red,
                   child: Text(
-                    "1",
+                    "",
                     style: TextStyle(color: WHITE, fontSize: 10.0),
                   ),
                   radius: 8.0,

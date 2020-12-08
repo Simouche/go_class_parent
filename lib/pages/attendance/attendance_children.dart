@@ -29,7 +29,9 @@ class AttendanceChildrenPage extends StatelessWidget {
               return Center(child: Text('Aucun Enfant a Affiché.'));
             } else if (state.students.length == 1) {
               Future.delayed(Duration(seconds: 3), () {
-                //Todo request attendance of a student
+                BlocProvider.of<AttendanceBloc>(context).add(
+                    LoadAttendanceEvent(
+                        id: state.students.first.serverID));
                 Navigator.pushReplacementNamed(
                   context,
                   AttendanceList.routeName,

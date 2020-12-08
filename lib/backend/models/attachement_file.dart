@@ -9,14 +9,14 @@ class AttachmentFile extends Equatable {
   final String extension;
   final String url;
   final String name;
-  final int notificationID;
+  final String owner;
   final bool downloaded;
 
   static const String TABLE_NAME = "files";
 
   AttachmentFile({
     this.downloaded,
-    this.notificationID,
+    this.owner,
     this.id,
     this.date,
     this.path,
@@ -35,7 +35,7 @@ class AttachmentFile extends Equatable {
         this.extension,
         this.url,
         this.name,
-        this.notificationID,
+        this.owner,
         this.downloaded,
       ];
 
@@ -50,7 +50,7 @@ class AttachmentFile extends Equatable {
       "EXTENSION": extension,
       "NAME": name,
       "URL": url,
-      "NOTIFICATION_ID": notificationID,
+      "OWNER": owner,
       "DOWNLOADED": downloaded,
     };
   }
@@ -64,7 +64,7 @@ class AttachmentFile extends Equatable {
       extension: map["EXTENSION"],
       url: map["URL"],
       name: map["NAME"],
-      notificationID: map["NOTIFICATION_ID"],
+      owner: map["NOTIFICATION_ID"],
       downloaded: map["DOWNLOADED"],
     );
   }

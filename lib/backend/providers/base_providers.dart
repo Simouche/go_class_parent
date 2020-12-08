@@ -83,6 +83,8 @@ abstract class BaseCanteenProvider {
 abstract class BaseStudentProvider {
   Future<List<Student>> getStudents(String parentID);
 
+  Future<List<Student>> getStudentsLocal(String parentID);
+
   Future<bool> requestStudentsPermission(String parent, List<String> students);
 }
 

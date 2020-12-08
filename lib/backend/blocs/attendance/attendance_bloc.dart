@@ -10,7 +10,7 @@ part 'attendance_event.dart';
 part 'attendance_state.dart';
 
 class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
-  AttendanceBloc() : super(AttendanceInitial());
+  AttendanceBloc() : super(AttendanceLoadingState());
 
   AttendanceRepository _repository = AttendanceRepository();
 

@@ -19,11 +19,13 @@ class Notification extends Equatable {
   final String from;
   final String serverId;
   final String userId;
-  final List<dynamic> fileUrl;
+  final List<AttachmentFile> fileUrl;
+  final bool downloaded;
 
   static const String TABLE_NAME = "notifications";
 
   Notification({
+    this.downloaded,
     this.serverId,
     this.id,
     this.date,
@@ -49,8 +51,8 @@ class Notification extends Equatable {
       title: json['subject'],
       date: json['date'],
       approved: json['Prooved']['Prooved'],
-      fileUrl: json['file']
-          .map((e) => AttachmentFile(
+      fileUrl: (json['file'] as List)
+          .map<AttachmentFile>((e) => AttachmentFile(
               type: "N",
               url: extractUrl(e['path'] as String),
               name: e['originalname']))
@@ -72,6 +74,8 @@ class Notification extends Equatable {
       message: row["MESSAGE"],
       title: row["TITLE"],
       from: row["FROM_"],
+      fileUrl: filesFromString(row["FILES"]),
+      downloaded: row["DOWNLOADED"],
     );
   }
 
@@ -89,7 +93,25 @@ class Notification extends Equatable {
       "MESSAGE": message,
       "TITLE": title,
       "FROM_": from,
+      "FILES": filesAsString(),
     };
+  }
+
+  String filesAsString() {
+    final StringBuffer buffer = StringBuffer("");
+    for (AttachmentFile file in fileUrl) buffer.write("${file.url};");
+    return buffer.toString();
+  }
+
+  static List<AttachmentFile> filesFromString(String urlsAsString) {
+    List<String> splitted = urlsAsString.split(";");
+    splitted = splitted.sublist(0, splitted.length - 1);
+    return splitted
+        .map<AttachmentFile>((e) => AttachmentFile(
+      url: e,
+      name: e.substring(e.lastIndexOf("/")+1).replaceAll(":", "_"),
+    ))
+        .toList();
   }
 
   static Future<List<Notification>> getAllFromDB(LocalDB database) async {
@@ -103,10 +125,16 @@ class Notification extends Equatable {
   }
 
   Future<bool> saveToDB(LocalDB db) async {
-    log("starting to save to the db");
-    final int result = await db.insert(tableName: TABLE_NAME, values: toMap());
-    log("finished inserting into the DB");
-    return result > 0;
+    try {
+      log("starting to save to the db");
+      final int result =
+          await db.insert(tableName: TABLE_NAME, values: toMap());
+      log("finished inserting into the DB");
+      return result > 0;
+    } catch (e) {
+      log("duplicate of $serverId");
+      return false;
+    }
   }
 
   @override

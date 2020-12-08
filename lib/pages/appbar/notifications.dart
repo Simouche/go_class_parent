@@ -16,30 +16,42 @@ class Notifications extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: MyAppBar(title: "Notifications", showActions: false),
-      body: BlocBuilder<NotificationsBloc, NotificationsState>(
-        buildWhen: (oldState, newState) {
-          return newState is NotificationsLoadingFailed ||
-              newState is NotificationsLoaded;
-        },
-        builder: (context, state) {
-          if (state is NotificationsLoadingFailed) {
-            Scaffold.of(context)
-                .showSnackBar(SnackBar(content: Text('Pas de notification')));
-            return Center(
-              child: Text('Pas de notification.'),
-            );
-          } else if (state is NotificationsLoaded) {
-            log("notification layout will Load");
-            final NotificationsLoaded newState = state;
-            return NotificationTimeLine(notifications: newState.notifications);
-          } else {
-            return Center(
-              child: Text('No notification.'),
-            );
-          }
-        },
+    return WillPopScope(
+      onWillPop: () async {
+        BlocProvider.of<NotificationsBloc>(context).add(
+          LoadNotificationEvent(
+              (await BlocProvider.of<AuthenticationBloc>(context).parent)
+                      .serverId ??
+                  ""),
+        );
+        return true;
+      },
+      child: Scaffold(
+        appBar: MyAppBar(title: "Notifications", showActions: false),
+        body: BlocBuilder<NotificationsBloc, NotificationsState>(
+          buildWhen: (oldState, newState) {
+            return newState is NotificationsLoadingFailed ||
+                newState is NotificationsLoaded;
+          },
+          builder: (context, state) {
+            if (state is NotificationsLoadingFailed) {
+              Scaffold.of(context)
+                  .showSnackBar(SnackBar(content: Text('Pas de notification')));
+              return Center(
+                child: Text('Pas de notification.'),
+              );
+            } else if (state is NotificationsLoaded) {
+              log("notification layout will Load");
+              final NotificationsLoaded newState = state;
+              return NotificationTimeLine(
+                  notifications: newState.notifications);
+            } else {
+              return Center(
+                child: Text('No notification.'),
+              );
+            }
+          },
+        ),
       ),
     );
   }

@@ -20,8 +20,11 @@ class StudentProvider extends BaseStudentProvider with HttpHandlerMixin {
       final json = jsonDecode(response.body);
       if (!json['error']) {
         final List<Student> students = List();
-        json['data']['children']
-            .forEach((student) => students.add(Student.fromJson(student)));
+        json['data']['children'].forEach((student) {
+          student["student"]["state"] = student["state"];
+          student = student["student"];
+          students.add(Student.fromJson(student));
+        });
         return students;
       }
     }
@@ -42,5 +45,10 @@ class StudentProvider extends BaseStudentProvider with HttpHandlerMixin {
       }
     }
     return false;
+  }
+
+  @override
+  Future<List<Student>> getStudentsLocal(String parentID) async {
+    return await Student.getAllFromDB(database);
   }
 }

@@ -29,7 +29,6 @@ class RemoteNotificationsProvider extends BaseNotificationsProvider
         json['data']['notifications'].forEach((element) {
           notifications.add(Notification.fromJson(element));
         });
-        log("$json");
         log("notifications from server ${notifications.length}");
         return notifications;
       } else {

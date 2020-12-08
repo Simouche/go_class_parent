@@ -17,12 +17,14 @@ class Message extends Equatable {
   final String senderId;
   final String receiverId;
   final String serverId;
-  final List<dynamic> fileUrl;
+  final List<AttachmentFile> fileUrl;
+  final bool downloaded;
 
   static const String TABLE_NAME = "messages";
 
   Message(
-      {this.serverId,
+      {this.downloaded,
+      this.serverId,
       this.id,
       this.message,
       this.date,
@@ -44,16 +46,17 @@ class Message extends Equatable {
       approved: json['approved']['isApproved'],
       senderId: json['senderID'],
       receiverId: json['receiverID'],
-      fileUrl: json['fileUrl']?.map((e) {
+      downloaded: false,
+      fileUrl: (json['fileUrl'] as List).map<AttachmentFile>((e) {
         if (e is String)
           return AttachmentFile(
-              url: extractUrl(e), name: e.substring(e.lastIndexOf("/")));
+              url: extractUrl(e), name: e.substring(e.lastIndexOf("/")+1));
         else
           return AttachmentFile(
               type: "M",
               url: extractUrl(e['path'] as String),
               name: e['originalname']);
-      })?.toList(),
+      }).toList(),
     );
   }
 
@@ -69,6 +72,8 @@ class Message extends Equatable {
       senderId: row["SENDER_ID"],
       receiverId: row["RECEIVER_ID"],
       serverId: row["SERVER_ID"],
+      fileUrl: filesFromString(row["FILES"]),
+      downloaded: row["DOWNLOADED"],
     );
   }
 
@@ -84,7 +89,25 @@ class Message extends Equatable {
       "SENDER_ID": senderId,
       "RECEIVER_ID": receiverId,
       "SERVER_ID": serverId,
+      "FILES": filesAsString(),
     };
+  }
+
+  String filesAsString() {
+    final StringBuffer buffer = StringBuffer("");
+    for (AttachmentFile file in fileUrl) buffer.write("${file.url};");
+    return buffer.toString();
+  }
+
+  static List<AttachmentFile> filesFromString(String urlsAsString) {
+    List<String> splitted = urlsAsString.split(";");
+    splitted = splitted.sublist(0, splitted.length - 1);
+    return splitted
+        .map<AttachmentFile>((e) => AttachmentFile(
+              url: e,
+              name: e.substring(e.lastIndexOf("/")+1).replaceAll(":", "_"),
+            ))
+        .toList();
   }
 
   static Future<List<Message>> getAllFromDB(LocalDB database) async {
