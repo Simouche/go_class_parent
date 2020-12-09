@@ -18,7 +18,7 @@ class NotificationsRepository {
     _localNotificationsProvider
         .storeNotifications(serverNotifications)
         .catchError((onError) => log(onError.toString()))
-        .whenComplete(() => log("completed storing at the DB"));
+        .whenComplete(() => log("completed storing notifications at the DB"));
     log("after storing notifications");
     return serverNotifications;
   }

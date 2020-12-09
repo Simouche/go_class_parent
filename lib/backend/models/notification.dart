@@ -126,7 +126,6 @@ class Notification extends Equatable {
 
   Future<bool> saveToDB(LocalDB db) async {
     try {
-      log("starting to save to the db");
       final int result =
           await db.insert(tableName: TABLE_NAME, values: toMap());
       log("finished inserting into the DB");

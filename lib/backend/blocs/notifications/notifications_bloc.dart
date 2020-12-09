@@ -36,16 +36,21 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       print("loading notifications for $userServerID");
       List<Notification> notifications =
           await _notificationsRepository.loadNotificationsFromDB();
+
       yield NotificationsLoaded(notifications: notifications);
       print("Loaded ${notifications.length} notifications from DB");
+
       final List<Notification> serverNotifications =
           await _notificationsRepository.loadNotificationsFromServer(
               userServerID,
               notifications.isNotEmpty ? notifications.first.serverId : "");
+      log("${serverNotifications.length} loaded from server");
+
       notifications = serverNotifications + notifications;
       print("Loaded ${notifications.length} notifications from DB and Server");
       yield NewNotificationsCountState(count: serverNotifications.length);
       yield NotificationsLoaded(notifications: notifications);
+
     } catch (e, stacktrace) {
       log(e.toString());
       print(stacktrace);

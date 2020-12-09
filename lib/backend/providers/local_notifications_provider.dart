@@ -14,12 +14,11 @@ class LocalNotificationsProvider extends BaseNotificationsProvider {
 
   @override
   Future<bool> storeNotifications(List<Notification> notifications) async {
-    var results = notifications.map((e) async {
-      log("saving ${e.serverId} to db");
-      return await e.saveToDB(database);
-    });
-    for (var result in results) if (!(await result)) return Future.value(false);
-
-    return Future.value(true);
+    for (Notification e in notifications) {
+      log("saving Notification ${e.serverId} to db");
+      await e.saveToDB(database);
+      log("finished saving Notification ${e.serverId} to db");
+    }
+    return true;
   }
 }
