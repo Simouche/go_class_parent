@@ -21,7 +21,7 @@ class Student extends Equatable {
         serverID: json['_id'],
         firstName: json['firstNameFr'],
         lastName: json['lastNameFr'],
-        state: json['state'],
+        state: "${json['state']}",
         director: json['director']);
   }
 

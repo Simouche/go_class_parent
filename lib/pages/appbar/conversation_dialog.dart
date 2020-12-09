@@ -18,8 +18,14 @@ class ConversationDialog extends StatelessWidget {
   WithMessagesMixin conversation;
   int messagesLength;
 
+  final ScrollController _scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
+    Future.delayed(Duration(seconds: 0), () {
+      _scrollController.animateTo(_scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
+    });
     return BlocBuilder<MessagesBloc, MessagesState>(
       buildWhen: (oldState, newState) {
         return newState is OpenConversationState;
@@ -67,6 +73,7 @@ class ConversationDialog extends StatelessWidget {
               ],
               child: conversation.length() != 0
                   ? ListView(
+                      controller: _scrollController,
                       children: List.generate(
                         conversation.length(),
                         (index) {

@@ -36,15 +36,15 @@ class DirectorWithMessages extends Equatable implements WithMessagesMixin {
 
   static Future<List<DirectorWithMessages>> getAllDirectorsWithMessages(
       LocalDB database) async {
-    final List<DirectorWithMessages> directorWithMessages = List();
-    Director.getAllFromDB(database).then(
-      (value) => value.forEach(
-        (element) => getDirectorWithMessages(database, element.serverID).then(
-          (value) => value.messages.isNotEmpty ? directorWithMessages.add(value):null,
-        ),
-      ),
-    );
-    return directorWithMessages;
+    final List<DirectorWithMessages> directorsWithMessages = List();
+
+    for (Director director in (await Director.getAllFromDB(database))) {
+      final DirectorWithMessages directorWithMessages =
+          await getDirectorWithMessages(database, director.serverID);
+      if (directorWithMessages.messages.isNotEmpty)
+        directorsWithMessages.add(directorWithMessages);
+    }
+    return directorsWithMessages;
   }
 
   @override

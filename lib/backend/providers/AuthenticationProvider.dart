@@ -191,11 +191,18 @@ class AuthenticationProvider extends BaseAuthenticationProvider
   }
 
   void logout({Parent parent}) async {
-    database.delete(tableName: "users");
-    database.delete(tableName: "parents");
-    database.delete(tableName: "settings");
-    database.delete(tableName: "downloads");
-    client.post("logout", {
+    await database.delete(tableName: "users");
+    await database.delete(tableName: "parents");
+    await database.delete(tableName: "settings");
+    await database.delete(tableName: "downloads");
+    await database.delete(tableName: "messages");
+    await database.delete(tableName: "notifications");
+    await database.delete(tableName: "students");
+    await database.delete(tableName: "ceo");
+    await database.delete(tableName: "directors");
+    await database.delete(tableName: "teachers");
+    await database.delete(tableName: "students_teachers");
+    await client.post("logout", {
       "token": (await FirebaseMessaging().getToken()),
       "registartion_code": parent.code ?? "0"
     });

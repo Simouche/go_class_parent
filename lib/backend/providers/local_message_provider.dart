@@ -27,7 +27,7 @@ class LocalMessagesProvider extends BaseMessagingProvider
       if (a is WithMessagesMixin && b is WithMessagesMixin) if (a
               .getMessages()
               .last
-              .id >
+              .id <
           b.getMessages().last.id)
         return 1;
       else
