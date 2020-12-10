@@ -49,6 +49,10 @@ class RemoteMessagesProvider extends BaseMessagingProvider
     final status = handleHttpCode(response.statusCode);
     if (status) {
       final json = jsonDecode(response.body);
+      if (!json['error']) {
+        final Message message = Message.fromJson(json["data"]["message"]);
+        await message.saveToDB(database);
+      }
       return !json['error'];
     }
     return false;

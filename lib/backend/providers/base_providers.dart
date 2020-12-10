@@ -49,7 +49,7 @@ abstract class BaseMessagingProvider {
 }
 
 abstract class BaseDownloadsProvider {
-  Future<bool> downloadFiles(List<dynamic> urls);
+  Future<bool> downloadFiles(List<AttachmentFile> urls);
 
   Future<List<AttachmentFile>> loadFilesFromDB();
 }

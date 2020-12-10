@@ -115,6 +115,13 @@ class NotificationBody extends StatelessWidget {
           if (notification.fileUrl.isEmpty) {
             Scaffold.of(context).showSnackBar(
                 SnackBar(content: Text("Aucun fichier a telecharger")));
+          } else if (notification.downloaded) {
+            Scaffold.of(context).showSnackBar(
+              SnackBar(
+                content: Text("Fichier déja telechargé,"
+                    " veuillez consultez la page des telechargements."),
+              ),
+            );
           } else {
             if (await Permission.storage.request().isGranted) {
               BlocProvider.of<DownloadsBloc>(context)

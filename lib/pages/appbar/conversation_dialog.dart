@@ -14,18 +14,12 @@ import 'new_message_page.dart';
 class ConversationDialog extends StatelessWidget {
   static const String routeName = 'home/messages/conversation_dialog';
 
-  var colorScheme;
   WithMessagesMixin conversation;
-  int messagesLength;
 
   final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration(seconds: 0), () {
-      _scrollController.animateTo(_scrollController.position.maxScrollExtent,
-          duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
-    });
     return BlocBuilder<MessagesBloc, MessagesState>(
       buildWhen: (oldState, newState) {
         return newState is OpenConversationState;
@@ -33,62 +27,69 @@ class ConversationDialog extends StatelessWidget {
       builder: (context, state) {
         OpenConversationState newState = state;
         conversation = newState.conversation;
-
         Parent currentUser =
             BlocProvider.of<AuthenticationBloc>(context).currentParent;
+        Future.delayed(Duration(seconds: 0), () {
+          _scrollController.animateTo(
+              _scrollController.position.maxScrollExtent,
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeOut);
+        });
         return Scaffold(
-            appBar: MyAppBar(
-              showActions: false,
-              title: conversation.getName(),
-            ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                BlocProvider.of<MessagesBloc>(context).add(
-                    OpenNewMessageEvent(contactID: conversation.toString()));
-              },
-              child: Icon(Icons.edit),
-            ),
-            body: MultiBlocListener(
-              listeners: [
-                BlocListener<DownloadsBloc, DownloadsState>(
-                    listener: (context, state) {
-                  if (state is DownloadsInProgressState) {
-                    Scaffold.of(context).showSnackBar(SnackBar(
-                      content: Text("Telechargement en cours..."),
-                    ));
-                  } else if (state is DownloadsSuccessfulState)
-                    Scaffold.of(context).showSnackBar(SnackBar(
-                      content: Text(
-                          "Fichiers telechargés avec succés, veuillez voir la"
-                          " pages des telechargement"),
-                    ));
-                }),
-                BlocListener<MessagesBloc, MessagesState>(
+          appBar: MyAppBar(
+            showActions: false,
+            title: conversation.getName(),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              BlocProvider.of<MessagesBloc>(context)
+                  .add(OpenNewMessageEvent(contactID: conversation.toString()));
+            },
+            child: Icon(Icons.edit),
+          ),
+          body: MultiBlocListener(
+            listeners: [
+              BlocListener<DownloadsBloc, DownloadsState>(
                   listener: (context, state) {
-                    if (state is OpenNewMessageState) {
-                      Navigator.of(context).pushNamed(NewMessagePage.routeName);
-                    }
-                  },
-                ),
-              ],
-              child: conversation.length() != 0
-                  ? ListView(
-                      controller: _scrollController,
-                      children: List.generate(
-                        conversation.length(),
-                        (index) {
-                          return currentUser.serverId ==
-                                  conversation.getMessages()[index].senderId
-                              ? selfMessage(conversation.getMessages()[index])
-                              : ContactMessage(
-                                  message: conversation.getMessages()[index]);
-                        },
-                      ),
-                    )
-                  : Center(
-                      child: Text("Pas de Message dans la Conversation"),
+                if (state is DownloadsInProgressState) {
+                  Scaffold.of(context).showSnackBar(SnackBar(
+                    content: Text("Telechargement en cours..."),
+                  ));
+                } else if (state is DownloadsSuccessfulState)
+                  Scaffold.of(context).showSnackBar(SnackBar(
+                    content: Text(
+                        "Fichiers telechargés avec succés, veuillez voir la"
+                        " pages des telechargement"),
+                  ));
+              }),
+              BlocListener<MessagesBloc, MessagesState>(
+                listener: (context, state) {
+                  if (state is OpenNewMessageState) {
+                    Navigator.of(context).pushNamed(NewMessagePage.routeName,
+                        arguments: conversation.getType());
+                  }
+                },
+              ),
+            ],
+            child: conversation.length() != 0
+                ? ListView(
+                    controller: _scrollController,
+                    children: List.generate(
+                      conversation.length(),
+                      (index) {
+                        return currentUser.serverId ==
+                                conversation.getMessages()[index].senderId
+                            ? selfMessage(conversation.getMessages()[index])
+                            : ContactMessage(
+                                message: conversation.getMessages()[index]);
+                      },
                     ),
-            ));
+                  )
+                : Center(
+                    child: Text("Pas de Message dans la Conversation"),
+                  ),
+          ),
+        );
       },
     );
   }
@@ -153,6 +154,13 @@ class ContactMessage extends StatelessWidget {
           if (message.fileUrl.isEmpty) {
             Scaffold.of(context).showSnackBar(
                 SnackBar(content: Text("Aucun fichier a telecharger")));
+          } else if (message.downloaded) {
+            Scaffold.of(context).showSnackBar(
+              SnackBar(
+                content: Text("Fichier déja telechargé,"
+                    " veuillez consultez la page des telechargements."),
+              ),
+            );
           } else {
             if (await Permission.storage.request().isGranted) {
               BlocProvider.of<DownloadsBloc>(context)

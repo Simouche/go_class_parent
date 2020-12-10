@@ -27,6 +27,9 @@ class Messages extends StatelessWidget {
                 newState is MessagesLoading ||
                 newState is MessagesLoadingFailed;
           },
+          listenWhen: (oldState, newState) {
+            return !(oldState is MessageSent);
+          },
           listener: (context, state) {
             if (state is OpenConversationState)
               Navigator.of(context).pushNamed(ConversationDialog.routeName);

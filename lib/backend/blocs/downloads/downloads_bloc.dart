@@ -30,7 +30,7 @@ class DownloadsBloc extends Bloc<DownloadsEvent, DownloadsState> {
   }
 
   Stream<DownloadsState> mapTriggerDownloadEventToState(
-      List<dynamic> files) async* {
+      List<AttachmentFile> files) async* {
     yield DownloadsInProgressState();
     try {
       final bool result = await repository.downloadFiles(files);

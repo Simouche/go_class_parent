@@ -23,7 +23,7 @@ class Message extends Equatable {
   static const String TABLE_NAME = "messages";
 
   Message(
-      {this.downloaded,
+      {this.downloaded = false,
       this.serverId,
       this.id,
       this.message,
@@ -32,7 +32,7 @@ class Message extends Equatable {
       this.senderId,
       this.subject,
       this.time,
-      this.approved,
+      this.approved = false,
       this.receiverId,
       this.fileUrl});
 
@@ -50,7 +50,9 @@ class Message extends Equatable {
       fileUrl: (json['fileUrl'] as List).map<AttachmentFile>((e) {
         if (e is String)
           return AttachmentFile(
-              url: extractUrl(e), name: e.substring(e.lastIndexOf("/")+1));
+              url: extractUrl(e),
+              name: e.substring(e.lastIndexOf("/") + 1),
+              type: "M");
         else
           return AttachmentFile(
               type: "M",
@@ -72,8 +74,8 @@ class Message extends Equatable {
       senderId: row["SENDER_ID"],
       receiverId: row["RECEIVER_ID"],
       serverId: row["SERVER_ID"],
-      fileUrl: filesFromString(row["FILES"]),
-      downloaded: row["DOWNLOADED"],
+      fileUrl: filesFromString(row["FILES"], row["SERVER_ID"]),
+      downloaded: row["DOWNLOADED"] == 1,
     );
   }
 
@@ -90,6 +92,7 @@ class Message extends Equatable {
       "RECEIVER_ID": receiverId,
       "SERVER_ID": serverId,
       "FILES": filesAsString(),
+      "DOWNLOADED": downloaded ? 1 : 0,
     };
   }
 
@@ -99,13 +102,16 @@ class Message extends Equatable {
     return buffer.toString();
   }
 
-  static List<AttachmentFile> filesFromString(String urlsAsString) {
+  static List<AttachmentFile> filesFromString(
+      String urlsAsString, String serverId) {
     List<String> splitted = urlsAsString.split(";");
     splitted = splitted.sublist(0, splitted.length - 1);
     return splitted
         .map<AttachmentFile>((e) => AttachmentFile(
               url: e,
-              name: e.substring(e.lastIndexOf("/")+1).replaceAll(":", "_"),
+              name: e.substring(e.lastIndexOf("/") + 1).replaceAll(":", "_"),
+              type: "M",
+              owner: serverId,
             ))
         .toList();
   }
@@ -162,12 +168,24 @@ class Message extends Equatable {
     return results > 0;
   }
 
+  static Future<bool> markFilesAsDownloaded(
+      LocalDB database, String messageID) async {
+    final int result = await database.update(
+      tableName: TABLE_NAME,
+      values: {"DOWNLOADED": 1},
+      where: "SERVER_ID = ?",
+      whereArgs: [messageID],
+    );
+    return result > 0;
+  }
+
   Future<bool> saveToDB(LocalDB db) async {
     try {
       final int result =
           await db.insert(tableName: TABLE_NAME, values: toMap());
       return result > 0;
     } catch (e) {
+      print(e);
       log("duplicate of $serverId");
       return false;
     }

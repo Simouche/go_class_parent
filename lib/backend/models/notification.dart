@@ -25,7 +25,7 @@ class Notification extends Equatable {
   static const String TABLE_NAME = "notifications";
 
   Notification({
-    this.downloaded,
+    this.downloaded = false,
     this.serverId,
     this.id,
     this.date,
@@ -57,6 +57,7 @@ class Notification extends Equatable {
               url: extractUrl(e['path'] as String),
               name: e['originalname']))
           .toList(),
+      downloaded: false,
     );
   }
 
@@ -74,8 +75,8 @@ class Notification extends Equatable {
       message: row["MESSAGE"],
       title: row["TITLE"],
       from: row["FROM_"],
-      fileUrl: filesFromString(row["FILES"]),
-      downloaded: row["DOWNLOADED"],
+      fileUrl: filesFromString(row["FILES"], row["SERVER_ID"]),
+      downloaded: row["DOWNLOADED"] == 1,
     );
   }
 
@@ -94,6 +95,7 @@ class Notification extends Equatable {
       "TITLE": title,
       "FROM_": from,
       "FILES": filesAsString(),
+      "DOWNLOADED": downloaded ? 1 : 0,
     };
   }
 
@@ -103,14 +105,17 @@ class Notification extends Equatable {
     return buffer.toString();
   }
 
-  static List<AttachmentFile> filesFromString(String urlsAsString) {
+  static List<AttachmentFile> filesFromString(
+      String urlsAsString, String serverId) {
     List<String> splitted = urlsAsString.split(";");
     splitted = splitted.sublist(0, splitted.length - 1);
     return splitted
         .map<AttachmentFile>((e) => AttachmentFile(
-      url: e,
-      name: e.substring(e.lastIndexOf("/")+1).replaceAll(":", "_"),
-    ))
+              url: e,
+              name: e.substring(e.lastIndexOf("/") + 1).replaceAll(":", "_"),
+              type: "N",
+              owner: serverId,
+            ))
         .toList();
   }
 
@@ -122,6 +127,17 @@ class Notification extends Equatable {
       notifications.add(Notification.fromDB(element));
     });
     return notifications;
+  }
+
+  static Future<bool> markFilesAsDownloaded(
+      LocalDB database, String notficationID) async {
+    final int result = await database.update(
+      tableName: TABLE_NAME,
+      values: {"DOWNLOADED": 1},
+      where: "SERVER_ID = ?",
+      whereArgs: [notficationID],
+    );
+    return result > 0;
   }
 
   Future<bool> saveToDB(LocalDB db) async {

@@ -64,7 +64,7 @@ class AttachmentFile extends Equatable {
       extension: map["EXTENSION"],
       url: map["URL"],
       name: map["NAME"],
-      owner: map["NOTIFICATION_ID"],
+      owner: map["OWNER"],
       downloaded: map["DOWNLOADED"],
     );
   }
@@ -82,12 +82,12 @@ class AttachmentFile extends Equatable {
   }
 
   static Future<List<AttachmentFile>> loadNotificationsFiles(
-      LocalDB db, int notificationID) async {
+      LocalDB db, int ownerID) async {
     final List<Map<String, dynamic>> result = await db.query(
         tableName: "downloads",
         columns: ["*"],
         where: "OWNER = ?",
-        whereArgs: [notificationID]);
+        whereArgs: [ownerID]);
     return result.map((e) => fromMap(e)).toList();
   }
 }

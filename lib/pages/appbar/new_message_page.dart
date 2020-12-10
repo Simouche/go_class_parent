@@ -15,6 +15,8 @@ class NewMessagePage extends StatelessWidget {
   NewMessagePage({Key key}) : super(key: key);
 
   String contactID;
+  int type;
+  Message messageSent;
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +24,14 @@ class NewMessagePage extends StatelessWidget {
     final messageInputController = TextEditingController();
     final subjectInputController = TextEditingController();
     List<File> files;
+    type = ModalRoute.of(context).settings.arguments;
 
     return BlocBuilder<MessagesBloc, MessagesState>(
         buildWhen: (oldState, newState) {
       return newState is OpenNewMessageState;
     }, builder: (context, state) {
       contactID = (state as OpenNewMessageState).contactID;
+
       return Scaffold(
         body: BlocListener<MessagesBloc, MessagesState>(
           listener: (context, state) {
@@ -41,6 +45,12 @@ class NewMessagePage extends StatelessWidget {
             } else if (state is MessageSent) {
               Scaffold.of(context)
                   .showSnackBar(SnackBar(content: Text("Message Envoyé!")));
+              BlocProvider.of<MessagesBloc>(context).add(
+                OpenConversationEvent(
+                  contactID: contactID,
+                  type: type,
+                ),
+              );
               Navigator.of(context).pop();
             }
           },
@@ -131,21 +141,23 @@ class NewMessagePage extends StatelessWidget {
                           backgroundColor: MAIN_COLOR_LIGHT,
                           child: Icon(Icons.send, color: WHITE),
                           onPressed: () async {
-                            BlocProvider.of<MessagesBloc>(context).add(
-                              SendMessageEvent(
-                                Message(
-                                    subject: subjectInputController.text,
-                                    message: messageInputController.text,
-                                    senderId: (await BlocProvider.of<
-                                                AuthenticationBloc>(context)
+                            messageSent = Message(
+                                subject: subjectInputController.text,
+                                message: messageInputController.text,
+                                senderId:
+                                    (await BlocProvider.of<AuthenticationBloc>(
+                                                context)
                                             .parent)
                                         .serverId,
-                                    receiverId: contactID,
-                                    date: DateFormat('yyyy-MM-dd')
-                                        .format(DateTime.now())
-                                        .toString(),
-                                    time: DateFormat('kk:mm:ss')
-                                        .format(DateTime.now())),
+                                receiverId: contactID,
+                                date: DateFormat('yyyy-MM-dd')
+                                    .format(DateTime.now())
+                                    .toString(),
+                                time: DateFormat('kk:mm:ss')
+                                    .format(DateTime.now()));
+                            BlocProvider.of<MessagesBloc>(context).add(
+                              SendMessageEvent(
+                                messageSent,
                               ),
                             );
                           },

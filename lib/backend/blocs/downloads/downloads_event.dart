@@ -4,7 +4,7 @@ part of 'downloads_bloc.dart';
 abstract class DownloadsEvent extends Equatable {}
 
 class TriggerDownloadsEvent extends DownloadsEvent {
-  final List<dynamic> files;
+  final List<AttachmentFile> files;
 
   TriggerDownloadsEvent({this.files});
 
