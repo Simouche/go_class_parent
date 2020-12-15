@@ -34,7 +34,7 @@ class RemoteMessagesProvider extends BaseMessagingProvider
       final json = jsonDecode(response.body);
       if (!json['error']) {
         json['data']['messages']
-            .forEach((element) => messages.add(Message.fromJson(element)));
+            ?.forEach((element) => messages.add(Message.fromJson(element)));
         return messages;
       } else {
         return List<Message>();
