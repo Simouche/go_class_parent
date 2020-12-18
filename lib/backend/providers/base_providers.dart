@@ -45,6 +45,7 @@ abstract class BaseMessagingProvider {
   Future<List<Message>> loadConversation(String contact);
 
   Future<List<dynamic>> loadConversations();
+
   Future<CeoWithMessages> getCeoWithMessages();
 }
 
@@ -90,4 +91,8 @@ abstract class BaseStudentProvider {
 
 abstract class BaseAttendanceProvider {
   Future<List<Attendance>> loadAttendance(String childID);
+}
+
+abstract class BaseHomeWorkProvider {
+  Future<List<ClassWithHomeWorks>> getHomeWorks(String userID);
 }

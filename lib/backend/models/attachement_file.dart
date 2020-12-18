@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:go_class_parent/backend/db/local_db.dart';
+import 'package:go_class_parent/backend/models/utils.dart';
 
 class AttachmentFile extends Equatable {
   final int id;
@@ -41,6 +42,14 @@ class AttachmentFile extends Equatable {
 
   @override
   String toString() => "url = $url name = $name";
+
+  static AttachmentFile fromJson(Map<String, dynamic> json) {
+    return AttachmentFile(
+      name: json["originalname"],
+      type: "D",
+      path: extractUrl(json['path'] as String),
+    );
+  }
 
   Map<String, dynamic> toMap() {
     return {

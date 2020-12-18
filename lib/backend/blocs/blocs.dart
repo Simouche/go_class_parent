@@ -11,3 +11,4 @@ export 'settings/settings_bloc.dart';
 export 'attendance/attendance_bloc.dart';
 export 'children/children_bloc.dart';
 export 'sync/synchronization_bloc.dart';
+export 'home_work/homework_bloc.dart';
