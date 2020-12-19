@@ -19,7 +19,6 @@ class CanteenPage extends StatelessWidget {
             state is CanteenLoadingFailedState ||
             state is CanteenLoadingState,
         builder: (context, state) {
-          print("called");
           if (state is CanteenLoadingState) {
             return Center(child: Text('En cours de chargement.'));
           } else if (state is CanteenLoadingFailedState) {

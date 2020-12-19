@@ -1,0 +1,2019 @@
+{
+  "message": "homeworks selected with success!",
+  "error": false,
+  "code": 200,
+  "data": {
+    "homeWork": [
+      {
+        "classe": "1ap3",
+        "matieres": [
+          {
+            "matiere": "math",
+            "units": [
+              {
+                "unit": "hhh",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "13-12-2020_20201213_102316 (13).jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5f7386591bac85c624e47be3",
+                        "filename": "2020-12-15T17:43:28.164Z13-12-2020_20201213_102316 (13).jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5f7386591bac85c624e47be3/2020-12-15T17:43:28.164Z13-12-2020_20201213_102316 (13).jpg",
+                        "size": 4281990
+                      }
+                    ],
+                    "date": {
+                      "deadline": "02/12/2020"
+                    }
+                  },
+                  {
+                    "reference": {
+                      "links": [
+                        "https://www.lakkini.com"
+                      ],
+                      "description": "site web lakkini"
+                    },
+                    "file": [],
+                    "date": {
+                      "publishDate": "16/12/2020",
+                      "publishTime": "19:55:21",
+                      "deadline": "17/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "math",
+            "units": [
+              {
+                "unit": "hhh",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "13-12-2020_20201213_102316 (13).jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5f7386591bac85c624e47be3",
+                        "filename": "2020-12-15T17:43:28.164Z13-12-2020_20201213_102316 (13).jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5f7386591bac85c624e47be3/2020-12-15T17:43:28.164Z13-12-2020_20201213_102316 (13).jpg",
+                        "size": 4281990
+                      }
+                    ],
+                    "date": {
+                      "deadline": "02/12/2020"
+                    }
+                  },
+                  {
+                    "reference": {
+                      "links": [
+                        "https://www.lakkini.com"
+                      ],
+                      "description": "site web lakkini"
+                    },
+                    "file": [],
+                    "date": {
+                      "publishDate": "16/12/2020",
+                      "publishTime": "19:55:21",
+                      "deadline": "17/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "math",
+            "units": [
+              {
+                "unit": "hhh",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "13-12-2020_20201213_102316 (13).jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5f7386591bac85c624e47be3",
+                        "filename": "2020-12-15T17:43:28.164Z13-12-2020_20201213_102316 (13).jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5f7386591bac85c624e47be3/2020-12-15T17:43:28.164Z13-12-2020_20201213_102316 (13).jpg",
+                        "size": 4281990
+                      }
+                    ],
+                    "date": {
+                      "deadline": "02/12/2020"
+                    }
+                  },
+                  {
+                    "reference": {
+                      "links": [
+                        "https://www.lakkini.com"
+                      ],
+                      "description": "site web lakkini"
+                    },
+                    "file": [],
+                    "date": {
+                      "publishDate": "16/12/2020",
+                      "publishTime": "19:55:21",
+                      "deadline": "17/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "math",
+            "units": [
+              {
+                "unit": "hhh",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "13-12-2020_20201213_102316 (13).jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5f7386591bac85c624e47be3",
+                        "filename": "2020-12-15T17:43:28.164Z13-12-2020_20201213_102316 (13).jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5f7386591bac85c624e47be3/2020-12-15T17:43:28.164Z13-12-2020_20201213_102316 (13).jpg",
+                        "size": 4281990
+                      }
+                    ],
+                    "date": {
+                      "deadline": "02/12/2020"
+                    }
+                  },
+                  {
+                    "reference": {
+                      "links": [
+                        "https://www.lakkini.com"
+                      ],
+                      "description": "site web lakkini"
+                    },
+                    "file": [],
+                    "date": {
+                      "publishDate": "16/12/2020",
+                      "publishTime": "19:55:21",
+                      "deadline": "17/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "classe": "classe n°1",
+        "matieres": [
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "classe": "classe n°2",
+        "matieres": [
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matiere": "Arab",
+            "units": [
+              {
+                "unit": "Project One",
+                "duties": [
+                  {
+                    "reference": {
+                      "links": [],
+                      "description": ""
+                    },
+                    "file": [
+                      {
+                        "fieldname": "customFile",
+                        "originalname": "CLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "encoding": "7bit",
+                        "mimetype": "image/jpeg",
+                        "destination": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187",
+                        "filename": "2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "path": "/home/youkous/assets/schools/eco1124/5f737b73fe39fcc55f1f6a4c/duties/5fc63e7cfd8be59d76507187/2020-12-01T13:32:18.251ZCLASSE 5EME A_4_بالرحمه محمد عبد الهادي.jpg",
+                        "size": 153516
+                      }
+                    ],
+                    "date": {
+                      "publishDate": "15/12/2020",
+                      "publishTime": "17:39:3",
+                      "deadline": "5/12/2020"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

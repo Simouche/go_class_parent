@@ -50,6 +50,9 @@ void main() {
       BlocProvider<SynchronizationBloc>(
         create: (context) => SynchronizationBloc(),
       ),
+      BlocProvider<HomeWorkBloc>(
+        create: (context) => HomeWorkBloc(),
+      )
     ],
     child: MyApp(),
   ));
@@ -127,6 +130,9 @@ class MyApp extends StatelessWidget {
         StudentsListPage.routeName: (context) => StudentsListPage(),
         AttendanceChildrenPage.routeName: (context) => AttendanceChildrenPage(),
         AttendanceList.routeName: (context) => AttendanceList(),
+        MatiereListPage.routeName: (context) => MatiereListPage(),
+        ClassesListPage.routeName: (context) => ClassesListPage(),
+        HomeWorkListPage.routeName: (context) => HomeWorkListPage(),
       },
     );
   }

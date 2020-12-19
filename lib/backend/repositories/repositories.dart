@@ -9,3 +9,4 @@ export 'settings_repository.dart';
 export 'students_repository.dart';
 export 'attendance_repository.dart';
 export 'synchronization_repository.dart';
+export 'home_work_repository.dart';
