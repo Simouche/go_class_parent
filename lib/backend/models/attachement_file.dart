@@ -75,8 +75,8 @@ class AttachmentFile extends Equatable {
   }
 
   static Future<List<AttachmentFile>> loadFromDB(LocalDB db) async {
-    final List<Map<String, dynamic>> result =
-        await db.query(tableName: "downloads", columns: ["*"]);
+    final List<Map<String, dynamic>> result = await db.query(
+        tableName: "downloads", columns: ["*"], orderBy: "ID DESC");
     final List<AttachmentFile> files = result.map((e) => fromMap(e)).toList();
     return files;
   }
