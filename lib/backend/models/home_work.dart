@@ -23,17 +23,17 @@ class ClassWithHomeWorks extends Equatable {
 
 class HomeWork extends Equatable {
   final String unit;
-  final List<HomeWorkTask> task;
+  final List<HomeWorkTask> tasks;
 
-  HomeWork({this.unit, this.task});
+  HomeWork({this.unit, this.tasks});
 
   @override
-  List<Object> get props => [this.unit, this.task];
+  List<Object> get props => [this.unit, this.tasks];
 
   static HomeWork fromJson(Map<String, dynamic> json) {
     return HomeWork(
       unit: json["unit"],
-      task: json["duties"]
+      tasks: json["duties"]
           .map<HomeWorkTask>((element) => HomeWorkTask.fromJson(element))
           .toList(),
     );
@@ -44,20 +44,34 @@ class HomeWorkTask extends Equatable {
   final HomeWorkReference reference;
   final List<AttachmentFile> files;
   final String dueDate;
+  final String publishDate;
+  final String publishTime;
 
-  HomeWorkTask({this.reference, this.files, this.dueDate});
+  HomeWorkTask(
+      {this.publishTime,
+      this.publishDate,
+      this.reference,
+      this.files,
+      this.dueDate});
 
   @override
-  List<Object> get props => [this.reference, this.files, this.dueDate];
+  List<Object> get props => [
+        this.publishTime,
+        this.publishDate,
+        this.reference,
+        this.files,
+        this.dueDate
+      ];
 
   static HomeWorkTask fromJson(Map<String, dynamic> json) {
     return HomeWorkTask(
-      reference: HomeWorkReference.fromJson(json["reference"]),
-      files: (json["file"] as List)
-          .map<AttachmentFile>((element) => AttachmentFile.fromJson(element))
-          .toList(),
-      dueDate: json["date"]["deadline"],
-    );
+        reference: HomeWorkReference.fromJson(json["reference"]),
+        files: (json["file"] as List)
+            .map<AttachmentFile>((element) => AttachmentFile.fromJson(element))
+            .toList(),
+        dueDate: json["date"]["deadline"],
+        publishDate: json["date"]["publishDate"],
+        publishTime: json["date"]["publishTime"]);
   }
 }
 

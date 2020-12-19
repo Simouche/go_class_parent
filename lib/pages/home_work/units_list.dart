@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_class_parent/backend/models/models.dart';
-import 'package:go_class_parent/pages/home_work/units_list.dart';
+import 'package:go_class_parent/pages/home_work/home_work_list.dart';
 import 'package:go_class_parent/widgets/widgets.dart';
 
-class MatiereListPage extends StatelessWidget {
+class UnitListPage extends StatelessWidget {
   static const String routeName =
-      "home/home_work/classes_list_page/matiere_list_page";
+      "home/home_work/classes_list_page/matiere_list_page/units_list";
 
   @override
   Widget build(BuildContext context) {
-    final List<Matiere> matieres = ModalRoute.of(context).settings.arguments;
+    final List<HomeWork> units = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: MyAppBar(title: "Travail Maison", showActions: false),
       body: Column(
@@ -21,13 +21,13 @@ class MatiereListPage extends StatelessWidget {
             child: GridView.count(
               crossAxisCount: 2,
               children: List.generate(
-                matieres.length,
+                units.length,
                 (index) => GestureDetector(
                   onTap: () {
                     Navigator.pushNamed(
                       context,
-                      UnitListPage.routeName,
-                      arguments: matieres[index].homeWorks,
+                      HomeWorkListPage.routeName,
+                      arguments: units[index],
                     );
                   },
                   child: Card(
@@ -40,7 +40,7 @@ class MatiereListPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            matieres[index].label,
+                            units[index].unit,
                             style: TextStyle(
                                 color: Colors.teal,
                                 fontWeight: FontWeight.w700,

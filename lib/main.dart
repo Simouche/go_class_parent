@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_class_parent/pages/home_work/units_list.dart';
 import 'package:go_class_parent/pages/pages.dart';
 import 'package:go_class_parent/values/Colors.dart';
 import 'package:go_class_parent/widgets/widgets.dart';
@@ -133,6 +134,7 @@ class MyApp extends StatelessWidget {
         MatiereListPage.routeName: (context) => MatiereListPage(),
         ClassesListPage.routeName: (context) => ClassesListPage(),
         HomeWorkListPage.routeName: (context) => HomeWorkListPage(),
+        UnitListPage.routeName: (context) => UnitListPage(),
       },
     );
   }
