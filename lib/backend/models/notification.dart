@@ -121,7 +121,7 @@ class Notification extends Equatable {
 
   static Future<List<Notification>> getAllFromDB(LocalDB database) async {
     final List<Map<String, dynamic>> results = await database.query(
-        tableName: TABLE_NAME, columns: ["*"], orderBy: "id");
+        tableName: TABLE_NAME, columns: ["*"], orderBy: "id ASC");
     final List<Notification> notifications = List();
     results.forEach((element) {
       notifications.add(Notification.fromDB(element));

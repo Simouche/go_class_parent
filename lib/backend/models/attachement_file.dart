@@ -47,7 +47,7 @@ class AttachmentFile extends Equatable {
     return AttachmentFile(
       name: json["originalname"],
       type: "D",
-      path: extractUrl(json['path'] as String),
+      url: extractUrl(json['path'] as String),
     );
   }
 

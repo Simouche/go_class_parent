@@ -30,10 +30,11 @@ class ConversationDialog extends StatelessWidget {
         Parent currentUser =
             BlocProvider.of<AuthenticationBloc>(context).currentParent;
         Future.delayed(Duration(seconds: 0), () {
-          _scrollController.animateTo(
-              _scrollController.position.maxScrollExtent,
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.easeOut);
+          if (_scrollController.hasClients)
+            _scrollController.animateTo(
+                _scrollController.position.maxScrollExtent,
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeOut);
         });
         return Scaffold(
           appBar: MyAppBar(
