@@ -41,16 +41,14 @@ class HomeWorkListPage extends StatelessWidget {
                                   : Colors.grey,
                         ),
                         title: Text(homeWorks.unit),
-                        subtitle: Text(
-                            homeWorks.tasks[index].reference.description ??
-                                " "),
+                        subtitle:
+                            Text(homeWorks.tasks[index].description ?? " "),
                         trailing: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: <Widget>[
-                            Text(
-                                "Publié le: ${homeWorks.tasks[index].publishDate}"),
-                            Text("Pour le: ${homeWorks.tasks[index].dueDate}")
+                            Text("De: ${homeWorks.tasks[index].publishDate}"),
+                            Text("à: ${homeWorks.tasks[index].dueDate}")
                           ],
                         ),
                         onTap: () async {

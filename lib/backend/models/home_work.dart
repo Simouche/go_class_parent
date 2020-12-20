@@ -46,16 +46,20 @@ class HomeWorkTask extends Equatable {
   final String dueDate;
   final String publishDate;
   final String publishTime;
+  final String description;
 
-  HomeWorkTask(
-      {this.publishTime,
-      this.publishDate,
-      this.reference,
-      this.files,
-      this.dueDate});
+  HomeWorkTask({
+    this.description,
+    this.publishTime,
+    this.publishDate,
+    this.reference,
+    this.files,
+    this.dueDate,
+  });
 
   @override
   List<Object> get props => [
+        this.description,
         this.publishTime,
         this.publishDate,
         this.reference,
@@ -65,13 +69,15 @@ class HomeWorkTask extends Equatable {
 
   static HomeWorkTask fromJson(Map<String, dynamic> json) {
     return HomeWorkTask(
-        reference: HomeWorkReference.fromJson(json["reference"]),
-        files: (json["file"] as List)
-            .map<AttachmentFile>((element) => AttachmentFile.fromJson(element))
-            .toList(),
-        dueDate: json["date"]["deadline"],
-        publishDate: json["date"]["publishDate"],
-        publishTime: json["date"]["publishTime"]);
+      reference: HomeWorkReference.fromJson(json["reference"]),
+      files: (json["file"] as List)
+          .map<AttachmentFile>((element) => AttachmentFile.fromJson(element))
+          .toList(),
+      dueDate: json["date"]["deadline"],
+      publishDate: json["date"]["publishDate"],
+      publishTime: json["date"]["publishTime"],
+      description: json['description'],
+    );
   }
 }
 
