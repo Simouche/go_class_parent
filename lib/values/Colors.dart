@@ -12,6 +12,7 @@ const Color LOGO_COLOR_2 = Color(0xFF2d3e50);
 const Color WHITE = Color(0xFFFFFFFF);
 const Color BLACK = Color(0xFF000000);
 const SECONDARY_TEXT_COLOR = Color(0xFF909599);
+const Color SPECIAL_WHITE = Color(0xFFE8EDFE);
 
 const MaterialColor appSwatch = MaterialColor(0xFF053c72, {
   50: Color(0xFF42B1DE),
