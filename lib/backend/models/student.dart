@@ -7,22 +7,29 @@ class Student extends Equatable {
   final String serverID, firstName, lastName, state, director;
   static const TABLE_NAME = "students";
   final int id;
+  final List<List<Note>> notes;
 
-  Student(
-      {this.id,
-      this.director,
-      this.state,
-      this.serverID,
-      this.firstName,
-      this.lastName});
+  Student({
+    this.id,
+    this.director,
+    this.state,
+    this.serverID,
+    this.firstName,
+    this.lastName,
+    this.notes,
+  });
 
   static Student fromJson(Map json) {
     return Student(
-        serverID: json['_id'],
-        firstName: json['firstNameFr'],
-        lastName: json['lastNameFr'],
-        state: "${json['state']}",
-        director: json['director']);
+      serverID: json['_id'],
+      firstName: json['firstNameFr'],
+      lastName: json['lastNameFr'],
+      state: "${json['state']}",
+      director: json['director'],
+      notes: (json['eval']['test'] as List).map<List<Note>>((element) {
+        return (element as List).map((e) => Note.fromJson(e)).toList();
+      }).toList(),
+    );
   }
 
   static Student fromDB(Map<String, dynamic> row) {
@@ -81,4 +88,25 @@ class Student extends Equatable {
 
   @override
   List<Object> get props => [serverID, firstName, lastName];
+}
+
+class Note extends Equatable {
+  final int mat;
+  final double d1, d2, ex;
+
+  Note({this.mat, this.d1, this.d2, this.ex});
+
+  @override
+  List<Object> get props => [this.mat, this.d1, this.d2, this.ex];
+
+  static Note fromJson(Map<String, dynamic> json) {
+    print(json['ex']);
+    print("test");
+    return Note(
+      mat: json['idM'],
+      d1: double.parse(json['d1'].isNotEmpty ? json['d1'] : "0"),
+      d2: double.parse(json['d2'].isNotEmpty ? json['d2'] : "0"),
+      ex: double.parse((json['ex'] as String).isNotEmpty ? json['ex'] : "0"),
+    );
+  }
 }

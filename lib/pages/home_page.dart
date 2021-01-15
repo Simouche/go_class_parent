@@ -10,6 +10,7 @@ import 'package:go_class_parent/widgets/widgets.dart';
 
 import 'appbar/downloads.dart';
 import 'canteen/canteen_page.dart';
+import 'evaluation/marks.dart';
 import 'payments/payments_page.dart';
 import 'planning/schedule.dart';
 
@@ -429,7 +430,7 @@ class HomePage extends StatelessWidget {
                                       padding: EdgeInsets.only(bottom: 16.0),
                                     ),
                                     Text(
-                                      'Examens',
+                                      'Eval',
                                       style: TextStyle(
                                           color: Colors.orange,
                                           fontWeight: FontWeight.w700,
@@ -444,7 +445,10 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                         onTap: () {
-                          _comingSoon(context);
+                          BlocProvider.of<ChildrenBloc>(context)
+                              .add(GetStudentsEventEvent());
+                          Navigator.of(context)
+                              .pushNamed(MarksPage.routeName);
                         },
                       ),
                       SizedBox(

@@ -30,21 +30,6 @@ class _MainPageState extends State<MarksPage> {
     'activite': 0.0,
   };
 
-  Map<String, dynamic> _formData = {
-    'username': '',
-    'prenomEleve': '',
-    'numInscription': '',
-    'classId': '',
-  };
-
-  Widget _loader(BuildContext context) {
-    return Center(
-      child: AwesomeLoader(
-        loaderType: AwesomeLoader.AwesomeLoader3,
-        color: Colors.lightBlue,
-      ),
-    );
-  }
 
   Widget _contatinerMarks(
       String dev, Color color, int water, double mark, String grade) {
@@ -121,92 +106,33 @@ class _MainPageState extends State<MarksPage> {
     return AppBar(
       elevation: 2.0,
       backgroundColor: Theme.of(context).primaryColorLight,
-      iconTheme: new IconThemeData(color: Colors.black),
+      iconTheme: new IconThemeData(color: WHITE),
       title: Text(
         'Relevé de note',
         style: TextStyle(
-            color: Colors.black, fontWeight: FontWeight.w700, fontSize: 26.0),
+            color: WHITE, fontWeight: FontWeight.w700, fontSize: 26.0),
       ),
-      actions: <Widget>[
-        Stack(
-          children: <Widget>[
-            IconButton(
-              icon: Icon(Icons.mail),
-              iconSize: 30.0,
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, '/messaging');
-              },
-            ),
-            count != 0 ? _noificationPositioned(count) : Container()
-          ],
-        ),
-        Stack(
-          children: <Widget>[
-            IconButton(
-              icon: Icon(Icons.notifications),
-              iconSize: 30.0,
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, '/notices');
-              },
-            ),
-            count != 0 ? _noificationPositioned(count) : Container()
-          ],
-        ),
-        Container(
-          margin: EdgeInsets.only(right: 10.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-          ),
-        )
-      ],
       bottom: TabBar(
         tabs: <Widget>[
           Tab(
             child: Text(
               '1er Trimestre',
-              style: TextStyle(color: Colors.black, fontSize: 18),
+              style: TextStyle(color: WHITE, fontSize: 18),
             ),
           ),
           Tab(
             child: Text(
               '2eme Trimestre',
-              style: TextStyle(color: Colors.black, fontSize: 18),
+              style: TextStyle(color: WHITE, fontSize: 18),
             ),
           ),
           Tab(
             child: Text(
               '3eme Trimestre',
-              style: TextStyle(color: Colors.black, fontSize: 18),
+              style: TextStyle(color: WHITE, fontSize: 18),
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _noificationPositioned(int counter) {
-    return Positioned(
-      right: 6,
-      top: 6,
-      child: Container(
-        padding: EdgeInsets.all(3),
-        decoration: BoxDecoration(
-          color: Colors.red,
-          borderRadius: BorderRadius.circular(6),
-        ),
-        constraints: BoxConstraints(
-          minWidth: 15,
-          minHeight: 15,
-        ),
-        child: Text(
-          '$counter',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 12,
-          ),
-          textAlign: TextAlign.center,
-        ),
       ),
     );
   }
@@ -450,11 +376,7 @@ class _MainPageState extends State<MarksPage> {
                         itemBuilder: (BuildContext context, int index) {
                           return _displayStudent(index, studentObject);
                         }
-//                          student == []
-//                              ? _loader(context)
-//                              :
-
-                        ),
+              ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -596,25 +518,6 @@ class _MainPageState extends State<MarksPage> {
     } else if (note <= 3.5) {
       return Colors.redAccent;
     }
-  }
-
-  List _studentList(var studentTab) {
-    List studentList = [];
-    for (int i = 0; i < studentTab["student"].length; i++) {
-      List matiereTab = [];
-      for (int j = 0; j < studentTab["result"].length; j++) {
-        if (studentTab["result"][j]["idStudent"] ==
-            studentTab["student"][i]["numeroInscription"]) {
-          matiereTab.add(studentTab["result"][j]["idMatiere"]);
-        }
-      }
-      studentList.add(StudentItem<String>(
-          studentTab["student"][i]["prenom"],
-          studentTab["student"][i]["numeroInscription"],
-          matiereTab,
-          studentTab["student"][i]["niveau"]));
-    }
-    return studentList;
   }
 
   _listResetStudent(int index, List studentObject) {

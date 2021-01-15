@@ -112,12 +112,6 @@ class MyApp extends StatelessWidget {
         HomePage.routeName: (context) => HomePage(),
         ForgotPassword.routeName: (context) => ForgotPassword(),
         NewPassword.routeName: (context) => NewPassword(),
-//        Biology.routeName: (context) => Biology(),
-//        Chemistry.routeName: (context) => Chemistry(),
-//        Mathematics.routeName: (context) => Mathematics(),
-//        Physics.routeName: (context) => Physics(),
-//        Reasoning.routeName: (context) => Reasoning(),
-//        SocialScience.routeName: (context) => SocialScience(),
         Messages.routeName: (context) => Messages(),
         Notifications.routeName: (context) => Notifications(),
         ConversationDialog.routeName: (context) => ConversationDialog(),
@@ -135,6 +129,7 @@ class MyApp extends StatelessWidget {
         ClassesListPage.routeName: (context) => ClassesListPage(),
         HomeWorkListPage.routeName: (context) => HomeWorkListPage(),
         UnitListPage.routeName: (context) => UnitListPage(),
+        MarksPage.routeName: (context) => MarksPage(),
       },
     );
   }

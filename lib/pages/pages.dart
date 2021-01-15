@@ -21,3 +21,4 @@ export 'attendance/attendances_list.dart';
 export 'home_work/home_work_list.dart';
 export 'home_work/classes_list.dart';
 export 'home_work/matiere_list.dart';
+export 'evaluation/marks.dart';
