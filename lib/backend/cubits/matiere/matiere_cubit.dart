@@ -1,12 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-part 'students_state.dart';
+part 'matiere_state.dart';
 
-class StudentsCubit extends Cubit<int> {
-  StudentsCubit(int initial) : super(initial);
+class MatiereCubit extends Cubit<int> {
+  MatiereCubit(int initial) : super(initial);
 
-  void selectStudent(int index) => emit(index);
+  void selectMatiere(int index) => emit(index);
 
   @override
   void onChange(Change<int> change) {

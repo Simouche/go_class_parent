@@ -444,11 +444,14 @@ class HomePage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        onTap: () {
-                          BlocProvider.of<ChildrenBloc>(context)
-                              .add(GetStudentsEventEvent());
-                          Navigator.of(context)
-                              .pushNamed(MarksPage.routeName);
+                        onTap: () async {
+                          BlocProvider.of<ChildrenBloc>(context).add(
+                              GetStudentsEventEvent(
+                                  userID: (await BlocProvider.of<
+                                              AuthenticationBloc>(context)
+                                          .parent)
+                                      .serverId));
+                          Navigator.of(context).pushNamed(MarksPage.routeName);
                         },
                       ),
                       SizedBox(

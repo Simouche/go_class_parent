@@ -2,107 +2,58 @@ import 'dart:convert';
 
 import 'package:awesome_loader/awesome_loader.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_class_parent/backend/blocs/blocs.dart';
+import 'package:go_class_parent/backend/cubits/cubits.dart';
+import 'package:go_class_parent/pages/evaluation/marks_tab.dart';
 import 'package:go_class_parent/values/Colors.dart';
 import 'wave_view.dart';
 
-class MarksPage extends StatefulWidget {
+class MarksPage extends StatelessWidget {
   static const String routeName = 'home/evaluation';
 
   @override
-  _MainPageState createState() => _MainPageState();
-}
-
-class _MainPageState extends State<MarksPage> {
-  int count = 0;
-  List matieres = [];
-  List student = [];
-  var studentData;
-  List studentObject = [];
-  List matiereObject = [];
-  Color btnColor = Colors.lightBlue;
-
-  String _niveau = '';
-
-  Map<String, double> marks = {
-    'devoire1': 0.0,
-    'devoire2': 0.0,
-    'exam': 0.0,
-    'activite': 0.0,
-  };
-
-
-  Widget _contatinerMarks(
-      String dev, Color color, int water, double mark, String grade) {
-    return Container(
-      height: 180,
-      width: MediaQuery.of(context).size.width / 2.5,
-      decoration: BoxDecoration(
-        color: WHITE,
-        borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(40.0),
-            bottomLeft: Radius.circular(8.0),
-            bottomRight: Radius.circular(40.0),
-            topRight: Radius.circular(40.0)),
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-              color: Colors.grey, offset: Offset(1.1, 1.1), blurRadius: 10.0),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              SizedBox(
-                width: MediaQuery.of(context).size.width / 40,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    dev,
-                    style: TextStyle(
-                        color: Colors.black54,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14),
+  Widget build(BuildContext context) {
+    return BlocBuilder<ChildrenBloc, ChildrenState>(
+      builder: (context, state) {
+        if (state is StudentLoadingState) {
+          return Container(
+              child: Center(child: Text("En cours de chargement...")));
+        } else if (state is StudentLoadingFailedState) {
+          return Container(
+              child: Center(
+                  child: Text("Echec de Chargement reessayez plutard...")));
+        } else {
+          StudentLoadingSuccessState _state =
+              (state as StudentLoadingSuccessState);
+          return DefaultTabController(
+            length: 3,
+            child: Scaffold(
+                appBar: _appBar(context),
+                body: MultiBlocProvider(
+                  providers: [
+                    BlocProvider<MatiereCubit>(
+                      create: (_) => MatiereCubit(0),
+                    ),
+                    BlocProvider<StudentsCubit>(
+                      create: (_) => StudentsCubit(0),
+                    )
+                  ],
+                  child: TabBarView(
+                    children: <Widget>[
+                      MarksTab(students: _state.students, tabNumber: 0),
+                      MarksTab(students: _state.students, tabNumber: 1),
+                      MarksTab(students: _state.students, tabNumber: 2),
+                    ],
                   ),
-                  Divider(),
-                  Text(
-                    grade,
-                    style: TextStyle(color: color, fontSize: 12),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.all(10),
-            child: Container(
-              width: 50,
-              height: 160,
-              decoration: BoxDecoration(
-                color: SPECIAL_WHITE,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(80.0),
-                    bottomLeft: Radius.circular(80.0),
-                    bottomRight: Radius.circular(80.0),
-                    topRight: Radius.circular(80.0)),
-                boxShadow: <BoxShadow>[
-                  BoxShadow(
-                      color: Colors.grey, offset: Offset(2, 2), blurRadius: 4),
-                ],
-              ),
-              child: WaveView(water, water, color, mark),
-            ),
-          ),
-        ],
-      ),
+                )),
+          );
+        }
+      },
     );
   }
 
-  Widget _appBar() {
+  Widget _appBar(context) {
     return AppBar(
       elevation: 2.0,
       backgroundColor: Theme.of(context).primaryColorLight,
@@ -136,415 +87,4 @@ class _MainPageState extends State<MarksPage> {
       ),
     );
   }
-
-  Widget _displayStudent(int index, List list) {
-    return Row(
-      children: <Widget>[
-        SizedBox(
-          width: 10,
-        ),
-        RaisedButton(
-          onPressed: () {
-            setState(() {
-              list[index].isSelected = !list[index].isSelected;
-              _listResetStudent(index, list);
-              _niveau = studentObject[index].niveau.split(" ")[2];
-              marks = {
-                'devoire1': 0.0,
-                'devoire2': 0.0,
-                'exam': 0.0,
-                'activite': 0.0,
-              };
-              matieres = studentObject[index].matiereTab;
-              matiereObject = null;
-              _displayMatiere(0, matiereObject);
-//              _listResetMatiere(0, matiereObject);
-              _listResetAllMatiere(matiereObject);
-            });
-          },
-          child: Text(
-            list[index].data,
-            style: TextStyle(
-                color:
-                    list[index].isSelected ? Colors.white : Colors.lightBlue),
-          ),
-          color: list[index].isSelected ? Colors.lightBlue : Colors.white,
-          elevation: 6,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(60.0),
-              side: BorderSide(color: Colors.lightBlue)),
-        ),
-      ],
-    );
-  }
-
-  Widget _displayMatiere(int index, List list) {
-    return Row(
-      children: <Widget>[
-        SizedBox(
-          width: 10,
-        ),
-        RaisedButton(
-          onPressed: () {
-            setState(() {
-              list[index].isSelected = !list[index].isSelected;
-              _listResetStudent(index, list);
-              for (int i = 0; i < studentObject.length; i++) {
-                if (studentObject[i].isSelected) {
-                  for (int j = 0; j < studentData['result'].length; j++) {
-                    if (studentData['result'][j]['idMatiere'] ==
-                            list[index].data &&
-                        studentObject[i].numIns ==
-                            studentData['result'][j]['idStudent']) {
-                      marks['devoire1'] =
-                          double.parse(studentData['result'][j]['devoire1']);
-                      marks['devoire2'] =
-                          double.parse(studentData['result'][j]['devoire2']);
-                      marks['exam'] =
-                          double.parse(studentData['result'][j]['exam']);
-                      marks['activite'] =
-                          double.parse(studentData['result'][j]['activite']);
-                    }
-                  }
-                }
-              }
-            });
-          },
-          child: Text(
-            list[index].data,
-            style: TextStyle(
-                color:
-                    list[index].isSelected ? Colors.white : Colors.lightBlue),
-          ),
-          color: list[index].isSelected ? Colors.lightBlue : Colors.white,
-          elevation: 6,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(60.0),
-              side: BorderSide(color: Colors.lightBlue)),
-        ),
-      ],
-    );
-  }
-
-  Widget _expanded() {
-    return Expanded(
-      flex: 8,
-      child: ListView(
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              _contatinerMarks(
-                  'Devoir 01',
-                  _convertNoteToColor(marks['devoire1']),
-                  _convertNoteToWater(marks['devoire1']),
-                  marks['devoire1'],
-                  _convertNoteToGrade(marks['devoire1'])),
-              _contatinerMarks(
-                  'Devoir 02',
-                  _convertNoteToColor(marks['devoire2']),
-                  _convertNoteToWater(marks['devoire2']),
-                  marks['devoire2'],
-                  _convertNoteToGrade(marks['devoire2'])),
-            ],
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              _contatinerMarks(
-                  'Autre',
-                  _convertNoteToColor(marks['exam']),
-                  _convertNoteToWater(marks['exam']),
-                  marks['exam'],
-                  _convertNoteToGrade(marks['exam'])),
-              _contatinerMarks(
-                  'Composition',
-                  _convertNoteToColor(marks['activite']),
-                  _convertNoteToWater(marks['activite']),
-                  marks['activite'],
-                  _convertNoteToGrade(marks['activite'])),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _expandedPrimaire() {
-    return Expanded(
-      flex: 8,
-      child: ListView(
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              _contatinerMarks(
-                  'Devoir 01',
-                  _convertNoteToColorPrimaire(marks['devoire1']),
-                  _convertNoteToWaterPrimaire(marks['devoire1']),
-                  marks['devoire1'],
-                  _convertNoteToGradePrimaire(marks['devoire1'])),
-              _contatinerMarks(
-                  'Devoir 02',
-                  _convertNoteToColorPrimaire(marks['devoire2']),
-                  _convertNoteToWaterPrimaire(marks['devoire2']),
-                  marks['devoire2'],
-                  _convertNoteToGradePrimaire(marks['devoire2'])),
-            ],
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              _contatinerMarks(
-                  'Autre',
-                  _convertNoteToColorPrimaire(marks['exam']),
-                  _convertNoteToWaterPrimaire(marks['exam']),
-                  marks['exam'],
-                  _convertNoteToGradePrimaire(marks['exam'])),
-              _contatinerMarks(
-                  'Composition',
-                  _convertNoteToColorPrimaire(marks['activite']),
-                  _convertNoteToWaterPrimaire(marks['activite']),
-                  marks['activite'],
-                  _convertNoteToGradePrimaire(marks['activite'])),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: _appBar(),
-        body: TabBarView(
-          children: <Widget>[
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              padding: EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.all(8),
-                        child: Text(
-                          'Les élèves:',
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black54),
-                        ),
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Text(
-                            'Details',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.lightBlue,
-                            ),
-                          ),
-                          Icon(
-                            Icons.add,
-                            color: Colors.black54,
-                            size: 18.0,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: studentObject.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return _displayStudent(index, studentObject);
-                        }
-              ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.all(8),
-                        child: Text(
-                          'Les matieres:',
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black54),
-                        ),
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Text(
-                            'Glisser ',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.lightBlue,
-                            ),
-                          ),
-                          Icon(
-                            Icons.arrow_forward,
-                            color: Colors.black54,
-                            size: 18.0,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: matieres.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return _displayMatiere(index, matiereObject);
-                        }),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.all(8),
-                        child: Text(
-                          'Les notes:',
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black54),
-                        ),
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Text(
-                            'Details ',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.lightBlue,
-                            ),
-                          ),
-                          Icon(
-                            Icons.list,
-                            color: Colors.black54,
-                            size: 18.0,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  _niveau == 'Primaire' ? _expandedPrimaire() : _expanded(),
-                ],
-              ),
-            ),
-            Container(),
-            Container(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  int _convertNoteToWater(double note) {
-    return (160 - (note * 2 * 4)).toInt();
-  }
-
-  Color _convertNoteToColor(double note) {
-    if (note >= 17.0) {
-      return Colors.greenAccent;
-    } else if (note >= 10.0 && note <= 17.0) {
-      return Colors.lightBlue;
-    } else if (note >= 7.0 && note <= 10.0) {
-      return Colors.orangeAccent;
-    } else if (note <= 7.0) {
-      return Colors.redAccent;
-    }
-  }
-
-  String _convertNoteToGrade(double note) {
-    if (note >= 17.0) {
-      return 'Très Bien';
-    } else if (note >= 10.0 && note <= 17.0) {
-      return 'Bien';
-    } else if (note >= 7.0 && note <= 10.0) {
-      return 'Assez Bien';
-    } else if (note <= 7.0) {
-      return 'Faible';
-    }
-  }
-
-  int _convertNoteToWaterPrimaire(double note) {
-    return (160 - (note * 2 * 8)).toInt();
-  }
-
-  String _convertNoteToGradePrimaire(double note) {
-    if (note >= 8.5) {
-      return 'Très Bien';
-    } else if (note >= 5.0 && note <= 8.5) {
-      return 'Bien';
-    } else if (note >= 3.5 && note <= 5.0) {
-      return 'Assez Bien';
-    } else if (note <= 3.5) {
-      return 'Faible';
-    }
-  }
-
-  Color _convertNoteToColorPrimaire(double note) {
-    if (note >= 8.5) {
-      return Colors.greenAccent;
-    } else if (note >= 5.0 && note <= 8.5) {
-      return Colors.lightBlue;
-    } else if (note >= 3.5 && note <= 5.5) {
-      return Colors.orangeAccent;
-    } else if (note <= 3.5) {
-      return Colors.redAccent;
-    }
-  }
-
-  _listResetStudent(int index, List studentObject) {
-    for (int i = 0; i < studentObject.length; i++) {
-      if (index != i) {
-        studentObject[i].isSelected = false;
-      } else {
-        studentObject[index].isSelected = true;
-      }
-    }
-  }
-
-  _listResetMatiere(int index, List matiereObject) {
-    for (int i = 0; i < matiereObject.length; i++) {
-      if (index != i) {
-        matiereObject[i].isSelected = false;
-      } else {
-        matiereObject[index].isSelected = true;
-      }
-    }
-  }
-
-  _listResetAllMatiere(List matiereObject) {
-    for (int i = 0; i < matiereObject.length; i++) {
-      matiereObject[i].isSelected = false;
-    }
-  }
 }
-
-

@@ -91,7 +91,7 @@ class Student extends Equatable {
 }
 
 class Note extends Equatable {
-  final int mat;
+  final String mat;
   final double d1, d2, ex;
 
   Note({this.mat, this.d1, this.d2, this.ex});
@@ -100,10 +100,8 @@ class Note extends Equatable {
   List<Object> get props => [this.mat, this.d1, this.d2, this.ex];
 
   static Note fromJson(Map<String, dynamic> json) {
-    print(json['ex']);
-    print("test");
     return Note(
-      mat: json['idM'],
+      mat: json['idMatiere'],
       d1: double.parse(json['d1'].isNotEmpty ? json['d1'] : "0"),
       d2: double.parse(json['d2'].isNotEmpty ? json['d2'] : "0"),
       ex: double.parse((json['ex'] as String).isNotEmpty ? json['ex'] : "0"),

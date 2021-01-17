@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_class_parent/backend/cubits/cubits.dart';
 import 'package:go_class_parent/pages/home_work/units_list.dart';
 import 'package:go_class_parent/pages/pages.dart';
 import 'package:go_class_parent/values/Colors.dart';
@@ -17,43 +18,43 @@ void main() {
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider<AuthenticationBloc>(
-        create: (context) =>
+        create: (_) =>
             AuthenticationBloc(repository: AuthenticationRepository())
               ..add(AppLaunched()),
       ),
       BlocProvider<NotificationsBloc>(
-        create: (context) => NotificationsBloc(),
+        create: (_) => NotificationsBloc(),
       ),
       BlocProvider<MessagesBloc>(
-        create: (context) => MessagesBloc(),
+        create: (_) => MessagesBloc(),
       ),
       BlocProvider<DownloadsBloc>(
-        create: (context) => DownloadsBloc(repository: DownloadsRepository()),
+        create: (_) => DownloadsBloc(repository: DownloadsRepository()),
       ),
       BlocProvider<SettingsBloc>(
-        create: (context) => SettingsBloc(),
+        create: (_) => SettingsBloc(),
       ),
       BlocProvider<ScheduleBloc>(
-        create: (context) => ScheduleBloc(),
+        create: (_) => ScheduleBloc(),
       ),
       BlocProvider<PaymentsBloc>(
-        create: (context) => PaymentsBloc(),
+        create: (_) => PaymentsBloc(),
       ),
       BlocProvider<CanteenBloc>(
-        create: (context) => CanteenBloc(),
+        create: (_) => CanteenBloc(),
       ),
       BlocProvider<ChildrenBloc>(
-        create: (context) => ChildrenBloc(),
+        create: (_) => ChildrenBloc(),
       ),
       BlocProvider<AttendanceBloc>(
-        create: (context) => AttendanceBloc(),
+        create: (_) => AttendanceBloc(),
       ),
       BlocProvider<SynchronizationBloc>(
-        create: (context) => SynchronizationBloc(),
+        create: (_) => SynchronizationBloc(),
       ),
       BlocProvider<HomeWorkBloc>(
-        create: (context) => HomeWorkBloc(),
-      )
+        create: (_) => HomeWorkBloc(),
+      ),
     ],
     child: MyApp(),
   ));
