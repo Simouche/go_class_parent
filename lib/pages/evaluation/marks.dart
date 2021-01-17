@@ -156,7 +156,7 @@ class _MainPageState extends State<MarksPage> {
                 'activite': 0.0,
               };
               matieres = studentObject[index].matiereTab;
-              matiereObject = _getMatiere(matieres);
+              matiereObject = null;
               _displayMatiere(0, matiereObject);
 //              _listResetMatiere(0, matiereObject);
               _listResetAllMatiere(matiereObject);
@@ -530,14 +530,6 @@ class _MainPageState extends State<MarksPage> {
     }
   }
 
-  List _getMatiere(List matiere) {
-    List matiereObject = [];
-    for (int i = 0; i < matiere.length; i++) {
-      matiereObject.add(MatiereItem<String>(matiere[i]));
-    }
-    return matiereObject;
-  }
-
   _listResetMatiere(int index, List matiereObject) {
     for (int i = 0; i < matiereObject.length; i++) {
       if (index != i) {
@@ -555,19 +547,4 @@ class _MainPageState extends State<MarksPage> {
   }
 }
 
-class StudentItem<T> {
-  bool isSelected = true; //Selection property to highlight or not
-  T data;
-  T numIns;
-  T niveau;
-  List matiereTab;
 
-  StudentItem(this.data, this.numIns, this.matiereTab,
-      this.niveau); //Constructor to assign the data
-}
-
-class MatiereItem<T> {
-  bool isSelected = true; //Selection property to highlight or not
-  T data; //Data of the user
-  MatiereItem(this.data); //Constructor to assign the data
-}
