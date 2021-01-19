@@ -91,10 +91,19 @@ class Student extends Equatable {
 }
 
 class Note extends Equatable {
-  final String mat;
+  final String mat, labelMatiere;
   final double d1, d2, ex;
+  final int baremD1, baremD2, baremeEx;
 
-  Note({this.mat, this.d1, this.d2, this.ex});
+  Note(
+      {this.labelMatiere,
+      this.baremD1,
+      this.baremD2,
+      this.baremeEx,
+      this.mat,
+      this.d1,
+      this.d2,
+      this.ex});
 
   @override
   List<Object> get props => [this.mat, this.d1, this.d2, this.ex];
@@ -102,9 +111,21 @@ class Note extends Equatable {
   static Note fromJson(Map<String, dynamic> json) {
     return Note(
       mat: json['idMatiere'],
-      d1: double.parse(json['d1'].isNotEmpty ? json['d1'] : "0"),
-      d2: double.parse(json['d2'].isNotEmpty ? json['d2'] : "0"),
-      ex: double.parse((json['ex'] as String).isNotEmpty ? json['ex'] : "0"),
+      d1: double.parse(
+          json['d1'].isNotEmpty ? (json['d1'] as String).split("/")[0] : "0"),
+      baremD1: int.parse(
+          json['d1'].isNotEmpty ? (json['d1'] as String).split("/")[1] : "0"),
+      d2: double.parse(
+          json['d2'].isNotEmpty ? (json['d2'] as String).split("/")[0] : "0"),
+      baremD2: int.parse(
+          json['d2'].isNotEmpty ? (json['d2'] as String).split("/")[1] : "0"),
+      ex: double.parse((json['ex'] as String).isNotEmpty
+          ? (json['ex'] as String).split("/")[0]
+          : "0"),
+      baremeEx: int.parse((json['ex'] as String).isNotEmpty
+          ? (json['ex'] as String).split("/")[1]
+          : "0"),
+      labelMatiere: json['labelMatiere'],
     );
   }
 }

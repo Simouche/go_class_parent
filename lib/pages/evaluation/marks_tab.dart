@@ -23,7 +23,6 @@ class MarksTab extends StatelessWidget {
           }
         },
         buildWhen: (oldState, newState) {
-          print("Is it buiiildddiiiinnnnggg?");
           return students[newState].notes.isNotEmpty;
         },
         builder: (context, MatiereIndex) => Container(
@@ -237,7 +236,7 @@ class DisplayMatiere extends StatelessWidget {
             context.read<MatiereCubit>().selectMatiere(index);
           },
           child: Text(
-            "${student.notes[0][index].mat}",
+            "${student.notes[0][index].labelMatiere}",
             style: TextStyle(
                 color:
                     context.select((MatiereCubit cubit) => cubit.state) == index
@@ -274,17 +273,17 @@ class MarkCard extends StatelessWidget {
               _contatinerMarks(
                   context,
                   'Devoir 01',
-                  _convertNoteToColor(mark?.d1 ?? 0.0),
-                  _convertNoteToWater(mark?.d1 ?? 0.0),
+                  _convertNoteToColor(mark?.d1 ?? 0.0, base: mark?.baremD1),
+                  _convertNoteToWater(mark?.d1 ?? 0.0, base: mark?.baremD1),
                   mark?.d1 ?? 0.0,
-                  _convertNoteToGrade(mark?.d1 ?? 0.0)),
+                  _convertNoteToGrade(mark?.d1 ?? 0.0, base: mark?.baremD1)),
               _contatinerMarks(
                 context,
                 'Devoir 02',
-                _convertNoteToColor(mark?.d2 ?? 0.0),
-                _convertNoteToWater(mark?.d2 ?? 0.0),
+                _convertNoteToColor(mark?.d2 ?? 0.0, base: mark?.baremD2),
+                _convertNoteToWater(mark?.d2 ?? 0.0, base: mark?.baremD2),
                 mark?.d2 ?? 0.0,
-                _convertNoteToGrade(mark?.d2 ?? 0.0),
+                _convertNoteToGrade(mark?.d2 ?? 0.0, base: mark?.baremD2),
               )
             ],
           ),
@@ -299,10 +298,10 @@ class MarkCard extends StatelessWidget {
               _contatinerMarks(
                   context,
                   'Composition',
-                  _convertNoteToColor(mark?.ex ?? 0),
-                  _convertNoteToWater(mark?.ex ?? 0),
+                  _convertNoteToColor(mark?.ex ?? 0, base: mark?.baremeEx),
+                  _convertNoteToWater(mark?.ex ?? 0, base: mark?.baremeEx),
                   mark?.ex ?? 0,
-                  _convertNoteToGrade(mark?.ex ?? 0)),
+                  _convertNoteToGrade(mark?.ex ?? 0, base: mark?.baremeEx)),
             ],
           ),
         ],
@@ -381,11 +380,14 @@ class MarkCard extends StatelessWidget {
     );
   }
 
-  int _convertNoteToWater(double note) {
+  int _convertNoteToWater(double note, {base = 20}) {
+    if (base == 10) return _convertNoteToWater10(note);
     return (160 - (note * 2 * 4)).toInt();
   }
 
-  Color _convertNoteToColor(double note) {
+  Color _convertNoteToColor(double note, {base = 20}) {
+    if (base == 10) return _convertNoteToColor10(note);
+
     if (note >= 17.0) {
       return Colors.greenAccent;
     } else if (note >= 10.0 && note <= 17.0) {
@@ -397,7 +399,8 @@ class MarkCard extends StatelessWidget {
     }
   }
 
-  String _convertNoteToGrade(double note) {
+  String _convertNoteToGrade(double note, {base = 20}) {
+    if (base == 10) return _convertNoteToGrade10(note);
     if (note >= 17.0) {
       return 'Très Bien';
     } else if (note >= 10.0 && note <= 17.0) {
@@ -409,11 +412,11 @@ class MarkCard extends StatelessWidget {
     }
   }
 
-  int _convertNoteToWaterPrimaire(double note) {
+  int _convertNoteToWater10(double note) {
     return (160 - (note * 2 * 8)).toInt();
   }
 
-  String _convertNoteToGradePrimaire(double note) {
+  String _convertNoteToGrade10(double note) {
     if (note >= 8.5) {
       return 'Très Bien';
     } else if (note >= 5.0 && note <= 8.5) {
@@ -425,7 +428,7 @@ class MarkCard extends StatelessWidget {
     }
   }
 
-  Color _convertNoteToColorPrimaire(double note) {
+  Color _convertNoteToColor10(double note) {
     if (note >= 8.5) {
       return Colors.greenAccent;
     } else if (note >= 5.0 && note <= 8.5) {
