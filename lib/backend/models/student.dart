@@ -93,10 +93,14 @@ class Student extends Equatable {
 class Note extends Equatable {
   final String mat, labelMatiere;
   final double d1, d2, ex;
+  final bool stateD1, stateD2, stateEx;
   final int baremD1, baremD2, baremeEx;
 
   Note(
-      {this.labelMatiere,
+      {this.stateD1 = false,
+      this.stateD2 = false,
+      this.stateEx = false,
+      this.labelMatiere,
       this.baremD1,
       this.baremD2,
       this.baremeEx,
@@ -115,16 +119,19 @@ class Note extends Equatable {
           json['d1'].isNotEmpty ? (json['d1'] as String).split("/")[0] : "0"),
       baremD1: int.parse(
           json['d1'].isNotEmpty ? (json['d1'] as String).split("/")[1] : "0"),
+      stateD1: json['stateD1'] ?? false,
       d2: double.parse(
           json['d2'].isNotEmpty ? (json['d2'] as String).split("/")[0] : "0"),
       baremD2: int.parse(
           json['d2'].isNotEmpty ? (json['d2'] as String).split("/")[1] : "0"),
+      stateD2: json['stateD2'] ?? false,
       ex: double.parse((json['ex'] as String).isNotEmpty
           ? (json['ex'] as String).split("/")[0]
           : "0"),
       baremeEx: int.parse((json['ex'] as String).isNotEmpty
           ? (json['ex'] as String).split("/")[1]
           : "0"),
+      stateEx: json['stateEx'] ?? false,
       labelMatiere: json['labelMatiere'],
     );
   }

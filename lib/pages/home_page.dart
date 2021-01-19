@@ -430,7 +430,7 @@ class HomePage extends StatelessWidget {
                                       padding: EdgeInsets.only(bottom: 16.0),
                                     ),
                                     Text(
-                                      'Eval',
+                                      'Evaluation',
                                       style: TextStyle(
                                           color: Colors.orange,
                                           fontWeight: FontWeight.w700,

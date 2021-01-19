@@ -64,7 +64,7 @@ class _IntroPageViewState extends State<IntroPageView> {
 
   get page2 => IntroPageTemplate(
         title1: 'Connexion',
-        subtitle1: 'Acceder a votre espace',
+        subtitle1: 'Accéder a votre espace',
         title2: 'Etape 2',
         description:
             'Si vous avez déja un compte,\n accéder a votre espace et profitez de nos fonctionnalités.',
@@ -74,7 +74,7 @@ class _IntroPageViewState extends State<IntroPageView> {
 
   get page3 => IntroPageTemplate(
         title1: 'Allez-y',
-        subtitle1: "Acceder a l'école",
+        subtitle1: "Accéder a l'école",
         title2: 'Etape 3',
         description:
             'Une fois dans l\'application, vous receverez vos messages, notifications et fichier en temps réel.',

@@ -48,7 +48,7 @@ class ForgotPassword extends StatelessWidget {
                       top: AUTH_PAGES_BIG_TITLE_MARGIN_TOP,
                       left: AUTH_PAGES_BIG_TITLE_MARGIN_LEFT),
                   child: Text(
-                    "Mot de passe Oublié",
+                    "Vérification",
                     style: TextStyle(
                         color: WHITE,
                         fontSize: 24.0,
@@ -108,7 +108,7 @@ class _RegisterAndLoginButtons extends StatelessWidget {
       child: FlatButton(
         color: Color(0xff42b1de),
         child: Text(
-          'Réinitialiser le Mot de Passe',
+          'Vérifier',
           style: TextStyle(
               color: Colors.white, fontWeight: FontWeight.w700, fontSize: 16),
         ),

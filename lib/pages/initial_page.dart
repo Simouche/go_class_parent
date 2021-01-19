@@ -21,21 +21,7 @@ class InitialPage extends StatelessWidget {
             children: <Widget>[
               SizedBox(height: 150),
               Logo(),
-//              Text(
-//                'Slogan Slogan \nSlogan SLogan',
-//                style: TextStyle(
-//                    color: Colors.black,
-//                    fontWeight: FontWeight.bold,
-//                    fontSize: 30),
-//              ),
               SizedBox(height: 20),
-//              Text(
-//                'Neque porro quisquam est qui dolorem \n             ipsum quia dolor sit amet',
-//                style: TextStyle(
-//                  color: SECONDARY_TEXT_COLOR,
-//                  fontSize: 14,
-//                ),
-//              ),
               SizedBox(height: 50),
               AuthButtons(
                 buttonColor: MAIN_COLOR_DARK,
@@ -47,7 +33,7 @@ class InitialPage extends StatelessWidget {
               AuthButtons(
                 buttonColor: MAIN_COLOR_LIGHT,
                 textColor: WHITE,
-                text: 'S\'Inscrir',
+                text: 'S\'Inscrire',
                 onPressed: () {
                   Navigator.pushNamed(context, OtpPage.routeName);
                 },

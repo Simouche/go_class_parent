@@ -48,7 +48,7 @@ class MarksTab extends StatelessWidget {
                   Row(
                     children: <Widget>[
                       Text(
-                        'Details',
+                        'Détails',
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -146,7 +146,7 @@ class MarksTab extends StatelessWidget {
                   Row(
                     children: <Widget>[
                       Text(
-                        'Details ',
+                        'Détails ',
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -271,19 +271,32 @@ class MarkCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               _contatinerMarks(
-                  context,
-                  'Devoir 01',
-                  _convertNoteToColor(mark?.d1 ?? 0.0, base: mark?.baremD1),
-                  _convertNoteToWater(mark?.d1 ?? 0.0, base: mark?.baremD1),
-                  mark?.d1 ?? 0.0,
-                  _convertNoteToGrade(mark?.d1 ?? 0.0, base: mark?.baremD1)),
+                context,
+                'Devoir 01',
+                mark.stateD1
+                    ? _convertNoteToColor(mark?.d1 ?? 0.0, base: mark?.baremD1)
+                    : _convertNoteToColor(0),
+                mark.stateD1
+                    ? _convertNoteToWater(mark?.d1 ?? 0.0, base: mark?.baremD1)
+                    : _convertNoteToWater(0),
+                mark.stateD1 ? mark?.d1 ?? 0.0 : 0.0,
+                mark.stateD1
+                    ? _convertNoteToGrade(mark?.d1 ?? 0.0, base: mark?.baremD1)
+                    : _convertNoteToGrade(0),
+              ),
               _contatinerMarks(
                 context,
                 'Devoir 02',
-                _convertNoteToColor(mark?.d2 ?? 0.0, base: mark?.baremD2),
-                _convertNoteToWater(mark?.d2 ?? 0.0, base: mark?.baremD2),
-                mark?.d2 ?? 0.0,
-                _convertNoteToGrade(mark?.d2 ?? 0.0, base: mark?.baremD2),
+                mark.stateD2
+                    ? _convertNoteToColor(mark?.d2 ?? 0.0, base: mark?.baremD2)
+                    : _convertNoteToColor(0),
+                mark.stateD2
+                    ? _convertNoteToWater(mark?.d2 ?? 0.0, base: mark?.baremD2)
+                    : _convertNoteToWater(0),
+                mark.stateD2 ? mark?.d2 ?? 0.0 : 0.0,
+                mark.stateD2
+                    ? _convertNoteToGrade(mark?.d2 ?? 0.0, base: mark?.baremD2)
+                    : _convertNoteToGrade(0),
               )
             ],
           ),
@@ -293,15 +306,30 @@ class MarkCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              _contatinerMarks(context, 'Autre', _convertNoteToColor(0),
-                  _convertNoteToWater(0), 0, _convertNoteToGrade(0)),
+              Opacity(
+                child: _contatinerMarks(
+                    context,
+                    'Autre',
+                    _convertNoteToColor(0),
+                    _convertNoteToWater(0),
+                    0,
+                    _convertNoteToGrade(0)),
+                opacity: 0,
+              ),
               _contatinerMarks(
-                  context,
-                  'Composition',
-                  _convertNoteToColor(mark?.ex ?? 0, base: mark?.baremeEx),
-                  _convertNoteToWater(mark?.ex ?? 0, base: mark?.baremeEx),
-                  mark?.ex ?? 0,
-                  _convertNoteToGrade(mark?.ex ?? 0, base: mark?.baremeEx)),
+                context,
+                'Composition',
+                mark.stateEx
+                    ? _convertNoteToColor(mark?.ex ?? 0.0, base: mark?.baremeEx)
+                    : _convertNoteToColor(0),
+                mark.stateEx
+                    ? _convertNoteToWater(mark?.ex ?? 0.0, base: mark?.baremeEx)
+                    : _convertNoteToWater(0),
+                mark.stateEx ? mark?.ex ?? 0.0 : 0.0,
+                mark.stateEx
+                    ? _convertNoteToGrade(mark?.ex ?? 0.0, base: mark?.baremeEx)
+                    : _convertNoteToGrade(0),
+              ),
             ],
           ),
         ],
