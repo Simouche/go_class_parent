@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_class_parent/pages/pages.dart';
 import 'package:go_class_parent/values/Colors.dart';
 import 'package:go_class_parent/widgets/widgets.dart';
+import 'package:in_app_update/in_app_update.dart';
 
 import 'login_page.dart';
 
@@ -9,9 +10,12 @@ class InitialPage extends StatelessWidget {
   const InitialPage();
 
   static const String routeName = '/initial';
+  static var mcontext;
 
   @override
   Widget build(BuildContext context) {
+    mcontext = context;
+    checkForUpdate();
     return Scaffold(
       body: Center(
         child: Container(
@@ -48,5 +52,12 @@ class InitialPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> checkForUpdate() async {
+    InAppUpdate.checkForUpdate().then((info) {
+      InAppUpdate.performImmediateUpdate()
+          .then((value) => Navigator.pushNamed(mcontext, LoginPage.routeName));
+    }).catchError((e) => print("error from updater $e"));
   }
 }

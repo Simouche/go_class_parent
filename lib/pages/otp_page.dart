@@ -39,7 +39,7 @@ class OtpPage extends StatelessWidget {
                       top: AUTH_PAGES_BIG_TITLE_MARGIN_TOP,
                       left: AUTH_PAGES_BIG_TITLE_MARGIN_LEFT),
                   child: Text(
-                    "Verification",
+                    "Vérification",
                     style: TextStyle(
                         color: WHITE,
                         fontSize: AUTH_PAGES_BIG_TITLE_SIZE,
@@ -109,7 +109,7 @@ class _RegisterAndLoginButtons extends StatelessWidget {
       child: FlatButton(
         color: Color(0xff42b1de),
         child: Text(
-          'Verifier',
+          'Vérifier',
           style: TextStyle(
               color: Colors.white, fontWeight: FontWeight.w700, fontSize: 16),
         ),
