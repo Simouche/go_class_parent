@@ -3,6 +3,7 @@ import 'package:go_class_parent/pages/pages.dart';
 import 'package:go_class_parent/values/Colors.dart';
 import 'package:go_class_parent/widgets/widgets.dart';
 import 'package:in_app_update/in_app_update.dart';
+import 'package:new_version/new_version.dart';
 
 import 'login_page.dart';
 
@@ -15,7 +16,10 @@ class InitialPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     mcontext = context;
-    checkForUpdate();
+    // todo add multi bloc consumer or listener to check notification token and send it
+    NewVersion(context: context, dialogText: "Nouvelle Version Disponible!")
+        .showAlertIfNecessary();
+
     return Scaffold(
       body: Center(
         child: Container(

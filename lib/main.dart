@@ -18,8 +18,8 @@ void main() {
     providers: [
       BlocProvider<AuthenticationBloc>(
         create: (_) =>
-            AuthenticationBloc(repository: AuthenticationRepository())
-              ..add(AppLaunched()),
+        AuthenticationBloc(repository: AuthenticationRepository())
+          ..add(AppLaunched()),
       ),
       BlocProvider<NotificationsBloc>(
         create: (_) => NotificationsBloc(),
@@ -72,7 +72,7 @@ class MyApp extends StatelessWidget {
         return fcm.displayNotification(message);
       },
       onBackgroundMessage:
-          Platform.isIOS ? null : fcm.myBackgroundMessageHandler,
+      Platform.isIOS ? null : fcm.myBackgroundMessageHandler,
       onResume: (Map<String, dynamic> message) {
         print('on resume $message');
         return;
@@ -82,9 +82,6 @@ class MyApp extends StatelessWidget {
         return;
       },
     );
-
-    // todo add multi bloc consumer or listener to check notification token and send it
-
     return MaterialApp(
       title: 'GoClassParentParent',
       theme: ThemeData(

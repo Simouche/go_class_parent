@@ -7,6 +7,7 @@ import 'package:go_class_parent/pages/attendance/attendance_children.dart';
 import 'package:go_class_parent/pages/home_work/classes_list.dart';
 import 'package:go_class_parent/pages/login_page.dart';
 import 'package:go_class_parent/widgets/widgets.dart';
+import 'package:new_version/new_version.dart';
 
 import 'appbar/downloads.dart';
 import 'canteen/canteen_page.dart';
@@ -40,6 +41,8 @@ class HomePage extends StatelessWidget {
       loadInitialData(context);
       triggered = true;
     }
+    NewVersion(context: context, dialogText: "Nouvelle Version Disponible!")
+        .showAlertIfNecessary();
     return Scaffold(
       drawer: BlocListener<AuthenticationBloc, AuthenticationState>(
           listenWhen: (oldState, newState) => newState is LogoutState,
